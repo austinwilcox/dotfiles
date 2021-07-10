@@ -11,27 +11,21 @@ then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
 export PATH
+export PATH="$HOME/.emacs.d/bin:$PATH"
 
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
+# Only needed for work machines
+export PATH="/opt/mssql/bin:$PATH"
+export DOTNET_ROOT=/snap/dotnet-sdk/current
 
 # User specific aliases and functions
+# LS overwrite using lsd, a much better file display tool
 alias ls='lsd'
 alias lsa='lsd -all'
+
 alias randombg='feh --randomize --bg-scale ~/Pictures/*'
 alias showrouters='nmcli device wifi list'
-alias createpublishapi='cd Software/Arbinger/ArbingerAPI/ArbingerAPI/ && dotnet publish && cd ~/'
-alias arbapi='cd ~/Software/Arbinger/API/ArbingerAPI/'
-alias joplin='nohup ~/Downloads/Joplin-2.0.11.AppImage &'
+alias updatestarship='sh -c "$(curl -fsSL https://starship.rs/install.sh)"'
 alias evimrc='vim ~/.vimrc'
-
-
-export PATH="$HOME/.emacs.d/bin:$PATH"
-export PATH="/opt/mssql/bin:$PATH"
-#export DOTNET_ROOT="/snap/dotnet-sdk/current:$PATH"
-##export DOTNET_ROOT="/usr/share/dotnet/sdk:$PATH"
-#export PATH=$PATH:$DOTNET_ROOT
-export DOTNET_ROOT=/snap/dotnet-sdk/current
 
 neofetch
 
