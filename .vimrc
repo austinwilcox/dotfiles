@@ -42,6 +42,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-utils/vim-man'
 Plug 'git@github.com:kien/ctrlp.vim.git'
 Plug 'git@github.com:Valloric/YouCompleteMe.git'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mbbill/undotree'
 Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
 Plug 'preservim/nerdtree' | 
@@ -49,6 +50,7 @@ Plug 'preservim/nerdtree' |
 Plug 'ryanoasis/vim-devicons'
 Plug 'mattn/emmet-vim'
 Plug 'ap/vim-css-color'                            " Color previews for CSS
+"Plug 'OmniSharp/omnisharp-vim'
 call plug#end()
 
 let mapleader = " "
