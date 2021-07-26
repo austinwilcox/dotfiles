@@ -50,7 +50,7 @@ Plug 'preservim/nerdtree' |
 Plug 'ryanoasis/vim-devicons'
 Plug 'mattn/emmet-vim'
 Plug 'ap/vim-css-color'                            " Color previews for CSS
-"Plug 'OmniSharp/omnisharp-vim'
+Plug 'OmniSharp/omnisharp-vim'
 call plug#end()
 
 let mapleader = " "
@@ -72,7 +72,8 @@ nnoremap <silent> <Leader>gf :YcmCompleter FixIt<CR>
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+"Turned this one off because it interferes with using ctrl+f and ctrl+b to make larger file jumps"
+" nnoremap <C-f> :NERDTreeFind<CR> "
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Open terminal inside Vim

@@ -26,6 +26,7 @@ alias randombg='feh --randomize --bg-scale ~/Pictures/*'
 alias showrouters='nmcli device wifi list'
 alias updatestarship='sh -c "$(curl -fsSL https://starship.rs/install.sh)"'
 alias evimrc='vim ~/.vimrc'
+#alias nuget="mono /usr/local/bin/nuget.exe"
 
 neofetch
 
