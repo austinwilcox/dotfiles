@@ -1,6 +1,4 @@
-packadd! dracula
 syntax enable
-colorscheme dracula
 
 syntax on
 set noerrorbells
@@ -37,6 +35,7 @@ set omnifunc=syntaxcomplete#Complete
 
 "--Plugins (using junegunn/vim-plug --"
 call plug#begin('~/.vim/plugged')
+Plug 'gruvbox-community/gruvbox'
 Plug 'leafgarland/typescript-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-utils/vim-man'
@@ -52,6 +51,9 @@ Plug 'mattn/emmet-vim'
 Plug 'ap/vim-css-color'                            " Color previews for CSS
 Plug 'OmniSharp/omnisharp-vim'
 call plug#end()
+
+colorscheme gruvbox
+#highlight Normal guibg=none
 
 let mapleader = " "
 nnoremap <leader>wh :wincmd h<CR>
