@@ -15,7 +15,7 @@ export PATH="$HOME/.emacs.d/bin:$PATH"
 
 # Only needed for work machines
 export PATH="/opt/mssql/bin:$PATH"
-export PATH="$PATH:/home/[[USER_NAME]]/.dotnet/tools"
+#export PATH="$PATH:/home/[[USER_NAME]]/.dotnet/tools"
 
  #User specific aliases and functions
 # LS overwrite using lsd, a much better file display tool

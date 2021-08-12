@@ -32,7 +32,7 @@ filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 
 "--Plugins (using junegunn/vim-plug --"
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/autoload/vim.plug')
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'leafgarland/typescript-vim'
