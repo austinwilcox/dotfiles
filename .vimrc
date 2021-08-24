@@ -38,7 +38,6 @@ set omnifunc=syntaxcomplete#Complete
 "--Plugins (using junegunn/vim-plug --"
 call plug#begin('~/.vim/plugged')
 Plug 'leafgarland/typescript-vim'
-Plug 'tpope/vim-fugitive'
 Plug 'vim-utils/vim-man'
 Plug 'git@github.com:kien/ctrlp.vim.git'
 Plug 'git@github.com:Valloric/YouCompleteMe.git'
