@@ -1,5 +1,3 @@
-syntax enable
-
 syntax on
 set noerrorbells
 set tabstop=2
@@ -34,12 +32,13 @@ filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 
 "--Plugins (using junegunn/vim-plug --"
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/autoload/vim.plug')
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'leafgarland/typescript-vim'
+Plug 'tpope/vim-fugitive'
 Plug 'vim-utils/vim-man'
-Plug 'git@github.com:kien/ctrlp.vim.git'
-Plug 'git@github.com:Valloric/YouCompleteMe.git'
+Plug 'git@github.com:ycm-core/YouCompleteMe.git'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mbbill/undotree'
 Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
@@ -49,10 +48,20 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'mattn/emmet-vim'
 Plug 'ap/vim-css-color'                            " Color previews for CSS
 Plug 'OmniSharp/omnisharp-vim'
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " this is for auto complete, prettier and tslinting
+
+let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']  " list of CoC extensions needed
+
+Plug 'jiangmiao/auto-pairs' "this will auto close ( [ {
+
+" these two plugins will add highlighting and indenting to JSX and TSX files.
+Plug 'yuezk/vim-js'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
 colorscheme gruvbox
-#highlight Normal guibg=none
+highlight Normal guibg=none
 
 let mapleader = " "
 nnoremap <leader>wh :wincmd h<CR>
@@ -80,8 +89,6 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 " => Open terminal inside Vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Leader>tt :vnew term://bash<CR>
-
-
 
 " Exit Vim if NERDTree is the only window left "
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
