@@ -89,6 +89,7 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 " => Open terminal inside Vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Leader>tt :vnew term://bash<CR>
+:tnoremap <Esc> <C-\><C-n>
 
 " Exit Vim if NERDTree is the only window left "
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
