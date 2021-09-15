@@ -38,7 +38,6 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'leafgarland/typescript-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-utils/vim-man'
-Plug 'git@github.com:ycm-core/YouCompleteMe.git'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mbbill/undotree'
 Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
@@ -46,18 +45,17 @@ Plug 'preservim/nerdtree' |
   \ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mattn/emmet-vim'
-Plug 'ap/vim-css-color'                            " Color previews for CSS
+Plug 'ap/vim-css-color' " Color previews for CSS
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " this is for auto complete, prettier and tslinting
-
+Plug 'sindrets/winshift.nvim'
 let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']  " list of CoC extensions needed
-
 Plug 'jiangmiao/auto-pairs' "this will auto close ( [ {
-
 " these two plugins will add highlighting and indenting to JSX and TSX files.
 Plug 'yuezk/vim-js'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'nvim-lua/plenary.nvim'
 call plug#end()
 
 colorscheme gruvbox
@@ -74,16 +72,22 @@ nnoremap <leader>ps :Rg<SPACE>
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
 
-" YCM
-nnoremap <silent> <Leader>gd :YcmCompleter GoTo<CR>
-nnoremap <silent> <Leader>gf :YcmCompleter FixIt<CR>
+" Coc GoTo Code Navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " Nerd Tree Bindings "
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
-"Turned this one off because it interferes with using ctrl+f and ctrl+b to make larger file jumps"
-" nnoremap <C-f> :NERDTreeFind<CR> "
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Open terminal inside Vim

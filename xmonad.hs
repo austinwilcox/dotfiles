@@ -102,7 +102,7 @@ myStartupHook = do
     --spawnOnce "xrandr -s 4"
     
     --This is used on main machine with two monitors
-    spawnOnce "xrandr --output DP-2 --left-of DP-1"
+    spawnOnce "xrandr --output DP-3 --left-of DP-1"
 
     --Mount my files hard drive, on main machine
     spawnOnce "udisksctl mount -b /dev/sda1"

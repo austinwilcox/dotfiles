@@ -34,3 +34,5 @@ alias ssh-arblaptop='ssh austin@192.168.1.19'
 neofetch
 
 eval "$(starship init bash)"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
