@@ -33,6 +33,7 @@ set omnifunc=syntaxcomplete#Complete
 
 "--Plugins (using junegunn/vim-plug --"
 call plug#begin('~/.vim/autoload/vim.plug')
+Plug 'famiu/feline.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'leafgarland/typescript-vim'
@@ -56,6 +57,7 @@ Plug 'yuezk/vim-js'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 call plug#end()
 
 colorscheme gruvbox
@@ -98,3 +100,7 @@ nnoremap <Leader>tt :vnew term://bash<CR>
 " Exit Vim if NERDTree is the only window left "
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
     \ quit | endif
+
+lua <<EOF
+require('feline').setup()
+EOF

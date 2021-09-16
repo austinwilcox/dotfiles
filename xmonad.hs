@@ -106,6 +106,7 @@ myStartupHook = do
 
     --Mount my files hard drive, on main machine
     spawnOnce "udisksctl mount -b /dev/sda1"
+
     spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 22 &"
     spawnOnce "feh --randomize --bg-fill ~/Pictures/*"  -- feh set random wallpaper
     setWMName "LG3D"
