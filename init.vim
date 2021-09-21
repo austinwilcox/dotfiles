@@ -33,7 +33,6 @@ set omnifunc=syntaxcomplete#Complete
 
 "--Plugins (using junegunn/vim-plug --"
 call plug#begin('~/.vim/autoload/vim.plug')
-Plug 'famiu/feline.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'leafgarland/typescript-vim'
@@ -58,6 +57,7 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'shadmansaleh/lualine.nvim'
 call plug#end()
 
 colorscheme gruvbox
@@ -102,5 +102,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
     \ quit | endif
 
 lua <<EOF
-require('feline').setup()
+require('lualine').setup {
+    options = { theme = 'dracula' }
+  }
 EOF
