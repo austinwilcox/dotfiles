@@ -62,6 +62,7 @@ call plug#end()
 
 colorscheme gruvbox
 highlight Normal guibg=none
+set background=dark
 
 let mapleader = " "
 nnoremap <leader>wh :wincmd h<CR>
@@ -79,6 +80,11 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" Vim Fugitive keybindings
+nmap <leader>gh :diffget //3<CR>
+nmap <leader>gu :diffget //2<CR>
+nmap <leader>gs :G<CR>
 
 " Nerd Tree Bindings "
 nnoremap <leader>n :NERDTreeFocus<CR>
