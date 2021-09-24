@@ -82,8 +82,8 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Vim Fugitive keybindings
-nmap <leader>gh :diffget //3<CR>
-nmap <leader>gu :diffget //2<CR>
+nmap <leader>gn :diffget //3<CR>
+nmap <leader>gt :diffget //2<CR>
 nmap <leader>gs :G<CR>
 
 " Nerd Tree Bindings "
