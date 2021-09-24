@@ -23,6 +23,10 @@ alias ls='lsd'
 alias lsa='lsd -all'
 
 alias vim='nvim'
+alias v='nvim'
+
+alias gs='git status'
+alias gp='git push'
 
 alias randombg='feh --randomize --bg-scale ~/Pictures/*'
 alias showrouters='nmcli device wifi list'
