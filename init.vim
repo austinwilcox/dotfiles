@@ -33,10 +33,16 @@ set omnifunc=syntaxcomplete#Complete
 
 "--Plugins (using junegunn/vim-plug --"
 call plug#begin('~/.vim/autoload/vim.plug')
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-dadbod'
+"Plug 'tpope/fugitive-gitlab' need to work on this one
+Plug 'tpope/vim-dotenv'
+
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'leafgarland/typescript-vim'
-Plug 'tpope/vim-fugitive'
 Plug 'vim-utils/vim-man'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mbbill/undotree'
