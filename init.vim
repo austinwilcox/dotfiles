@@ -113,7 +113,6 @@ nnoremap ,html :-1read $HOME/.dotfiles/skeletons/skeleton.html<CR>3jwf>a
 nnoremap ,react :-1read $HOME/.dotfiles/skeletons/skeleton.jsx<CR>2j3wce
 nnoremap ,vue :-1read $HOME/.dotfiles/skeletons/skeleton.vue<CR>ja
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Open terminal inside Vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
