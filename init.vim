@@ -40,6 +40,8 @@ Plug 'tpope/vim-dadbod'
 "Plug 'tpope/fugitive-gitlab' need to work on this one
 Plug 'tpope/vim-dotenv'
 
+Plug 'kristijanhusak/vim-dadbod-ui'
+
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'leafgarland/typescript-vim'
@@ -105,6 +107,12 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " Indent JSON files on save - experimental
 autocmd FileType json autocmd BufWritePre <buffer> %!python -m json.tool
+
+" Snippets in my dotfiles folder
+nnoremap ,html :-1read $HOME/.dotfiles/skeletons/skeleton.html<CR>3jwf>a
+nnoremap ,react :-1read $HOME/.dotfiles/skeletons/skeleton.jsx<CR>2j3wce
+nnoremap ,vue :-1read $HOME/.dotfiles/skeletons/skeleton.vue<CR>ja
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Open terminal inside Vim
