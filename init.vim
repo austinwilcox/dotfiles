@@ -37,16 +37,16 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dadbod'
-"Plug 'tpope/fugitive-gitlab' need to work on this one
 Plug 'tpope/vim-dotenv'
 
-Plug 'kristijanhusak/vim-dadbod-ui'
+" Prettier code formatter for web dev stack
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'leafgarland/typescript-vim'
-Plug 'vim-utils/vim-man'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mbbill/undotree'
 Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
 Plug 'preservim/nerdtree' | 
