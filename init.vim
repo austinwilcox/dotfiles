@@ -115,7 +115,7 @@ autocmd FileType json autocmd BufWritePre <buffer> %!python -m json.tool
 nnoremap ,html :-1read $HOME/.dotfiles/skeletons/skeleton.html<CR>3jwf>a
 nnoremap ,react :-1read $HOME/.dotfiles/skeletons/skeleton.jsx<CR>2j3wce
 nnoremap ,vue :-1read $HOME/.dotfiles/skeletons/skeleton.vue<CR>ja
-nnoremap ,c#dto :-1read $HOME/.dotfiles/skeletons/c#dto.cs<CR>4jwce
+nnoremap ,csdto :-1read $HOME/.dotfiles/skeletons/c#dto.cs<CR>4jwce
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Open terminal inside Vim
