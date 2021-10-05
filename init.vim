@@ -37,14 +37,16 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dadbod'
-"Plug 'tpope/fugitive-gitlab' need to work on this one
 Plug 'tpope/vim-dotenv'
+
+" Prettier code formatter for web dev stack
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'leafgarland/typescript-vim'
-Plug 'vim-utils/vim-man'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mbbill/undotree'
 Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
 Plug 'preservim/nerdtree' | 
@@ -103,8 +105,16 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
+" Custom convert hex to rgba
+nnoremap <leader>cs :call v:lua.hex2rgb()<CR>
+
 " Indent JSON files on save - experimental
 autocmd FileType json autocmd BufWritePre <buffer> %!python -m json.tool
+
+" Snippets in my dotfiles folder
+nnoremap ,html :-1read $HOME/.dotfiles/skeletons/skeleton.html<CR>3jwf>a
+nnoremap ,react :-1read $HOME/.dotfiles/skeletons/skeleton.jsx<CR>2j3wce
+nnoremap ,vue :-1read $HOME/.dotfiles/skeletons/skeleton.vue<CR>ja
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Open terminal inside Vim
@@ -121,3 +131,43 @@ require('lualine').setup {
     options = { theme = 'dracula' }
   }
 EOF
+
+lua <<EOF
+function _G.hex2rgb()
+  local r,c = unpack(vim.api.nvim_win_get_cursor(0))
+  local lines = vim.api.nvim_buf_get_lines(0,r-1,r,false)
+  local line = unpack(lines)
+  local beginningindexofhexcode = string.find(line, '#%x%x%x%x%x')
+  local length = 6
+  if beginningindexofhexcode == nil then
+    beginningindexofhexcode = string.find(line, '#%x%x%x')
+    length = 3
+    if beginningindexofhexcode == nil then
+      return ''
+    end
+  end
+  local hexcode = string.sub(line, beginningindexofhexcode, beginningindexofhexcode + length)
+  local rgba = getrgbafromhex(hexcode)
+  vim.api.nvim_buf_set_text(0,r-1,beginningindexofhexcode -1,r-1,beginningindexofhexcode + hexcode:len() -1,{rgba})
+  return ''
+end
+
+function getrgbafromhex(hex)
+  local hexwithnopoundsign = hex:gsub("#","")
+  local red, green, blue
+  if hexwithnopoundsign:len() == 3 then
+    red = tonumber("0x"..hexwithnopoundsign:sub(1,1)) * 17
+    green = tonumber("0x"..hexwithnopoundsign:sub(2,2)) * 17
+    blue = tonumber("0x"..hexwithnopoundsign:sub(3,3)) * 17
+  else
+    red = tonumber("0x"..hexwithnopoundsign:sub(1,2))
+    green = tonumber("0x"..hexwithnopoundsign:sub(3,4))
+    blue = tonumber("0x"..hexwithnopoundsign:sub(5,6))
+  end
+  local rgba = "rgba(" .. tostring(red) ..  "," .. tostring(green) .. "," .. blue ..",1.0)"
+
+  return rgba
+end
+EOF
+
+
