@@ -33,6 +33,7 @@ alias showrouters='nmcli device wifi list'
 alias updatestarship='sh -c "$(curl -fsSL https://starship.rs/install.sh)"'
 alias evimrc='vim ~/.vimrc'
 alias ssh-arblaptop='ssh austin@192.168.1.19'
+alias startDefaultNetwork='sudo virsh net-start default'
 #alias nuget="mono /usr/local/bin/nuget.exe"
 
 neofetch

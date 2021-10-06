@@ -123,6 +123,8 @@ nnoremap ,csdto :-1read $HOME/.dotfiles/skeletons/csdto.cs<CR>4jwce
 nnoremap <Leader>tt :vnew term://bash<CR>
 :tnoremap <Esc> <C-\><C-n>
 
+autocmd BufNewFile,BufRead *.cs set formatprg=astyle\ -T4pb
+
 " Exit Vim if NERDTree is the only window left "
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
     \ quit | endif
