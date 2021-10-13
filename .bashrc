@@ -35,6 +35,7 @@ alias evimrc='vim ~/.vimrc'
 alias ssh-arblaptop='ssh austin@192.168.1.19'
 alias startDefaultNetwork='sudo virsh net-start default'
 #alias nuget="mono /usr/local/bin/nuget.exe"
+alias mountFilesDrive='udisksctl mount -b /dev/sda1'
 
 neofetch
 

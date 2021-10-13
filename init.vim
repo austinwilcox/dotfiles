@@ -39,13 +39,15 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-dotenv'
 
+Plug 'kristijanhusak/vim-dadbod-ui'
+
 " Prettier code formatter for web dev stack
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'gruvbox-community/gruvbox'
+Plug 'Mofiqul/dracula.nvim'
 Plug 'leafgarland/typescript-vim'
 Plug 'mbbill/undotree'
 Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
@@ -68,7 +70,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'shadmansaleh/lualine.nvim'
 call plug#end()
 
-colorscheme gruvbox
+colorscheme dracula
 highlight Normal guibg=none
 set background=dark
 
@@ -110,6 +112,9 @@ nnoremap <leader>cs :call v:lua.hex2rgb()<CR>
 
 " Indent JSON files on save - experimental
 autocmd FileType json autocmd BufWritePre <buffer> %!python -m json.tool
+
+" Search with the visually selected text
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 " Snippets in my dotfiles folder
 nnoremap ,html :-1read $HOME/.dotfiles/skeletons/skeleton.html<CR>3jwf>a
