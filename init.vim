@@ -47,7 +47,7 @@ Plug 'prettier/vim-prettier', {
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'Mofiqul/dracula.nvim'
+Plug 'dracula/vim', { 'as':'dracula' }
 Plug 'leafgarland/typescript-vim'
 Plug 'mbbill/undotree'
 Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
