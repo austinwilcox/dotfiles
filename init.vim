@@ -66,6 +66,8 @@ Plug 'yuezk/vim-js'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'ThePrimeagen/harpoon'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'shadmansaleh/lualine.nvim'
 call plug#end()
@@ -99,6 +101,14 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <leader>gn :diffget //3<CR>
 nmap <leader>gt :diffget //2<CR>
 nmap <leader>gs :G<CR>
+
+"Harpoon key bindings
+nnoremap <leader>ha :lua require("harpoon.mark").add_file()<cr>
+nnoremap <leader>hs :lua require("harpoon.ui").toggle_quick_menu()<cr>
+nnoremap <leader>h1 :lua require("harpoon.ui").nav_file(1)<cr>
+nnoremap <leader>h2 :lua require("harpoon.ui").nav_file(2)<cr>
+nnoremap <leader>h3 :lua require("harpoon.ui").nav_file(3)<cr>
+nnoremap <leader>h4 :lua require("harpoon.ui").nav_file(4)<cr>
 
 " Nerd Tree Bindings "
 nnoremap <leader>n :NERDTreeFocus<CR>
