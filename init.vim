@@ -74,6 +74,10 @@ colorscheme dracula
 highlight Normal guibg=none
 set background=dark
 
+"Forgot to run vim as sudo? Not a problem, this command fixes that and allows
+"you to save the file still
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
 let mapleader = " "
 nnoremap <leader>wh :wincmd h<CR>
 nnoremap <leader>wj :wincmd j<CR>
