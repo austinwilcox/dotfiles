@@ -105,13 +105,13 @@ nmap <leader>gs :G<CR>
 "Harpoon key bindings
 nnoremap <leader>a :lua require("harpoon.mark").add_file()<cr>
 nnoremap <leader>s :lua require("harpoon.ui").toggle_quick_menu()<cr>
-nnoremap <leader>n :lua require("harpoon.ui").nav_file(1)<cr>
-nnoremap <leader>e :lua require("harpoon.ui").nav_file(2)<cr>
-nnoremap <leader>i :lua require("harpoon.ui").nav_file(3)<cr>
-nnoremap <leader>o :lua require("harpoon.ui").nav_file(4)<cr>
+nnoremap <leader>hn :lua require("harpoon.ui").nav_file(1)<cr>
+nnoremap <leader>he :lua require("harpoon.ui").nav_file(2)<cr>
+nnoremap <leader>hi :lua require("harpoon.ui").nav_file(3)<cr>
+nnoremap <leader>ho :lua require("harpoon.ui").nav_file(4)<cr>
 
 " Nerd Tree Bindings "
-"nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 
