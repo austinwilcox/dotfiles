@@ -76,6 +76,9 @@ colorscheme dracula
 highlight Normal guibg=none
 set background=dark
 
+"What should be the default in vim
+nnoremap Y y$
+
 "Forgot to run vim as sudo? Not a problem, this command fixes that and allows
 "you to save the file still
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
