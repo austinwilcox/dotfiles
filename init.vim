@@ -97,6 +97,13 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+"OmniSharp Code Navigation and functions
+nnoremap <leader>of :OmniSharpCodeFormat
+nnoremap <leader>opi :OmniSharpPreviewImplementation
+nnoremap <leader>or :OmniSharpRestartServer
+nnoremap <leader>ogt :OmniSharpGoToDefinition
+nnoremap <leader>oi :OmniSharpFindImplementations
+
 " Vim Fugitive keybindings
 nmap <leader>gn :diffget //3<CR>
 nmap <leader>gt :diffget //2<CR>
