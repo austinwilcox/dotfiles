@@ -98,11 +98,11 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 "OmniSharp Code Navigation and functions
-nnoremap <leader>of :OmniSharpCodeFormat
-nnoremap <leader>opi :OmniSharpPreviewImplementation
-nnoremap <leader>or :OmniSharpRestartServer
-nnoremap <leader>ogt :OmniSharpGoToDefinition
-nnoremap <leader>oi :OmniSharpFindImplementations
+nnoremap <leader>of :OmniSharpCodeFormat<cr>
+nnoremap <leader>opi :OmniSharpPreviewImplementation<cr>
+nnoremap <leader>or :OmniSharpRestartServer<cr>
+nnoremap <leader>ogt :OmniSharpGoToDefinition<cr>
+nnoremap <leader>oi :OmniSharpFindImplementations<cr>
 
 " Vim Fugitive keybindings
 nmap <leader>gn :diffget //3<CR>
