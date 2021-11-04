@@ -76,6 +76,15 @@ colorscheme dracula
 highlight Normal guibg=none
 set background=dark
 
+"Number 1 Primeagen vim remap
+vnoremap K :m '<-2<CR>gv=gv
+vnoremap J :m '>+1<CR>gv=gv
+inoremap <C-j> <esc>:m .+1<CR>==
+inoremap <C-k> <esc>:m .-2<CR>==
+nnoremap <leader>k :m .-2<CR>==
+nnoremap <leader>j :m .+1<CR>==
+
+
 "What should be the default in vim
 nnoremap Y y$
 
