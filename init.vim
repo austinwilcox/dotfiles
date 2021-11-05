@@ -41,6 +41,8 @@ Plug 'tpope/vim-dotenv'
 
 Plug 'kristijanhusak/vim-dadbod-ui'
 
+Plug 'gruvbox-community/gruvbox'
+
 " Prettier code formatter for web dev stack
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
@@ -72,7 +74,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'shadmansaleh/lualine.nvim'
 call plug#end()
 
-colorscheme dracula
+colorscheme gruvbox
 highlight Normal guibg=none
 set background=dark
 
@@ -169,7 +171,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 
 lua <<EOF
 require('lualine').setup {
-    options = { theme = 'dracula' }
+    options = { theme = 'gruvbox' }
   }
 EOF
 
