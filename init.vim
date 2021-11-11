@@ -115,7 +115,7 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <leader>of :OmniSharpCodeFormat<cr>
 nnoremap <leader>opi :OmniSharpPreviewImplementation<cr>
 nnoremap <leader>or :OmniSharpRestartServer<cr>
-nnoremap <leader>ogt :OmniSharpGoToDefinition<cr>
+nnoremap <leader>ogt :OmniSharpGotoDefinition<cr>
 nnoremap <leader>oi :OmniSharpFindImplementations<cr>
 
 " Vim Fugitive keybindings
