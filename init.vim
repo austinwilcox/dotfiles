@@ -59,6 +59,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'mattn/emmet-vim'
 Plug 'ap/vim-css-color' " Color previews for CSS
 Plug 'OmniSharp/omnisharp-vim'
+Plug 'dense-analysis/ale'
+
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " this is for auto complete, prettier and tslinting
 Plug 'sindrets/winshift.nvim'
 let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']  " list of CoC extensions needed
@@ -117,6 +119,17 @@ nnoremap <leader>opi :OmniSharpPreviewImplementation<cr>
 nnoremap <leader>or :OmniSharpRestartServer<cr>
 nnoremap <leader>ogt :OmniSharpGotoDefinition<cr>
 nnoremap <leader>oi :OmniSharpFindImplementations<cr>
+
+" ALE: {{{
+let g:ale_sign_error = '•'
+let g:ale_sign_warning = '•'
+let g:ale_sign_info = '·'
+let g:ale_sign_style_error = '·'
+let g:ale_sign_style_warning = '·'
+
+let g:ale_linters = { 'cs': ['OmniSharp'] }
+" }}}
+
 
 " Vim Fugitive keybindings
 nmap <leader>gn :diffget //3<CR>
