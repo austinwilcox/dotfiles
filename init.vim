@@ -48,6 +48,7 @@ Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 
+Plug 'https://github.com/jidn/vim-dbml.git'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'dracula/vim', { 'as':'dracula' }
 Plug 'leafgarland/typescript-vim'
@@ -76,7 +77,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'shadmansaleh/lualine.nvim'
 call plug#end()
 
-colorscheme gruvbox
+colorscheme dracula
 highlight Normal guibg=none
 set background=dark
 
