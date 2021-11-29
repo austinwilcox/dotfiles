@@ -159,9 +159,6 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 " Custom convert hex to rgba
 nnoremap <leader>cs :call v:lua.hex2rgb()<CR>
 
-" Indent JSON files on save - experimental
-autocmd FileType json autocmd BufWritePre <buffer> %!python -m json.tool
-
 " Search with the visually selected text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 

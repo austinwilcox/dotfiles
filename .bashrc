@@ -38,6 +38,8 @@ alias startDefaultNetwork='sudo virsh net-start default'
 alias mountFilesDrive='udisksctl mount -b /dev/sda1'
 alias rider='~/Downloads/"JetBrains Rider-2021.2.2"/bin/rider.sh'
 
+alias colemakdh='sudo kmonad ~/.dotfiles/kmonad-layouts/colemak-dh-extend-ansi.kbd'
+
 neofetch
 
 eval "$(starship init bash)"
