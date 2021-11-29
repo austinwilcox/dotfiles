@@ -39,8 +39,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-dotenv'
 
-Plug 'kristijanhusak/vim-dadbod-ui'
-
 " Prettier code formatter for web dev stack
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
