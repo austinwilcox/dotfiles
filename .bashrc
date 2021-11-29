@@ -15,7 +15,7 @@ export PATH="$HOME/.emacs.d/bin:$PATH"
 
 # Only needed for work machines
 export PATH="/opt/mssql/bin:$PATH"
-#export PATH="$PATH:/home/[[USER_NAME]]/.dotnet/tools"
+export PATH="$PATH:/home/[[USER_NAME]]/.dotnet/tools"
 
  #User specific aliases and functions
 # LS overwrite using lsd, a much better file display tool
@@ -36,6 +36,7 @@ alias ssh-arblaptop='ssh austin@192.168.1.19'
 alias startDefaultNetwork='sudo virsh net-start default'
 #alias nuget="mono /usr/local/bin/nuget.exe"
 alias mountFilesDrive='udisksctl mount -b /dev/sda1'
+alias rider='~/Downloads/"JetBrains Rider-2021.2.2"/bin/rider.sh'
 
 neofetch
 

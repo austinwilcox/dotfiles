@@ -39,11 +39,16 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-dotenv'
 
+Plug 'kristijanhusak/vim-dadbod-ui'
+
+Plug 'gruvbox-community/gruvbox'
+
 " Prettier code formatter for web dev stack
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 
+Plug 'https://github.com/jidn/vim-dbml.git'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'dracula/vim', { 'as':'dracula' }
 Plug 'leafgarland/typescript-vim'
@@ -55,6 +60,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'mattn/emmet-vim'
 Plug 'ap/vim-css-color' " Color previews for CSS
 Plug 'OmniSharp/omnisharp-vim'
+Plug 'dense-analysis/ale'
+
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " this is for auto complete, prettier and tslinting
 Plug 'sindrets/winshift.nvim'
 let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']  " list of CoC extensions needed
@@ -64,6 +71,8 @@ Plug 'yuezk/vim-js'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'ThePrimeagen/harpoon'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'shadmansaleh/lualine.nvim'
 call plug#end()
@@ -71,6 +80,22 @@ call plug#end()
 colorscheme dracula
 highlight Normal guibg=none
 set background=dark
+
+"Number 1 Primeagen vim remap
+vnoremap K :m '<-2<CR>gv=gv
+vnoremap J :m '>+1<CR>gv=gv
+inoremap <C-j> <esc>:m .+1<CR>==
+inoremap <C-k> <esc>:m .-2<CR>==
+nnoremap <leader>k :m .-2<CR>==
+nnoremap <leader>j :m .+1<CR>==
+
+
+"What should be the default in vim
+nnoremap Y y$
+
+"Forgot to run vim as sudo? Not a problem, this command fixes that and allows
+"you to save the file still
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 let mapleader = " "
 nnoremap <leader>wh :wincmd h<CR>
@@ -89,10 +114,36 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+"OmniSharp Code Navigation and functions
+nnoremap <leader>of :OmniSharpCodeFormat<cr>
+nnoremap <leader>opi :OmniSharpPreviewImplementation<cr>
+nnoremap <leader>or :OmniSharpRestartServer<cr>
+nnoremap <leader>ogt :OmniSharpGotoDefinition<cr>
+nnoremap <leader>oi :OmniSharpFindImplementations<cr>
+
+" ALE: {{{
+let g:ale_sign_error = '•'
+let g:ale_sign_warning = '•'
+let g:ale_sign_info = '·'
+let g:ale_sign_style_error = '·'
+let g:ale_sign_style_warning = '·'
+
+let g:ale_linters = { 'cs': ['OmniSharp'] }
+" }}}
+
+
 " Vim Fugitive keybindings
 nmap <leader>gn :diffget //3<CR>
 nmap <leader>gt :diffget //2<CR>
 nmap <leader>gs :G<CR>
+
+"Harpoon key bindings
+nnoremap <leader>ha :lua require("harpoon.mark").add_file()<cr>
+nnoremap <leader>hs :lua require("harpoon.ui").toggle_quick_menu()<cr>
+nnoremap <leader>hn :lua require("harpoon.ui").nav_file(1)<cr>
+nnoremap <leader>he :lua require("harpoon.ui").nav_file(2)<cr>
+nnoremap <leader>hi :lua require("harpoon.ui").nav_file(3)<cr>
+nnoremap <leader>ho :lua require("harpoon.ui").nav_file(4)<cr>
 
 " Nerd Tree Bindings "
 nnoremap <leader>n :NERDTreeFocus<CR>
@@ -134,7 +185,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 
 lua <<EOF
 require('lualine').setup {
-    options = { theme = 'dracula' }
+    options = { theme = 'gruvbox' }
   }
 EOF
 
