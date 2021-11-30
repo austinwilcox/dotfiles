@@ -77,7 +77,7 @@ highlight Normal guibg=none
 set background=dark
 
 "I wanted an easier way to quickly go in and change up commands in my vimrc
-nnoremap <leader>evim :e ~/.config/nvim/init.vim<CR>
+nnoremap <leader>ev :e ~/.config/nvim/init.vim<CR>
 
 "Disable esc-p because I am constantly hitting this combo and in nvim it
 "disables and enables auto pairing, currently not working

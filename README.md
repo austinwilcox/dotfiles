@@ -45,3 +45,8 @@ create a new window, execute ls, and then close that window
 ```
 tmux neww -n "hello world" "ls"
 ```
+
+Create a new blank window with keybindings
+```
+ctrl+b c
+```
