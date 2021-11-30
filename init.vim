@@ -36,10 +36,7 @@ call plug#begin('~/.vim/autoload/vim.plug')
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-dotenv'
-
-Plug 'kristijanhusak/vim-dadbod-ui'
 
 Plug 'gruvbox-community/gruvbox'
 
@@ -48,11 +45,9 @@ Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 
-Plug 'https://github.com/jidn/vim-dbml.git'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'dracula/vim', { 'as':'dracula' }
 Plug 'leafgarland/typescript-vim'
-Plug 'mbbill/undotree'
 Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
 Plug 'preservim/nerdtree' | 
   \ Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -80,6 +75,13 @@ call plug#end()
 colorscheme dracula
 highlight Normal guibg=none
 set background=dark
+
+"I wanted an easier way to quickly go in and change up commands in my vimrc
+nnoremap <leader>evim :e ~/.config/nvim/init.vim<CR>
+
+"Disable esc-p because I am constantly hitting this combo and in nvim it
+"disables and enables auto pairing, currently not working
+nnoremap <esc>p <NOP>
 
 "Number 1 Primeagen vim remap
 vnoremap K :m '<-2<CR>gv=gv
@@ -182,7 +184,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 
 lua <<EOF
 require('lualine').setup {
-    options = { theme = 'gruvbox' }
+    options = { theme = 'dracula' }
   }
 EOF
 
