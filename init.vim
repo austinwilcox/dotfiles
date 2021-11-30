@@ -76,12 +76,239 @@ colorscheme dracula
 highlight Normal guibg=none
 set background=dark
 
+let g:AutoPairsShortcutToggle = ''
+nnoremap <M-p> <Nop>
+syntax on
+set noerrorbells
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set nowrap
+set noswapfile
+set nobackup
+set incsearch
+set smartindent
+set showmatch
+set wildmenu
+set autoindent
+set relativenumber
+set nu
+set hidden
+set undodir=~/.vim/undodir
+set undofile
+set signcolumn=yes
+set modifiable
+set encoding=UTF-8
+set clipboard=unnamedplus       " Copy/paste between vim and other programs.
+
+filetype indent on
+
+set colorcolumn=80
+highlight ColorColumn ctermbg=7
+
+"-- Auto Completion --"
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+
+"--Plugins (using junegunn/vim-plug --"
+call plug#begin('~/.vim/autoload/vim.plug')
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-dotenv'
+
+Plug 'gruvbox-community/gruvbox'
+
+" Prettier code formatter for web dev stack
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'dracula/vim', { 'as':'dracula' }
+Plug 'leafgarland/typescript-vim'
+Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
+Plug 'preservim/nerdtree' | 
+  \ Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
+Plug 'mattn/emmet-vim'
+Plug 'ap/vim-css-color' " Color previews for CSS
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'dense-analysis/ale'
+
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " this is for auto complete, prettier and tslinting
+Plug 'sindrets/winshift.nvim'
+let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']  " list of CoC extensions needed
+Plug 'jiangmiao/auto-pairs' "this will auto close ( [ {
+" these two plugins will add highlighting and indenting to JSX and TSX files.
+Plug 'yuezk/vim-js'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'ThePrimeagen/harpoon'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'shadmansaleh/lualine.nvim'
+call plug#end()
+
+colorscheme dracula
+highlight Normal guibg=none
+set background=dark
+
+let g:AutoPairsShortcutToggle = ''
+nnoremap <M-p> <Nop>
+
 "I wanted an easier way to quickly go in and change up commands in my vimrc
 nnoremap <leader>ev :e ~/.config/nvim/init.vim<CR>
 
-"Disable esc-p because I am constantly hitting this combo and in nvim it
-"disables and enables auto pairing, currently not working
-nnoremap <esc>p <NOP>
+"Number 1 Primeagen vim remap
+vnoremap K :m '<-2<CR>gv=gv
+vnoremap J :m '>+1<CR>gv=gv
+inoremap <C-j> <esc>:m .+1<CR>==
+inoremap <C-k> <esc>:m .-2<CR>==
+nnoremap <leader>k :m .-2<CR>==
+nnoremap <leader>j :m .+1<CR>==
+
+
+"What should be the default in vim
+nnoremap Y y$
+
+"Forgot to run vim as sudo? Not a problem, this command fixes that and allows
+"you to save the file still
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
+let mapleader = " "
+nnoremap <leader>wh :wincmd h<CR>
+nnoremap <leader>wj :wincmd j<CR>
+nnoremap <leader>wk :wincmd k<CR>
+nnoremap <leader>wl :wincmd l<CR>
+nnoremap <leader>u :UndotreeShow<CR>
+nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+nnoremap <leader>ps :Rg<SPACE>
+nnoremap <silent> <Leader>+ :vertical resize +5<CR>
+nnoremap <silent> <Leader>- :vertical resize -5<CR>
+
+" Coc GoTo Code Navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+"OmniSharp Code Navigation and functions
+nnoremap <leader>of :OmniSharpCodeFormat<cr>
+nnoremap <leader>opi :OmniSharpPreviewImplementation<cr>
+nnoremap <leader>or :OmniSharpRestartServer<cr>
+nnoremap <leader>ogt :OmniSharpGotoDefinition<cr>
+nnoremap <leader>oi :OmniSharpFindImplementations<cr>
+
+" ALE: {{{
+let g:ale_sign_error = '•'
+let g:ale_sign_warning = '•'
+let g:ale_sign_info = '·'
+let g:ale_sign_style_error = '·'
+let g:ale_sign_style_warning = '·'
+
+let g:ale_linters = { 'cs': ['OmniSharp'] }
+" }}}
+
+
+" Vim Fugitive keybindings
+nmap <leader>gn :diffget //3<CR>
+nmap <leader>gt :diffget //2<CR>
+nmap <leader>gs :G<CR>
+
+"Harpoon key bindings
+nnoremap <leader>ha :lua require("harpoon.mark").add_file()<cr>
+nnoremap <leader>hs :lua require("harpoon.ui").toggle_quick_menu()<cr>
+nnoremap <leader>hn :lua require("harpoon.ui").nav_file(1)<cr>
+nnoremap <leader>he :lua require("harpoon.ui").nav_file(2)<cr>
+nnoremap <leader>hi :lua require("harpoon.ui").nav_file(3)<cr>
+nnoremap <leader>ho :lua require("harpoon.ui").nav_file(4)<cr>
+
+" Nerd Tree Bindings "
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" Custom convert hex to rgba
+nnoremap <leader>cs :call v:lua.hex2rgb()<CR>
+
+" Search with the visually selected text
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+
+" Snippets in my dotfiles folder
+nnoremap ,html :-1read $HOME/.dotfiles/skeletons/skeleton.html<CR>3jwf>a
+nnoremap ,react :-1read $HOME/.dotfiles/skeletons/skeleton.jsx<CR>2j3wce
+nnoremap ,vue :-1read $HOME/.dotfiles/skeletons/skeleton.vue<CR>ja
+nnoremap ,csdto :-1read $HOME/.dotfiles/skeletons/csdto.cs<CR>4jwce
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Open terminal inside Vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <Leader>tt :vnew term://bash<CR>
+:tnoremap <Esc> <C-\><C-n>
+
+autocmd BufNewFile,BufRead *.cs set formatprg=astyle\ -T4pb
+
+" Exit Vim if NERDTree is the only window left "
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    \ quit | endif
+
+lua <<EOF
+require('lualine').setup {
+    options = { theme = 'dracula' }
+  }
+EOF
+
+lua <<EOF
+function _G.hex2rgb()
+  local r,c = unpack(vim.api.nvim_win_get_cursor(0))
+  local lines = vim.api.nvim_buf_get_lines(0,r-1,r,false)
+  local line = unpack(lines)
+  local beginningindexofhexcode = string.find(line, '#%x%x%x%x%x')
+  local length = 6
+  if beginningindexofhexcode == nil then
+    beginningindexofhexcode = string.find(line, '#%x%x%x')
+    length = 3
+    if beginningindexofhexcode == nil then
+      return ''
+    end
+  end
+  local hexcode = string.sub(line, beginningindexofhexcode, beginningindexofhexcode + length)
+  local rgba = getrgbafromhex(hexcode)
+  vim.api.nvim_buf_set_text(0,r-1,beginningindexofhexcode -1,r-1,beginningindexofhexcode + hexcode:len() -1,{rgba})
+  return ''
+end
+
+function getrgbafromhex(hex)
+  local hexwithnopoundsign = hex:gsub("#","")
+  local red, green, blue
+  if hexwithnopoundsign:len() == 3 then
+    red = tonumber("0x"..hexwithnopoundsign:sub(1,1)) * 17
+    green = tonumber("0x"..hexwithnopoundsign:sub(2,2)) * 17
+    blue = tonumber("0x"..hexwithnopoundsign:sub(3,3)) * 17
+  else
+    red = tonumber("0x"..hexwithnopoundsign:sub(1,2))
+    green = tonumber("0x"..hexwithnopoundsign:sub(3,4))
+    blue = tonumber("0x"..hexwithnopoundsign:sub(5,6))
+  end
+  local rgba = "rgba(" .. tostring(red) ..  "," .. tostring(green) .. "," .. blue ..",1.0)"
+
+  return rgba
+end
+EOF
+
+
+
+"I wanted an easier way to quickly go in and change up commands in my vimrc
+nnoremap <leader>ev :e ~/.config/nvim/init.vim<CR>
 
 "Number 1 Primeagen vim remap
 vnoremap K :m '<-2<CR>gv=gv
