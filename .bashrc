@@ -44,5 +44,8 @@ neofetch
 
 eval "$(starship init bash)"
 
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 . "$HOME/.cargo/env"
