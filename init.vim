@@ -33,6 +33,9 @@ set omnifunc=syntaxcomplete#Complete
 
 "--Plugins (using junegunn/vim-plug --"
 call plug#begin('~/.vim/autoload/vim.plug')
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
+
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -70,6 +73,7 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'ThePrimeagen/harpoon'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'shadmansaleh/lualine.nvim'
+
 call plug#end()
 
 colorscheme dracula
