@@ -36,7 +36,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dotenv'
-Plug 'tpope/vim-eunuch'
 
 Plug 'gruvbox-community/gruvbox'
 
