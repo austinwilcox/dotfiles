@@ -7,7 +7,7 @@ require "aw.options"
 require "aw.mappings"
 
 --require "aw.colorswap"
-require "aw.statusline"
+--require "aw.statusline"
 --require "aw.lsp"
 --require "mh.formatting"
 require "mh.treesitter"

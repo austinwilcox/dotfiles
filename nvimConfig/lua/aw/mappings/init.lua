@@ -2,11 +2,11 @@ local vim = vim
 local api = vim.api
 local M = {}
 function M.map(mode, lhs, rhs, opts)
-  local options = {noremap=true, silent=true}
+  local options = {noremap = true, silent = true}
   if opts then
     options = vim.tbl_extend("force", options, opts)
   end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
+  api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 M.map("n", "<M-p>", "<nop>")
@@ -47,10 +47,6 @@ M.map("n", ",react", ":-1read $HOME/.dotfiles/skeletons/skeleton.jsx<CR>2j3wce")
 M.map("n", ",vue", ":-1read $HOME/.dotfiles/skeletons/skeleton.vue<CR>ja")
 M.map("n", ",csdto", ":-1read $HOME/.dotfiles/skeletons/csdto.cs<CR>4jwce")
 M.map("n", "<leader>tt", ":vnew term://bash<CR>")
-M.map("n", "", "")
-M.map("n", "", "")
-M.map("n", "", "")
-M.map("n", "", "")
 
 --TODO
 --:tnoremap <Esc> <C-\><C-n>
