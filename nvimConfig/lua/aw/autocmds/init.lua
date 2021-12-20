@@ -1,7 +1,7 @@
 local M = {}
 function M.autocmd(event, triggers, operations)
   local cmd = string.format("autocmd %s %s %s", event, triggers, operations)
- vim.cmd(cmd)
+  vim.cmd(cmd)
 end
 
 M.autocmd("BufNewFile,BufRead", "*.cs", "set formatprg=astyle\\ -T4pb")

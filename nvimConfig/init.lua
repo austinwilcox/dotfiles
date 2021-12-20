@@ -5,9 +5,10 @@
 require "aw.plugins"
 require "aw.options"
 require "aw.mappings"
+--require "aw.autocmds"
 
 --require "aw.colorswap"
 --require "aw.statusline"
 --require "aw.lsp"
 --require "mh.formatting"
-require "mh.treesitter"
+require "aw.treesitter"

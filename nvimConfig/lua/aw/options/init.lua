@@ -1,4 +1,6 @@
 vim.g.mapleader = " "
+vim.g.AutoPairsShortcutToggle = ''
+
 vim.o.syntax = "on"
 vim.o.clipboard='unnamedplus'
 vim.o.wrap = false
@@ -11,32 +13,24 @@ vim.o.expandtab = true
 vim.o.showmatch = true
 vim.o.showcmd = true
 vim.o.expandtab = true
-vim.o.noerrorbells = true
+vim.o.errorbells = false
+vim.o.wrap = false
+vim.o.swapfile = false
+vim.o.backup = false
+vim.o.incsearch = true
+vim.o.smartindent = true
+vim.o.showmatch = true
+vim.o.wildmenu = true
+vim.o.autoindent = true
+vim.o.nu = true
+vim.o.hidden = true
+vim.o.undodir ='~/.vim/undodir'
+vim.o.undofile = true
+vim.o.signcolumn='yes'
+vim.o.modifiable = true
+vim.o.encoding='UTF-8'
 
+vim.cmd='filetype indent on'
 vim.cmd='highlight ColorColumn ctermbg=7'
-
-
-vim.cmd=[[
-set nowrap
-set noswapfile
-set nobackup
-set incsearch
-set smartindent
-set showmatch
-set wildmenu
-set autoindent
-set relativenumber
-set nu
-set hidden
-set undodir=~/.vim/undodir
-set undofile
-set signcolumn=yes
-set modifiable
-set encoding=UTF-8
-filetype indent on
-set colorcolumn=80
-highlight ColorColumn ctermbg=7
-
-filetype plugin on
-set omnifunc=syntaxcomplete#Complete
-]]
+vim.cmd='filetype plugin on'
+vim.cmd='set omnifunc=syntaxcomplete#Complete'

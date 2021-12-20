@@ -1,10 +1,13 @@
 local Plug = vim.fn['plug#']
 
 vim.call('plug#begin', '~/.config/nvim/plugged')
-
-Plug('nvim-treesitter/nvim-treesitter', {['do']=':TSUpdate'})
 Plug 'neovim/nvim-lspconfig'
-Plug 'rafcamlet/coc-nvim-lua'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug('nvim-treesitter/nvim-treesitter', {['do']=':TSUpdate'})
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -25,7 +28,6 @@ Plug 'ap/vim-css-color'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'dense-analysis/ale'
 
-Plug('neoclide/coc.nvim', {['do']= 'yarn install --frozen-lockfile'})
 Plug 'sindrets/winshift.nvim'
 Plug 'jiangmiao/auto-pairs' 
 Plug 'yuezk/vim-js'
