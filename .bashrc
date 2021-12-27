@@ -52,8 +52,12 @@ alias rider='~/Downloads/"JetBrains Rider-2021.2.2"/bin/rider.sh'
 
 
 alias colemakdh='sudo kmonad ~/.dotfiles/kmonad-layouts/colemak-dh-extend-ansi.kbd'
-
-neofetch
+if [[ "${splitIFS[1]}" == "$desktopName" ]]
+then
+  neofetch
+else
+  pfetch
+fi
 
 eval "$(starship init bash)"
 
