@@ -15,7 +15,17 @@ export PATH="$HOME/.emacs.d/bin:$PATH"
 
 # Only needed for work machines
 export PATH="/opt/mssql/bin:$PATH"
-export PATH="$PATH:/home/[[USER_NAME]]/.dotnet/tools"
+
+str=`hostnamectl | grep 'hostname'`
+IFS=':'
+read -rasplitIFS<<< "$str"
+desktopName=" Austin-Desktop"
+if [[ "${splitIFS[1]}" == "$desktopName" ]]
+then
+  export PATH="/usr/share/dotnet:$PATH"
+else
+  export PATH="$PATH:/home/[[USER_NAME]]/.dotnet/tools"
+fi
 
  #User specific aliases and functions
 # LS overwrite using lsd, a much better file display tool
