@@ -79,6 +79,7 @@ colorscheme dracula
 highlight Normal guibg=none
 set background=dark
 
+let g:user_emmet_leader_key=','
 let g:AutoPairsShortcutToggle = ''
 nnoremap <M-p> <Nop>
 
