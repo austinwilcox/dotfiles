@@ -80,6 +80,9 @@ colorscheme nord
 highlight Normal guibg=none
 set background=dark
 
+let NERDTreeShowLineNumbers=1
+autocmd FileType nerdtree setlocal relativenumber
+
 let g:user_emmet_leader_key=','
 let g:AutoPairsShortcutToggle = ''
 nnoremap <M-p> <Nop>
