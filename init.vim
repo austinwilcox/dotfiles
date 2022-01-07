@@ -30,6 +30,7 @@ filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 
 call plug#begin('~/.config/nvim/plugged')
+Plug 'arcticicestudio/nord-vim'
 "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 "Plug 'neovim/nvim-lspconfig'
 
@@ -75,7 +76,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lualine/lualine.nvim'
 call plug#end()
 
-colorscheme dracula
+colorscheme nord
 highlight Normal guibg=none
 set background=dark
 
@@ -183,7 +184,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 
 lua <<EOF
 require('lualine').setup {
-    options = { theme = 'dracula' }
+    options = { theme = 'nord' }
   }
 EOF
 
