@@ -101,6 +101,9 @@ nnoremap <leader>j :m .+1<CR>==
 "What should be the default in vim
 nnoremap Y y$
 
+"Why is this not the default? reposition the find to the middle of the screen.
+nmap n nzz
+
 "Forgot to run vim as sudo? Not a problem, this command fixes that and allows
 "you to save the file still
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
