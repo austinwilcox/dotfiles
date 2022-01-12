@@ -50,6 +50,7 @@ alias rider='~/Downloads/"JetBrains Rider-2021.2.2"/bin/rider.sh'
   export DENO_INSTALL="/home/austin/.deno"
   export PATH="$DENO_INSTALL/bin:$PATH"
 alias gcane='git commit --amend --no-edit'
+alias arbPortal='~/.dotfiles/arbPortalTmux.sh'
 
 
 alias colemakdh='sudo kmonad ~/.dotfiles/kmonad-layouts/colemak-dh-extend-ansi.kbd'
