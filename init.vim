@@ -35,6 +35,9 @@ Plug 'arcticicestudio/nord-vim'
 "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 "Plug 'neovim/nvim-lspconfig'
 
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
 Plug 'rafcamlet/coc-nvim-lua'
@@ -83,6 +86,11 @@ set background=dark
 
 let NERDTreeShowLineNumbers=1
 autocmd FileType nerdtree setlocal relativenumber
+
+let g:UltiSnipsSnippetDirectories=['~/.dotfiles/snippets/']
+let g:UltiSnipsExpandTrigger="<tab>"               
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 let g:user_emmet_leader_key=','
 let g:AutoPairsShortcutToggle = ''
