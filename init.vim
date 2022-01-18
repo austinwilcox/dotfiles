@@ -30,6 +30,7 @@ filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 
 call plug#begin('~/.config/nvim/plugged')
+Plug 'austinwilcox/pretty-fold.nvim'
 Plug 'arcticicestudio/nord-vim'
 "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 "Plug 'neovim/nvim-lspconfig'
@@ -189,6 +190,10 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
     \ quit | endif
 
 lua <<EOF
+require('pretty-fold').setup{ }
+require('pretty-fold.preview').setup {
+   key = 'h', -- choose 'h' or 'l' key
+}
 require('lualine').setup {
     options = { theme = 'nord' }
   }
