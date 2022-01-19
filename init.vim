@@ -91,6 +91,9 @@ let g:UltiSnipsSnippetDirectories=['~/.dotfiles/snippets/']
 let g:UltiSnipsExpandTrigger="<tab>"               
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+"Add CSharp Snippets
+"Not needed, but this syntax could be useful
+"autocmd BufNewFile,BufRead cs UltiSnipsAddFileTypes cs
 
 let g:user_emmet_leader_key=','
 let g:AutoPairsShortcutToggle = ''

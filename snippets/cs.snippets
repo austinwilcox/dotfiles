@@ -1,0 +1,55 @@
+snippet apicontroller "Async Controller"
+using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+[ApiController]
+[Route("[controller]")]
+public class ${1:Text} : ControllerBase
+{
+	public class `!p snip.rv = t[1]`() {}
+}
+endsnippet
+
+snippet prop "Prop for a class"
+public ${1:string} ${2:Text} { get; set; }
+endsnippet
+
+snippet route "Route for an api controller"
+[Http${1:GetPatchPostDelete}]
+[Route("${2:Route}")]
+[ProducesResponseType(StatusCodes.Status204NoContent)]
+[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+public IActionResult ${3:MethodName}(${4:Params})
+{
+	try
+	{
+		${5:Code}
+		return StatusCode(StatusCodes.Status204NoContent);
+	}
+	catch(Exception ex)
+	{
+		return StatusCode(StatusCodes.Status500InternalServerError);
+	}
+}
+endsnippet
+
+snippet asyncroute "Async Route for an api controller"
+[Http${1:GetPatchPostDelete}]
+[Route("${2:Route}")]
+[ProducesResponseType(StatusCodes.Status204NoContent)]
+[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+public async Task<IActionResult> ${3:MethodName}(${4:Params})
+{
+	try
+	{
+		${5:Code}
+		return StatusCode(StatusCodes.Status204NoContent);
+	}
+	catch(Exception ex)
+	{
+		return StatusCode(StatusCodes.Status500InternalServerError);
+	}
+}
+endsnippet
