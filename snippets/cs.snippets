@@ -12,6 +12,20 @@ public class `!p snip.rv = snip.basename` : ControllerBase
 }
 endsnippet
 
+snippet service "Use a service"
+using(var ${1:Service} = new `!p snip.rv = t[1][0].upper() + t[1][1:] + '()'`)
+{
+	${2}
+}
+endsnippet
+
+snippet repo "Use a Repository"
+using(var ${1:Repository} = new `!p snip.rv = t[1][0].upper() + t[1][1:] + '()'`)
+{
+	${2}
+}
+endsnippet
+
 snippet prop "Prop for a class"
 public ${1:string} ${2:Text} { get; set; }
 endsnippet
