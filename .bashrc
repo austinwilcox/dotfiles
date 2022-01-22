@@ -53,6 +53,7 @@ alias gcane='git commit --amend --no-edit'
 alias arbPortal='~/.dotfiles/arbPortalTmux.sh'
 alias startSqlServer='sudo docker start sql2019'
 alias stopSqlServer='sudo docker stop sql2019'
+#https://theserogroup.com/sql-server/getting-started-with-sql-server-in-a-docker-container/
 
 
 alias colemakdh='sudo kmonad ~/.dotfiles/kmonad-layouts/colemak-dh-extend-ansi.kbd'
