@@ -67,3 +67,12 @@ public async Task<IActionResult> ${3:MethodName}(${4:Params})
 	}
 }
 endsnippet
+
+snippet dto "Create a DTO"
+
+public class `!p snip.rv = snip.basename`
+{
+	public ${1:string} ${2:Text} { get; set; }
+}
+
+endsnippet
