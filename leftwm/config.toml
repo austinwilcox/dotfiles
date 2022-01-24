@@ -29,6 +29,18 @@ modifier=["modkey"]
 key="s"
 
 [[keybind]]
+command="IncreaseMainWidth"
+modifier=["modkey", "Shift"]
+value="5"
+key="n"
+
+[[keybind]]
+command="DecreaseMainWidth"
+modifier=["modkey", "Shift"]
+value="5" 
+key="t"
+
+[[keybind]]
 command="ToggleFullScreen"
 modifier=["modkey"]
 key="f"
