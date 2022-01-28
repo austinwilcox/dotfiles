@@ -51,6 +51,7 @@ alias rider='~/Downloads/"JetBrains Rider-2021.2.2"/bin/rider.sh'
   export PATH="$DENO_INSTALL/bin:$PATH"
 alias gcane='git commit --amend --no-edit'
 alias arbPortal='~/.dotfiles/arbPortalTmux.sh'
+alias arbPortalUnitTests='~/.dotfiles/arbPortalUnitTestsTmux.sh'
 alias startSqlServer='sudo docker start sql2019'
 alias stopSqlServer='sudo docker stop sql2019'
 #https://theserogroup.com/sql-server/getting-started-with-sql-server-in-a-docker-container/
@@ -71,3 +72,7 @@ export EDITOR="$VISUAL"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 . "$HOME/.cargo/env"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
