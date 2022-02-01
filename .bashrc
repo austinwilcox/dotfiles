@@ -52,10 +52,10 @@ alias rider='~/Downloads/"JetBrains Rider-2021.2.2"/bin/rider.sh'
 alias gcane='git commit --amend --no-edit'
 alias arbPortal='~/.dotfiles/arbPortalTmux.sh'
 alias arbPortalUnitTests='~/.dotfiles/arbPortalUnitTestsTmux.sh'
+alias swd='~/.dotfiles/secondswebdevTmux.sh'
 alias startSqlServer='sudo docker start sql2019'
 alias stopSqlServer='sudo docker stop sql2019'
 #https://theserogroup.com/sql-server/getting-started-with-sql-server-in-a-docker-container/
-
 
 alias colemakdh='sudo kmonad ~/.dotfiles/kmonad-layouts/colemak-dh-extend-ansi.kbd'
 if [[ "${splitIFS[1]}" == "$desktopName" ]]
