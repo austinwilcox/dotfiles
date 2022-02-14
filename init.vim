@@ -80,7 +80,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lualine/lualine.nvim'
 call plug#end()
 
-colorscheme nord
+colorscheme gruvbox
 highlight Normal guibg=none
 set background=dark
 
@@ -206,7 +206,7 @@ require('pretty-fold.preview').setup {
    key = 'h', -- choose 'h' or 'l' key
 }
 require('lualine').setup {
-    options = { theme = 'nord' }
+    options = { theme = 'gruvbox' }
   }
 EOF
 
