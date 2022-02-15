@@ -1,4 +1,6 @@
 syntax on
+set ignorecase
+set smartcase
 set noerrorbells
 set tabstop=2
 set softtabstop=2
