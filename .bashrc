@@ -56,7 +56,7 @@ alias goKanban='~/.dotfiles/goKanbanTmux.sh'
 alias swd='~/.dotfiles/secondswebdevTmux.sh'
 alias startSqlServer='sudo docker start sql2019'
 alias stopSqlServer='sudo docker stop sql2019'
-alias autoUploadToAsana='~/Software/arbinger/autoUploadToAsana/bin/release/net5.0/linux-x64/publish/autoUploadToAsana'
+alias autoUploadToAsana='~/Software/arbinger/autoUploadToAsana/bin/release/net5.0/linux-x64/publish/autoUploadToAsana -f ~/Software/arbinger/autoUploadToAsana/config.json'
 #https://theserogroup.com/sql-server/getting-started-with-sql-server-in-a-docker-container/
 
 alias colemakdh='sudo kmonad ~/.dotfiles/kmonad-layouts/colemak-dh-extend-ansi.kbd'
