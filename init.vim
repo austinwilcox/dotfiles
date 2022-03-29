@@ -154,7 +154,6 @@ let g:ale_linters = { 'cs': ['OmniSharp'] }
 " }}}
 
 inoremap <c-u> <c-r>=trim(system('uuidgen'))<cr>
-nnoremap <c-u> i<c-r>=trim(system('uuidgen'))<cr><esc>
 
 " Vim Fugitive keybindings
 nmap <leader>gn :diffget //3<CR>
