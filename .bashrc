@@ -62,7 +62,8 @@ alias autoUploadToAsana='~/Software/arbinger/autoUploadToAsana/bin/release/net5.
 alias colemakdh='sudo kmonad ~/.dotfiles/kmonad-layouts/colemak-dh-extend-ansi.kbd'
 if [[ "${splitIFS[1]}" == "$desktopName" ]]
 then
-  colorscript -r
+  # colorscript -r
+  paleofetch
 else
   pfetch
 fi
