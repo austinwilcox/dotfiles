@@ -34,12 +34,14 @@ set omnifunc=syntaxcomplete#Complete
 call plug#begin('~/.config/nvim/plugged')
 Plug 'austinwilcox/pretty-fold.nvim'
 Plug 'arcticicestudio/nord-vim'
-"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 "Plug 'neovim/nvim-lspconfig'
 
 Plug 'kyoz/purify', { 'rtp': 'vim' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
+Plug 'ray-x/go.nvim'
 
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
@@ -86,6 +88,15 @@ call plug#end()
 colorscheme gruvbox
 highlight Normal guibg=none
 set background=dark
+
+"Formatting for GOlang
+autocmd BufWritePre *.go :silent! lua require('go.format').gofmt()
+lua <<EOF
+require('go').setup()
+EOF
+
+nnoremap <leader>gf :lua require("go.format").gofmt()<cr>
+
 
 let NERDTreeShowLineNumbers=1
 autocmd FileType nerdtree setlocal relativenumber
