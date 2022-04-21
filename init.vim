@@ -32,6 +32,7 @@ filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 
 call plug#begin('~/.config/nvim/plugged')
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'austinwilcox/pretty-fold.nvim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
