@@ -27,6 +27,8 @@ else
   export PATH="$PATH:/home/[[USER_NAME]]/.dotnet/tools"
 fi
 
+export PATH="$PATH:/home/austin/.BrowserDrivers/"
+
  #User specific aliases and functions
 # LS overwrite using lsd, a much better file display tool
 alias ls='lsd'
