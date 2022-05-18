@@ -25,6 +25,7 @@ then
   export PATH="/usr/share/dotnet:$PATH"
 else
   export PATH="$PATH:/home/[[USER_NAME]]/.dotnet/tools"
+  export PATH="$PATH:/home/austin/Software/arbinger/publishedConsoleApps/ProcessSalesforceOrders/"
 fi
 
 export PATH="$PATH:/home/austin/.BrowserDrivers/"
