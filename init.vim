@@ -195,6 +195,8 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 " Custom convert hex to rgba
 nnoremap <leader>cs :call v:lua.hex2rgb()<CR>
 
+nnoremap <leader>vtt :call v:lua.VimTODOTree()<CR>
+
 " Search with the visually selected text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
@@ -261,5 +263,11 @@ function getrgbafromhex(hex)
   local rgba = "rgba(" .. tostring(red) ..  "," .. tostring(green) .. "," .. blue ..",1.0)"
 
   return rgba
+end
+EOF
+
+lua <<EOF
+function _G.VimTODOTree()
+  print("Test this out");
 end
 EOF
