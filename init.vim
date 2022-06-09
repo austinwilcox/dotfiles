@@ -49,6 +49,13 @@ Plug 'honza/vim-snippets'
 
 Plug 'ray-x/go.nvim'
 
+" Debugging
+Plug 'mfussenegger/nvim-dap'
+Plug 'leoluz/nvim-dap-go'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'theHamsta/nvim-dap-virtual-text'
+Plug 'nvim-telescope/telescope-dap.nvim'
+
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
 Plug 'tpope/vim-fugitive'
@@ -76,6 +83,7 @@ Plug 'dense-analysis/ale'
 
 Plug 'sindrets/winshift.nvim'
 Plug 'jiangmiao/auto-pairs' "this will auto close ( [ {
+"
 " these two plugins will add highlighting and indenting to JSX and TSX files.
 Plug 'yuezk/vim-js'
 Plug 'HerringtonDarkholme/yats.vim'
