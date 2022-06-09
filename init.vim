@@ -36,7 +36,12 @@ Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'austinwilcox/pretty-fold.nvim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-"Plug 'neovim/nvim-lspconfig'
+
+Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/nvim-cmp'
 
 Plug 'kyoz/purify', { 'rtp': 'vim' }
 Plug 'SirVer/ultisnips'
@@ -46,7 +51,6 @@ Plug 'ray-x/go.nvim'
 
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
-Plug 'rafcamlet/coc-nvim-lua'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -68,12 +72,9 @@ Plug 'preservim/nerdtree' |
 Plug 'ryanoasis/vim-devicons'
 Plug 'mattn/emmet-vim'
 Plug 'ap/vim-css-color' " Color previews for CSS
-Plug 'OmniSharp/omnisharp-vim'
 Plug 'dense-analysis/ale'
 
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " this is for auto complete, prettier and tslinting
 Plug 'sindrets/winshift.nvim'
-let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']  " list of CoC extensions needed
 Plug 'jiangmiao/auto-pairs' "this will auto close ( [ {
 " these two plugins will add highlighting and indenting to JSX and TSX files.
 Plug 'yuezk/vim-js'
@@ -144,17 +145,17 @@ nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
 
 " Coc GoTo Code Navigation
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
 
 "OmniSharp Code Navigation and functions
-nnoremap <leader>of :OmniSharpCodeFormat<cr>
-nnoremap <leader>opi :OmniSharpPreviewImplementation<cr>
-nnoremap <leader>or :OmniSharpRestartServer<cr>
-nnoremap <leader>ogt :OmniSharpGotoDefinition<cr>
-nnoremap <leader>oi :OmniSharpFindImplementations<cr>
+" nnoremap <leader>of :OmniSharpCodeFormat<cr>
+" nnoremap <leader>opi :OmniSharpPreviewImplementation<cr>
+" nnoremap <leader>or :OmniSharpRestartServer<cr>
+" nnoremap <leader>ogt :OmniSharpGotoDefinition<cr>
+" nnoremap <leader>oi :OmniSharpFindImplementations<cr>
 
 " ALE: {{{
 let g:ale_sign_error = '•'
@@ -217,6 +218,52 @@ autocmd BufNewFile,BufRead *.cs set formatprg=astyle\ -T4pb
 " Exit Vim if NERDTree is the only window left "
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
     \ quit | endif
+"Autocomplete config
+lua <<EOF
+local cmp = require 'cmp'
+cmp.setup {
+  mapping = {
+    ['<Tab>'] = cmp.mapping.select_next_item(),
+    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+    ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    })
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+  }
+}
+EOF
+
+" Omnisharp with lsp
+lua <<EOF
+require'lspconfig'.omnisharp.setup {
+  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  on_attach = function(_, bufnr)
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
+    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer=0})
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
+    vim.keymap.set("n", "<leader>df", vim.diagnostic.goto_next, {buffer=0})
+    vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {buffer=0})
+    vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer=0})
+  end,
+  cmd = { "/home/austin/.config/omnisharp/OmniSharp", "--languageserver" , "--hostPID", tostring(pid) },
+}
+
+require("nvim-lsp-installer").setup({
+    automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
+    ui = {
+        icons = {
+            server_installed = "✓",
+            server_pending = "➜",
+            server_uninstalled = "✗"
+        }
+    }
+})
+EOF
 
 lua <<EOF
 require('pretty-fold').setup{ }
@@ -268,6 +315,11 @@ EOF
 
 lua <<EOF
 function _G.VimTODOTree()
+  vim.cmd('20 vsplit')
+  local win = vim.api.nvim_get_current_win()
+  local buf = vim.api.nvim_create_buf(true, true)
+  vim.api.nvim_win_set_buf(win, buf)
+
   print("Test this out");
 end
 EOF
