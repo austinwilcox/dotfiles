@@ -201,6 +201,9 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
+" TODO Tree
+" nnoremap <leader>ft <cmd>Telescope live_grep<cr>
+
 " Custom convert hex to rgba
 nnoremap <leader>cs :call v:lua.hex2rgb()<CR>
 
