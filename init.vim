@@ -152,19 +152,6 @@ nnoremap <leader>wl :wincmd l<CR>
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
 
-" Coc GoTo Code Navigation
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
-
-"OmniSharp Code Navigation and functions
-" nnoremap <leader>of :OmniSharpCodeFormat<cr>
-" nnoremap <leader>opi :OmniSharpPreviewImplementation<cr>
-" nnoremap <leader>or :OmniSharpRestartServer<cr>
-" nnoremap <leader>ogt :OmniSharpGotoDefinition<cr>
-" nnoremap <leader>oi :OmniSharpFindImplementations<cr>
-
 " ALE: {{{
 let g:ale_sign_error = '•'
 let g:ale_sign_warning = '•'
@@ -200,9 +187,6 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
-" TODO Tree
-" nnoremap <leader>ft <cmd>Telescope live_grep<cr>
 
 " Custom convert hex to rgba
 nnoremap <leader>cs :call v:lua.hex2rgb()<CR>
@@ -288,6 +272,7 @@ lua <<EOF
       vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
       vim.keymap.set("n", "<leader>df", vim.diagnostic.goto_next, {buffer=0})
       vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {buffer=0})
+      vim.keymap.set("n", "<leader>dr", vim.lsp.buf.rename, {buffer=0})
       vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer=0})
     end
   }
@@ -334,6 +319,7 @@ require'lspconfig'.omnisharp.setup {
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
     vim.keymap.set("n", "<leader>df", vim.diagnostic.goto_next, {buffer=0})
     vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {buffer=0})
+    vim.keymap.set("n", "<leader>dr", vim.lsp.buf.rename, {buffer=0})
     vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer=0})
   end,
   cmd = { "/home/austin/.config/omnisharp/OmniSharp", "--languageserver" , "--hostPID", tostring(pid) },
