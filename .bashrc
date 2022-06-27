@@ -12,6 +12,8 @@ then
 fi
 export PATH
 export PATH="$HOME/.emacs.d/bin:$PATH"
+export PATH="$HOME/.local/share/nvim/lsp_servers/gopls:$PATH"
+export PATH="$HOME/.local/share/nvim/lsp_servers/bashls:$PATH"
 
 # Only needed for work machines
 export PATH="/opt/mssql/bin:$PATH"
@@ -85,3 +87,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export PATH=$PATH:/usr/local/go/bin
+
+# Start tmux by default whenever a launch a new terminal
+if [[ -z "$TMUX"  ]]; then
+  if ! tmux has-session -t "$USER"; then
+    tmux new-session -d -s "$USER"
+  fi
+  tmux a -t "$USER"
+fi
+
