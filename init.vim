@@ -36,7 +36,9 @@ Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'austinwilcox/pretty-fold.nvim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-"Plug 'neovim/nvim-lspconfig'
+
+" Testing out lsp for typescript
+Plug 'neovim/nvim-lspconfig'
 
 Plug 'kyoz/purify', { 'rtp': 'vim' }
 Plug 'SirVer/ultisnips'
@@ -262,4 +264,8 @@ function getrgbafromhex(hex)
 
   return rgba
 end
+EOF
+
+lua <<EOF
+
 EOF
