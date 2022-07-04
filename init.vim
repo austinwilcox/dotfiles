@@ -51,16 +51,13 @@ Plug 'austinwilcox/pretty-fold.nvim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
-<<<<<<< HEAD
 " Testing out lsp for typescript
 Plug 'neovim/nvim-lspconfig'
-=======
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
->>>>>>> 54dfe60e18971df09163eb968f434ebc50eeb758
 
 Plug 'kyoz/purify', { 'rtp': 'vim' }
 Plug 'SirVer/ultisnips'
@@ -519,9 +516,6 @@ end
 EOF
 
 lua <<EOF
-<<<<<<< HEAD
-
-=======
 function _G.VimTODOTree()
   vim.cmd('20 vsplit')
   local win = vim.api.nvim_get_current_win()
@@ -530,5 +524,4 @@ function _G.VimTODOTree()
 
   print("Test this out");
 end
->>>>>>> 54dfe60e18971df09163eb968f434ebc50eeb758
 EOF
