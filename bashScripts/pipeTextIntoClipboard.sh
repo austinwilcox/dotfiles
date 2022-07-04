@@ -1,2 +1,2 @@
 #!/bin/sh
-echo "Hello World" | xclip -sel c
+echo $1 | xclip -sel c

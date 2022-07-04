@@ -1,4 +1,16 @@
-# .bashrc
+   # _____                   __   .__              __      __ .__ .__                          
+  # /  _  \   __ __  _______/  |_ |__|  ____      /  \    /  \|__||  |    ____   ____ ___  ___ 
+ # /  /_\  \ |  |  \/  ___/\   __\|  | /    \     \   \/\/   /|  ||  |  _/ ___\ /  _ \\  \/  / 
+# /    |    \|  |  /\___ \  |  |  |  ||   |  \     \        / |  ||  |__\  \___(  <_> )>    <  
+# \____|__  /|____//____  > |__|  |__||___|  /      \__/\  /  |__||____/ \___  >\____//__/\_ \ 
+   #      \/            \/                 \/            \/                  \/             \/ 
+                                                                                             
+# __________                 .__                                                               
+# \______   \_____     ______|  |__ _______   ____                                             
+ # |    |  _/\__  \   /  ___/|  |  \\_  __ \_/ ___\                                            
+ # |    |   \ / __ \_ \___ \ |   Y  \|  | \/\  \___                                            
+ # |______  /(____  //____  >|___|  /|__|    \___  >                                           
+   #      \/      \/      \/      \/             \/                                            
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -12,6 +24,8 @@ then
 fi
 export PATH
 export PATH="$HOME/.emacs.d/bin:$PATH"
+export PATH="$HOME/.local/share/nvim/lsp_servers/gopls:$PATH"
+export PATH="$HOME/.local/share/nvim/lsp_servers/bashls:$PATH"
 
 # Only needed for work machines
 export PATH="/opt/mssql/bin:$PATH"
@@ -25,12 +39,14 @@ then
   export PATH="/usr/share/dotnet:$PATH"
 else
   export PATH="$PATH:/home/[[USER_NAME]]/.dotnet/tools"
+  export PATH="$PATH:/home/austin/Software/arbinger/publishedConsoleApps/ProcessSalesforceOrders/"
 fi
 
 export PATH="$PATH:/home/austin/.BrowserDrivers/"
 
  #User specific aliases and functions
 # LS overwrite using lsd, a much better file display tool
+alias nuget="mono /usr/local/bin/nuget.exe"
 alias ls='lsd'
 alias lsa='lsd -all'
 
@@ -83,3 +99,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export PATH=$PATH:/usr/local/go/bin
+
+# Start tmux by default whenever a launch a new terminal
+if [[ -z "$TMUX"  ]]; then
+  if ! tmux has-session -t "$USER"; then
+    tmux new-session -d -s "$USER"
+  fi
+  tmux a -t "$USER"
+fi
+

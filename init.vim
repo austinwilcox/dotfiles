@@ -1,3 +1,17 @@
+   " _____                   __   .__              __      __ .__ .__                          
+  " /  _  \   __ __  _______/  |_ |__|  ____      /  \    /  \|__||  |    ____   ____ ___  ___ 
+ " /  /_\  \ |  |  \/  ___/\   __\|  | /    \     \   \/\/   /|  ||  |  _/ ___\ /  _ \\  \/  / 
+" /    |    \|  |  /\___ \  |  |  |  ||   |  \     \        / |  ||  |__\  \___(  <_> )>    <  
+" \____|__  /|____//____  > |__|  |__||___|  /      \__/\  /  |__||____/ \___  >\____//__/\_ \ 
+   "      \/            \/                 \/            \/                  \/             \/ 
+                                                                                             
+ " _______         .__              _________                   _____ .__    ____              
+ " \      \ ___  __|__|  _____      \_   ___ \   ____    ____ _/ ____\|__|  / ___\             
+ " /   |   \\  \/ /|  | /     \     /    \  \/  /  _ \  /    \\   __\ |  | / /_/  >            
+" /    |    \\   / |  ||  Y Y  \    \     \____(  <_> )|   |  \|  |   |  | \___  /             
+" \____|__  / \_/  |__||__|_|  /     \______  / \____/ |___|  /|__|   |__|/_____/              
+   "      \/                 \/             \/              \/                                 
+
 syntax on
 set ignorecase
 set smartcase
@@ -37,8 +51,16 @@ Plug 'austinwilcox/pretty-fold.nvim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
+<<<<<<< HEAD
 " Testing out lsp for typescript
 Plug 'neovim/nvim-lspconfig'
+=======
+Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/nvim-cmp'
+>>>>>>> 54dfe60e18971df09163eb968f434ebc50eeb758
 
 Plug 'kyoz/purify', { 'rtp': 'vim' }
 Plug 'SirVer/ultisnips'
@@ -46,9 +68,15 @@ Plug 'honza/vim-snippets'
 
 Plug 'ray-x/go.nvim'
 
+" Debugging
+Plug 'mfussenegger/nvim-dap'
+Plug 'leoluz/nvim-dap-go'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'theHamsta/nvim-dap-virtual-text'
+Plug 'nvim-telescope/telescope-dap.nvim'
+
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
-Plug 'rafcamlet/coc-nvim-lua'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -70,13 +98,11 @@ Plug 'preservim/nerdtree' |
 Plug 'ryanoasis/vim-devicons'
 Plug 'mattn/emmet-vim'
 Plug 'ap/vim-css-color' " Color previews for CSS
-Plug 'OmniSharp/omnisharp-vim'
 Plug 'dense-analysis/ale'
 
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " this is for auto complete, prettier and tslinting
 Plug 'sindrets/winshift.nvim'
-let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']  " list of CoC extensions needed
 Plug 'jiangmiao/auto-pairs' "this will auto close ( [ {
+"
 " these two plugins will add highlighting and indenting to JSX and TSX files.
 Plug 'yuezk/vim-js'
 Plug 'HerringtonDarkholme/yats.vim'
@@ -145,19 +171,6 @@ nnoremap <leader>wl :wincmd l<CR>
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
 
-" Coc GoTo Code Navigation
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-"OmniSharp Code Navigation and functions
-nnoremap <leader>of :OmniSharpCodeFormat<cr>
-nnoremap <leader>opi :OmniSharpPreviewImplementation<cr>
-nnoremap <leader>or :OmniSharpRestartServer<cr>
-nnoremap <leader>ogt :OmniSharpGotoDefinition<cr>
-nnoremap <leader>oi :OmniSharpFindImplementations<cr>
-
 " ALE: {{{
 let g:ale_sign_error = '•'
 let g:ale_sign_warning = '•'
@@ -197,6 +210,8 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 " Custom convert hex to rgba
 nnoremap <leader>cs :call v:lua.hex2rgb()<CR>
 
+nnoremap <leader>vtt :call v:lua.VimTODOTree()<CR>
+
 " Search with the visually selected text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
@@ -217,6 +232,243 @@ autocmd BufNewFile,BufRead *.cs set formatprg=astyle\ -T4pb
 " Exit Vim if NERDTree is the only window left "
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
     \ quit | endif
+"Autocomplete config
+lua <<EOF
+local cmp = require 'cmp'
+cmp.setup {
+  mapping = {
+    ['<Tab>'] = cmp.mapping.select_next_item(),
+    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+    ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    })
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+  }
+}
+EOF
+
+" Gopls
+lua <<EOF
+  require'lspconfig'.gopls.setup{}
+  local cmp = require'cmp'
+  cmp.setup({
+   snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      end,
+    },
+    window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'ultisnips' }
+    }, {
+      { name = 'buffer' },
+    })
+  })
+-- Setup lspconfig.
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+  require'lspconfig'.tsserver.setup {
+    capabilities = capabilities,
+    on_attach = function(_, bufnr)
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
+      vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer=0})
+      vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
+      vim.keymap.set("n", "<leader>df", vim.diagnostic.goto_next, {buffer=0})
+      vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {buffer=0})
+      vim.keymap.set("n", "<leader>dr", vim.lsp.buf.rename, {buffer=0})
+      vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer=0})
+    end
+  }
+
+EOF
+
+lua <<EOF
+  require'lspconfig'.gopls.setup{}
+  local cmp = require'cmp'
+  cmp.setup({
+   snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      end,
+    },
+    window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'ultisnips' }
+    }, {
+      { name = 'buffer' },
+    })
+  })
+-- Setup lspconfig.
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+  require'lspconfig'.tsserver.setup {
+    capabilities = capabilities,
+    on_attach = function(_, bufnr)
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
+      vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer=0})
+      vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
+      vim.keymap.set("n", "<leader>df", vim.diagnostic.goto_next, {buffer=0})
+      vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {buffer=0})
+      vim.keymap.set("n", "<leader>dr", vim.lsp.buf.rename, {buffer=0})
+      vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer=0})
+    end
+  }
+
+EOF
+
+
+" Volar vuejs
+lua <<EOF
+-- Setup lspconfig.
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  require'lspconfig'.vls.setup {
+    capabilities = capabilities,
+  }
+EOF
+
+
+" Tsserver with lsp
+lua <<EOF
+  require'lspconfig'.tsserver.setup{}
+  local cmp = require'cmp'
+  cmp.setup({
+   snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      end,
+    },
+    window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'ultisnips' }
+    }, {
+      { name = 'buffer' },
+    })
+  })
+-- Setup lspconfig.
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+  require'lspconfig'.tsserver.setup {
+    capabilities = capabilities,
+    on_attach = function(_, bufnr)
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
+      vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer=0})
+      vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
+      vim.keymap.set("n", "<leader>df", vim.diagnostic.goto_next, {buffer=0})
+      vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {buffer=0})
+      vim.keymap.set("n", "<leader>dr", vim.lsp.buf.rename, {buffer=0})
+      vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer=0})
+    end
+  }
+EOF
+
+
+" Omnisharp with lsp
+lua <<EOF
+local cmp = require'cmp'
+  cmp.setup({
+   snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      end,
+    },
+    window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'ultisnips' }
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+require'lspconfig'.omnisharp.setup {
+  capabilities = capabilities,
+  on_attach = function(_, bufnr)
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
+    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer=0})
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
+    vim.keymap.set("n", "<leader>df", vim.diagnostic.goto_next, {buffer=0})
+    vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {buffer=0})
+    vim.keymap.set("n", "<leader>dr", vim.lsp.buf.rename, {buffer=0})
+    vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer=0})
+  end,
+  cmd = { "/home/austin/.config/omnisharp/OmniSharp", "--languageserver" , "--hostPID", tostring(pid) },
+}
+
+require("nvim-lsp-installer").setup({
+    automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
+    ui = {
+        icons = {
+            server_installed = "✓",
+            server_pending = "➜",
+            server_uninstalled = "✗"
+        }
+    }
+})
+EOF
+
+lua <<EOF
+
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+require'lspconfig'.cssls.setup{
+  capabilities = capabilities
+}
+EOF
 
 lua <<EOF
 require('pretty-fold').setup{ }
@@ -267,5 +519,16 @@ end
 EOF
 
 lua <<EOF
+<<<<<<< HEAD
 
+=======
+function _G.VimTODOTree()
+  vim.cmd('20 vsplit')
+  local win = vim.api.nvim_get_current_win()
+  local buf = vim.api.nvim_create_buf(true, true)
+  vim.api.nvim_win_set_buf(win, buf)
+
+  print("Test this out");
+end
+>>>>>>> 54dfe60e18971df09163eb968f434ebc50eeb758
 EOF
