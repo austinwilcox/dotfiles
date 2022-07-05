@@ -1,0 +1,29 @@
+{
+  "RoslynExtensionsOptions": {
+    "enableAnalyzersSupport": true
+  },
+  "FormattingOptions": {
+    "enableEditorConfigSupport": true,
+    "newLine": "\n",
+    "useTabs": false,
+    "tabSize": 4,
+    "indentationSize": 4,
+
+    "NewLinesForBracesInTypes": true,
+    "NewLinesForBracesInMethods": true,
+    "NewLinesForBracesInProperties": true,
+    "NewLinesForBracesInAccessors": true,
+    "NewLinesForBracesInAnonymousMethods": true,
+    "NewLinesForBracesInControlBlocks": true,
+    "NewLinesForBracesInAnonymousTypes": true,
+    "NewLinesForBracesInObjectCollectionArrayInitializers": true,
+    "NewLinesForBracesInLambdaExpressionBody": true,
+
+    "NewLineForElse": true,
+    "NewLineForCatch": true,
+    "NewLineForFinally": true,
+    "NewLineForMembersInObjectInit": true,
+    "NewLineForMembersInAnonymousTypes": true,
+    "NewLineForClausesInQuery": true
+  }
+}

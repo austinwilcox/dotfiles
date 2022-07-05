@@ -58,6 +58,7 @@ Plug 'williamboman/nvim-lsp-installer'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'lukas-reineke/lsp-format.nvim'
 
 Plug 'kyoz/purify', { 'rtp': 'vim' }
 Plug 'SirVer/ultisnips'
@@ -107,6 +108,7 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'ThePrimeagen/harpoon'
+
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lualine/lualine.nvim'
 call plug#end()
@@ -430,20 +432,24 @@ local cmp = require'cmp'
     })
   })
 
+require("lsp-format").setup {}
+local on_attach = function(client)
+  require "lsp-format".on_attach(client)
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
+  vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer=0})
+  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
+  vim.keymap.set("n", "<leader>df", vim.diagnostic.goto_next, {buffer=0})
+  vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {buffer=0})
+  vim.keymap.set("n", "<leader>dr", vim.lsp.buf.rename, {buffer=0})
+  vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer=0}) 
+end
+
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 require'lspconfig'.omnisharp.setup {
   capabilities = capabilities,
-  on_attach = function(_, bufnr)
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
-    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer=0})
-    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
-    vim.keymap.set("n", "<leader>df", vim.diagnostic.goto_next, {buffer=0})
-    vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {buffer=0})
-    vim.keymap.set("n", "<leader>dr", vim.lsp.buf.rename, {buffer=0})
-    vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer=0})
-  end,
+  on_attach = on_attach,
   cmd = { "/home/austin/.config/omnisharp/OmniSharp", "--languageserver" , "--hostPID", tostring(pid) },
 }
 
@@ -457,9 +463,6 @@ require("nvim-lsp-installer").setup({
         }
     }
 })
-EOF
-
-lua <<EOF
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 require'lspconfig'.cssls.setup{
