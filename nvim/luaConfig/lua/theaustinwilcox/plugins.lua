@@ -24,9 +24,6 @@ return require('packer').startup(function(use)
   use "SirVer/ultisnips"
   use "honza/vim-snippets"
 
-  -- Language Servers
-  use "ray-x/go.nvim"
-
   -- TPOPE
   use "tpope/vim-fugitive"
   use "tpope/vim-surround"
@@ -38,4 +35,10 @@ return require('packer').startup(function(use)
 
   --Auto Pairs auto close ( [ {
   use { 'jiangmiao/auto-pairs' }
+
+  --Rainbow for ( [ {  } ] )
+  use { 'luochen1990/rainbow' }
+
+  --Beautiful Treesitter
+   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 end)

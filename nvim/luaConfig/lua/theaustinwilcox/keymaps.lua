@@ -58,6 +58,9 @@ map('n', ',csdto', ':-1read $HOME/.dotfiles/skeletons/csdto.cs<CR>4jwce', norema
 --Open a new terminal within vim
 map('n', '<leader>tt', ':vnew term://bash<CR>', noremap_options)
 
+--Disable Escape p for Auto Pairs. Escape p trigger auto pairs to toggle
+map('n', '<M-p>', '<Nop>', noremap_options)
+
 --TODO move these pieces to another file
 --Pretty Fold
 require('pretty-fold').setup{ }
