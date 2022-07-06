@@ -60,7 +60,8 @@ local custom_attach = function(client)
   buf_nnoremap { "<leader>df", vim.diagnostic.goto_next }
   buf_nnoremap { "<leader>dp", vim.diagnostic.goto_prev }
   buf_nnoremap { "<leader>dr", vim.lsp.buf.rename }
-  buf_nnoremap {"<leader>dl", "<cmd>Telescope diagnostics<cr>"} 
+  buf_nnoremap { "<leader>dl", "<cmd>Telescope diagnostics<cr>"} 
+  buf_nnoremap { "<leader>ca", vim.lsp.buf.code_action }
 end
 
 -- Typescript Setup
@@ -90,4 +91,7 @@ require'lspconfig'.omnisharp.setup {
 }
 
 --GO
-require'lspconfig'.gopls.setup{}
+require'lspconfig'.gopls.setup{
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
