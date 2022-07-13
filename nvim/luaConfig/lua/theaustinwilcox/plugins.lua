@@ -41,4 +41,7 @@ return require('packer').startup(function(use)
 
   --Beautiful Treesitter
    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+
+   --Plugins on my local machine
+   use { '/home/austin/plugins/nvim-color-swap' }
 end)

@@ -61,6 +61,9 @@ map('n', '<leader>tt', ':vnew term://bash<CR>', noremap_options)
 --Disable Escape p for Auto Pairs. Escape p trigger auto pairs to toggle
 map('n', '<M-p>', '<Nop>', noremap_options)
 
+--Color Swap keymapping
+map('n', '<leader>cs', ':lua require("nvimcolorswap").hex2rgb()<CR>', noremap_options)
+
 --Setup the Emmet Leader key to comma
 --Disable auto pairs shortcut toggling
 vim.cmd [[
