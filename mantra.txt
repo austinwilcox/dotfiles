@@ -1,0 +1,1 @@
+I write clean, maintainable, testable code.

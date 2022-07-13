@@ -61,6 +61,13 @@ map('n', '<leader>tt', ':vnew term://bash<CR>', noremap_options)
 --Disable Escape p for Auto Pairs. Escape p trigger auto pairs to toggle
 map('n', '<M-p>', '<Nop>', noremap_options)
 
+--Setup the Emmet Leader key to comma
+--Disable auto pairs shortcut toggling
+vim.cmd [[
+  let g:user_emmet_leader_key=','
+  let g:AutoPairsShortcutToggle=''
+]]
+
 --TODO move these pieces to another file
 --Pretty Fold
 require('pretty-fold').setup{ }
