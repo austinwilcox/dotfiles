@@ -19,8 +19,8 @@ map('n', 'n', 'nzz', noremap_options)
 --Then it will place the cursor on the left of the single or double quotes
 map('n', 'dT"', 'dT"dlh', noremap_options)
 map('n', 'dT\'', 'dT\'dlh', noremap_options)
-map('n', 'cT"', 'dT"dlh', noremap_options)
-map('n', 'cT\'', 'dT\'dlh', noremap_options)
+map('n', 'cT"', 'dT"dlha', noremap_options)
+map('n', 'cT\'', 'dT\'dlha', noremap_options)
 
 --Search with visually selected text
 -- map('v', '//', 'y\\/V<C-R>=escape(@","/\")<CR><CR>', noremap_options)
