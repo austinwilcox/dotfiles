@@ -71,10 +71,10 @@ local custom_attach = function(client)
   buf_nnoremap { "gd", vim.lsp.buf.definition }
   buf_nnoremap { "gt", vim.lsp.buf.type_definition }
   buf_nnoremap { "gi", vim.lsp.buf.implementation }
-  buf_nnoremap { "<leader>df", vim.diagnostic.goto_next }
-  buf_nnoremap { "<leader>dp", vim.diagnostic.goto_prev }
-  buf_nnoremap { "<leader>dr", vim.lsp.buf.rename }
-  buf_nnoremap { "<leader>dl", "<cmd>Telescope diagnostics<cr>"} 
+  buf_nnoremap { "<leader>gn", vim.diagnostic.goto_next }
+  buf_nnoremap { "<leader>gp", vim.diagnostic.goto_prev }
+  buf_nnoremap { "<leader>gr", vim.lsp.buf.rename }
+  buf_nnoremap { "<leader>gl", "<cmd>Telescope diagnostics<cr>"} 
   buf_nnoremap { "<leader>ca", vim.lsp.buf.code_action }
 end
 
