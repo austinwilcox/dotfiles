@@ -4,7 +4,7 @@ map('n', '<Space>', '', {})
 vim.g.mapleader = " "
 
 local noremap_options = { noremap = true }
--- Sensible
+-- Sensible remaps
 map('v', 'K', ':m \'<-2<CR>gv=gv', noremap_options)
 map('v', 'J', ':m \'>+1<CR>gv=gv', noremap_options)
 map('i', '<C-j>', '<esc>:m .+1<CR>==', noremap_options)
