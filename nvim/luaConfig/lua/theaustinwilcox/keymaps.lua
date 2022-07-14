@@ -18,8 +18,8 @@ map('n', 'n', 'nzz', noremap_options)
 -- map('v', '//', 'y\\/V<C-R>=escape(@","/\")<CR><CR>', noremap_options)
 
 --Fugitive Keybinding
-map('n', '<leader>gn', ':diffget //3<CR>', {})
-map('n', '<leader>gt', ':diffget //2<CR>', {})
+-- map('n', '<leader>gn', ':diffget //3<CR>', {})
+-- map('n', '<leader>gt', ':diffget //2<CR>', {})
 map('n', '<leader>gs', ':G<CR>', {})
 
 --Telescope
