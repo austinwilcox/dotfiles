@@ -14,6 +14,12 @@ map('n', '<leader>j', ':m .+1<CR>==', noremap_options)
 map('n', 'Y', 'y$', noremap_options)
 map('n', 'n', 'nzz', noremap_options)
 
+--My sensible remap for deleting words backwards
+--This will delete the character under the cursor when deleting backwards
+--Then it will place the cursor on the left of the single or double quotes
+map('n', 'dT"', 'dT"dlh', noremap_options)
+map('n', 'dT\'', 'dT\'dlh', noremap_options)
+
 --Search with visually selected text
 -- map('v', '//', 'y\\/V<C-R>=escape(@","/\")<CR><CR>', noremap_options)
 
