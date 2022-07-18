@@ -19,6 +19,7 @@ return require('packer').startup(function(use)
   use "hrsh7th/cmp-buffer"
   use "hrsh7th/nvim-cmp"
   use "lukas-reineke/lsp-format.nvim"
+  use { 'tjdevries/nlua.nvim', requires = { 'nvim-lua/completion-nvim', 'euclidianAce/BetterLua.vim' } }
 
   -- Snippet Managers
   use "SirVer/ultisnips"
@@ -29,6 +30,11 @@ return require('packer').startup(function(use)
   use "tpope/vim-surround"
   use "tpope/vim-commentary"
   use "tpope/vim-dotenv"
+
+  -- Prettier - Currently do not like any of the solutions
+  -- use { 'prettier/vim-prettier', run = 'yarn install', ft = {'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'} }
+  -- use { 'jose-elias-alvarez/null-ls.nvim' }
+  -- use { 'MunifTanjim/prettier.nvim' }
 
   --Lualine
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt=true }}

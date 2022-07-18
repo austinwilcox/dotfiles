@@ -78,6 +78,15 @@ local custom_attach = function(client)
   buf_nnoremap { "<leader>ca", vim.lsp.buf.code_action }
 end
 
+-- Lua Setup - need to get sunmeko setup
+-- require('nlua.lsp.nvim').setup(require('lspconfig'), {
+--   on_attach = custom_attach,
+--   globals = {
+--     -- Colorbuddy
+--     "Color", "c", "Group", "g", "s"
+--   }
+-- })
+
 -- Typescript Setup
 require'lspconfig'.tsserver.setup{
   capabilities = capabilities,

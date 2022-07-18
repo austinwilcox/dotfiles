@@ -72,6 +72,9 @@ map('n', '<M-p>', '<Nop>', noremap_options)
 --Color Swap keymapping
 map('n', '<leader>cs', ':lua require("nvimcolorswap").hex2rgb()<CR>', noremap_options)
 
+--Prettier
+-- map('n', '<leader>p', ':Prettier<CR>', noremap_options)
+
 --Setup the Emmet Leader key to comma
 --Disable auto pairs shortcut toggling
 vim.cmd [[
