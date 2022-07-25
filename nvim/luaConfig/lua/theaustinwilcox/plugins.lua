@@ -9,6 +9,15 @@ return require('packer').startup(function(use)
   use "nvim-lua/popup.nvim"
   use "ap/vim-css-color"
 
+  -- nvim tree - File Explorer
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+    },
+    tag = 'nightly' -- optional, updated every week. (see issue #1193)
+  }
+
   -- Harpoon
   use "nvim-lua/plenary.nvim"
   use "ThePrimeagen/harpoon"
@@ -49,8 +58,8 @@ return require('packer').startup(function(use)
   use { 'luochen1990/rainbow' }
 
   --Beautiful Treesitter
-   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
-   --Plugins on my local machine
-   use { '/home/austin/plugins/nvim-color-swap' }
+  --Plugins on my local machine
+  use { '/home/austin/plugins/nvim-color-swap' }
 end)
