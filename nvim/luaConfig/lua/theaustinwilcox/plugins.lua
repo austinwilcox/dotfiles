@@ -62,4 +62,13 @@ return require('packer').startup(function(use)
 
   --Plugins on my local machine
   use { '/home/austin/plugins/nvim-color-swap' }
+
+  --Goto Preview, use lsp and show information in a popup window
+  use {
+    'rmagatti/goto-preview',
+    config = function()
+      require('goto-preview').setup {}
+    end
+  }
+
 end)
