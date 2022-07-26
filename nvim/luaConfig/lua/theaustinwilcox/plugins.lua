@@ -1,5 +1,7 @@
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim' -- this is essential.
+  -- Colorschemes
+  use { 'Mofiqul/dracula.nvim' }
   use "gruvbox-community/gruvbox"
 
   use "austinwilcox/pretty-fold.nvim"
@@ -8,15 +10,6 @@ return require('packer').startup(function(use)
   use "dense-analysis/ale"
   use "nvim-lua/popup.nvim"
   use "ap/vim-css-color"
-
-  -- nvim tree - File Explorer
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icons
-    },
-    tag = 'nightly' -- optional, updated every week. (see issue #1193)
-  }
 
   -- Harpoon
   use "nvim-lua/plenary.nvim"

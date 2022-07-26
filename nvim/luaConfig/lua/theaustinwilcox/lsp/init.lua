@@ -78,6 +78,13 @@ local custom_attach = function(client)
   buf_nnoremap { "<leader>ca", vim.lsp.buf.code_action }
 end
 
+-- This is supposed to show this in a popup window, but it is not working. Likely a conflict with ALE
+-- vim.diagnostic.config({
+--   virtual_text = false
+-- })
+-- vim.o.updatetime = 250
+-- vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
 -- Lua Setup - need to get sunmeko setup
 -- require('nlua.lsp.nvim').setup(require('lspconfig'), {
 --   on_attach = custom_attach,
