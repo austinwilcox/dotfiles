@@ -94,19 +94,12 @@ require'nvim-treesitter.configs'.setup {
 }
 
 --GoTo Preview Setup
---Default keybindings
--- nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>
--- nnoremap gpt <cmd>lua require('goto-preview').goto_preview_type_definition()<CR>
--- nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>
--- nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>
--- " Only set if you have telescope installed
--- nnoremap gpr <cmd>lua require('goto-preview').goto_preview_references()<CR>
 require('goto-preview').setup {
  -- SEE: https://github.com/rmagatti/goto-preview#%EF%B8%8F-configuration
 	width = 120; -- Width of the floating window
 	height = 30; -- Height of the floating window
 	border = {"↖", "─" ,"┐", "│", "┘", "─", "└", "│"}; -- Border characters of the floating window
-	default_mappings = true; -- Bind default mappings
+	default_mappings = false; -- Bind default mappings
 	debug = false; -- Print debug information
 	opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
 	-- resizing_mappings = true; -- Binds arrow keys to resizing the floating window.

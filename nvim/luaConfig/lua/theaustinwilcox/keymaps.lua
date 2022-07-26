@@ -75,6 +75,16 @@ map('n', '<leader>cs', ':lua require("nvimcolorswap").hex2rgb()<CR>', noremap_op
 --Prettier
 -- map('n', '<leader>p', ':Prettier<CR>', noremap_options)
 
+-- GoTo Preview Keybindings
+-- DO NOT USE THE LEADER KEY!!!
+-- I have <leader>gp mapped to vim.diagnostic.goto_prev
+map('n', 'gpd', ':lua require("goto-preview").goto_preview_definition()<CR>', noremap_options)
+map('n', 'gpt', ':lua require("goto-preview").goto_preview_type_definition()<CR>', noremap_options)
+map('n', 'gpi', ':lua require("goto-preview").goto_preview_implementation()<CR>', noremap_options)
+map('n', 'gP', ':lua require("goto-preview").close_all_win()<CR>', noremap_options)
+-- Only set if you have telescope installed
+map('n', 'gpr', ':lua require("goto-preview").goto_preview_references()<CR>', noremap_options)
+
 --Setup the Emmet Leader key to comma
 --Disable auto pairs shortcut toggling
 vim.cmd [[
