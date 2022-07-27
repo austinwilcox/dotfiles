@@ -3,6 +3,7 @@ return require('packer').startup(function(use)
   -- Colorschemes
   use { 'Mofiqul/dracula.nvim' }
   use "gruvbox-community/gruvbox"
+  use "EdenEast/nightfox.nvim" 
 
   use "austinwilcox/pretty-fold.nvim"
   use "nvim-telescope/telescope.nvim"
