@@ -101,6 +101,8 @@ require'lspconfig'.tsserver.setup{
 }
 
 --CSS
+--Installation
+--npm install --location=global vscode-langservers-extracted
 require'lspconfig'.cssls.setup{
   capabilities = capabilities
 }
@@ -116,6 +118,7 @@ end
 require'lspconfig'.omnisharp.setup {
   capabilities = capabilities,
   on_attach = on_attach,
+  filetypes = {"cs", "csx"},
   cmd = { "/home/austin/.config/omnisharp/OmniSharp", "--languageserver" , "--hostPID", tostring(pid) },
 }
 
