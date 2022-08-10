@@ -23,6 +23,7 @@ return require('packer').startup(function(use)
   use "hrsh7th/nvim-cmp"
   use "lukas-reineke/lsp-format.nvim"
   use { 'tjdevries/nlua.nvim', requires = { 'nvim-lua/completion-nvim', 'euclidianAce/BetterLua.vim' } }
+  use { 'glepnir/lspsaga.nvim' } -- LSP UI's
 
   -- Snippet Managers
   use "SirVer/ultisnips"
