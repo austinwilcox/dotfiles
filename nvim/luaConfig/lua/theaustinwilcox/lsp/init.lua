@@ -23,6 +23,7 @@ local buf_nnoremap = function(opts)
   nmap(opts)
 end
 
+local lspkind = require('lspkind')
 local cmp = require'cmp'
 cmp.setup({
  snippet = {
@@ -56,6 +57,16 @@ cmp.setup({
       end
     end,
   }),
+  formatting = {
+    format = lspkind.cmp_format({
+      mode = 'symbol',
+      maxwidth = 50,
+      before = function(entry, vim_item)
+        --Can use this to further customize things with lspkind
+        return vim_item
+      end
+    })
+  },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'ultisnips' }
