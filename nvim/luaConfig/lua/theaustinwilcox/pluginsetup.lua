@@ -4,6 +4,9 @@ require('pretty-fold.preview').setup {
    key = 'h', -- choose 'h' or 'l' key
 }
 
+--Colorizer setup
+require('colorizer').setup()
+
 require('lualine').setup{
   options = { theme = 'gruvbox' }
 }

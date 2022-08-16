@@ -12,6 +12,9 @@ return require('packer').startup(function(use)
   use "nvim-lua/popup.nvim"
   use "ap/vim-css-color"
 
+  -- Colorizer, provided color highlights
+  use { 'norcalli/nvim-colorizer.lua' }
+
   -- Harpoon
   use "nvim-lua/plenary.nvim"
   use "ThePrimeagen/harpoon"
