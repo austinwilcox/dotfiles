@@ -4,6 +4,9 @@ require('pretty-fold.preview').setup {
    key = 'h', -- choose 'h' or 'l' key
 }
 
+--Nvim Surround
+require('nvim-surround').setup()
+
 --Colorizer setup
 require('colorizer').setup()
 

@@ -72,6 +72,9 @@ map('n', '<M-p>', '<Nop>', noremap_options)
 --Color Swap keymapping
 map('n', '<leader>cs', ':lua require("nvimcolorswap").hex2rgb()<CR>', noremap_options)
 
+--Keybindings popup
+map('n', '<leader>test', ':lua require("nvimkeybindsnippet").toggle_keybinding_menu()<CR>', noremap_options)
+
 --Prettier
 -- map('n', '<leader>p', ':Prettier<CR>', noremap_options)
 
