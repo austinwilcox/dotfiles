@@ -61,6 +61,7 @@ return require('packer').startup(function(use)
 
   --Plugins on my local machine
   use { '/home/austin/plugins/nvim-color-swap' }
+  use { '/home/austin/plugins/nvim-keybind-snippet' }
 
   --Goto Preview, use lsp and show information in a popup window
   use {

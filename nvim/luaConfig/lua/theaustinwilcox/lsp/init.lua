@@ -120,11 +120,20 @@ require'lspconfig'.tsserver.setup{
   on_attach = custom_attach
 }
 
+-- LUA
+-- Installation
+-- Install via VSCode
+require'lspconfig'.sumneko_lua.setup{
+  capabilities = capabilities,
+  on_attach = custom_attach
+}
+
 --CSS
 --Installation
 --npm install --location=global vscode-langservers-extracted
 require'lspconfig'.cssls.setup{
-  capabilities = capabilities
+  capabilities = capabilities,
+  on_attach = custom_attach
 }
 
 -- Omnisharp Setup
