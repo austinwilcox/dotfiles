@@ -62,6 +62,7 @@ return require('packer').startup(function(use)
   --Plugins on my local machine
   use { '/home/austin/plugins/nvim-color-swap' }
   use { '/home/austin/plugins/nvim-keybind-snippet' }
+  use { '/home/austin/plugins/nvim-surround' }
 
   --Goto Preview, use lsp and show information in a popup window
   use {
@@ -71,6 +72,7 @@ return require('packer').startup(function(use)
     end
   }
 
-  use { 'kylechui/nvim-surround', tag = "*" }
+  -- Removing it here so that I can use the main branch version to test
+  -- use { 'kylechui/nvim-surround', tag = "*" }
 
 end)
