@@ -1,10 +1,12 @@
-return require('packer').startup(function(use)
+return require'packer'.startup(function(use)
   use 'wbthomason/packer.nvim' -- this is essential.
   -- Colorschemes
   use { 'Mofiqul/dracula.nvim' }
   use "gruvbox-community/gruvbox"
   use "EdenEast/nightfox.nvim" 
 
+  -- To get Telescope live grep working you need ripgrep
+  -- sudo apt install ripgrep
   use "austinwilcox/pretty-fold.nvim"
   use "nvim-telescope/telescope.nvim"
   use "mattn/emmet-vim"

@@ -47,7 +47,7 @@ key="f"
 
 [[keybind]]
 command = "Execute"
-value = "dmenu_run"
+value = "rofi -show run"
 modifier = ["modkey", "Shift"]
 key = "Return"
 
