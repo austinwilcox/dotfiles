@@ -120,6 +120,13 @@ require'lspconfig'.tsserver.setup{
   on_attach = custom_attach
 }
 
+-- Deno Setup
+-- Currently this interferes to much with tsserver
+-- require'deno-nvim'.setup({
+--   capabilities = capabilities,
+--   on_attach = custom_attach
+-- })
+
 -- LUA
 -- Installation
 -- Install via VSCode

@@ -4,6 +4,7 @@ return require'packer'.startup(function(use)
   use { 'Mofiqul/dracula.nvim' }
   use "gruvbox-community/gruvbox"
   use "EdenEast/nightfox.nvim" 
+  use "folke/tokyonight.nvim"
 
   -- To get Telescope live grep working you need ripgrep
   -- sudo apt install ripgrep
@@ -73,6 +74,10 @@ return require'packer'.startup(function(use)
       require('goto-preview').setup {}
     end
   }
+
+  -- Deno support
+  -- Currently this interferes way to much with tsserver
+  -- use 'sigmasd/deno-nvim'
 
   -- Removing it here so that I can use the main branch version to test
   -- use { 'kylechui/nvim-surround', tag = "*" }
