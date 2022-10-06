@@ -11,7 +11,7 @@ require('nvim-surround').setup()
 require('colorizer').setup()
 
 require('lualine').setup{
-  options = { theme = 'gruvbox' }
+  options = { theme = 'tokyonight-storm' }
 }
 
 require'marks'.setup {

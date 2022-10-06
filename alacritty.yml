@@ -1,230 +1,166 @@
-# Configuration for Alacritty, the GPU enhanced terminal emulator.
-
-# Import additional configuration files
-#
-# Imports are loaded in order, skipping all missing files, with the importing
-# file being loaded last. If a field is already present in a previous import, it
-# will be replaced.
-#
-# All imports must either be absolute paths starting with `/`, or paths relative
-# to the user's home directory starting with `~/`.
-#import:
-#  - /path/to/alacritty.yml
-
-# Any items in the `env` entry below will be added as
-# environment variables. Some entries may override variables
-# set by alacritty itself.
-#env:
-  # TERM variable
-  #
-  # This value is used to set the `$TERM` environment variable for
-  # each instance of Alacritty. If it is not present, alacritty will
-  # check the local terminfo database and use `alacritty` if it is
-  # available, otherwise `xterm-256color` is used.
-  #TERM: alacritty
-
-#window:
-  # Window dimensions (changes require restart)
-  #
-  # Number of lines/columns (not pixels) in the terminal. The number of columns
-  # must be at least `2`, while using a value of `0` for columns and lines will
-  # fall back to the window manager's recommended size.
-  #dimensions:
-  #  columns: 0
-  #  lines: 0
-
-  # Window position (changes require restart)
-  #
-  # Specified in number of pixels.
-  # If the position is not set, the window manager will handle the placement.
-  #position:
-  #  x: 0
-  #  y: 0
-
-  # Window padding (changes require restart)
-  #
-  # Blank space added around the window in pixels. This padding is scaled
-  # by DPI and the specified value is always added at both opposing sides.
-  #padding:
-  #  x: 0
-  #  y: 0
-
-  # Spread additional padding evenly around the terminal content.
-  #dynamic_padding: false
-
-  # Window decorations
-  #
-  # Values for `decorations`:
-  #     - full: Borders and title bar
-  #     - none: Neither borders nor title bar
-  #
-  # Values for `decorations` (macOS only):
-  #     - transparent: Title bar, transparent background and title bar buttons
-  #     - buttonless: Title bar, transparent background and no title bar buttons
-  #decorations: full
-
-  # Startup Mode (changes require restart)
-  #
-  # Values for `startup_mode`:
-  #   - Windowed
-  #   - Maximized
-  #   - Fullscreen
-  #
-  # Values for `startup_mode` (macOS only):
-  #   - SimpleFullscreen
-  #startup_mode: Windowed
-
-  # Window title
-  #title: Alacritty
-
-  # Allow terminal applications to change Alacritty's window title.
-  #dynamic_title: true
-
-  # Window class (Linux/BSD only):
-  #class:
-    # Application instance name
-    #instance: Alacritty
-    # General application class
-    #general: Alacritty
-
-  # GTK theme variant (Linux/BSD only)
-  #
-  # Override the variant of the GTK theme. Commonly supported values are `dark`
-  # and `light`. Set this to `None` to use the default theme variant.
-  #gtk_theme_variant: None
-
 scrolling:
-  # Maximum number of lines in the scrollback buffer.
-  # Specifying '0' will disable scrolling.
   history: 50000
-
-  # Scrolling distance multiplier.
-  #multiplier: 3
-
-# Font configuration
 font:
-  # Normal (roman) font face
   normal:
-    # Font family
-    #
-    #Default:
-    #   - (macOS) Menlo
-    #   - (Linux/BSD) monospace
-    #   - (Windows) Consolas
     family: Fira Code
-
-    # The `style` can be specified to pick a specific face.
     style: Regular
-
-  # Bold font face
   bold:
-    # Font family
-    #
-    # If the bold family is not specified, it will fall back to the
-    # value specified for the normal font.
     family: Fira Code
-
-    # The `style` can be specified to pick a specific face.
     style: Bold
-
-  # Italic font face
   italic:
-    # Font family
-    #
-    # If the italic family is not specified, it will fall back to the
-    # value specified for the normal font.
     family: Fira Code
-
-    # The `style` can be specified to pick a specific face.
     style: Italic
-
-  # Bold italic font face
   bold_italic:
-    # Font family
-    #
-    # If the bold italic family is not specified, it will fall back to the
-    # value specified for the normal font.
     family: Fira Code
-
-    # The `style` can be specified to pck a specific face.
     style: Bold Italic
-
-  # Point size
   size: 11.0
-
-  # Offset is the extra space around each character. `offset.y` can be thought
-  # of as modifying the line spacing, and `offset.x` as modifying the letter
-  # spacing.
-  #offset:
-  #  x: 0
-  #  y: 0
-
-  # Glyph offset determines the locations of the glyphs within their cells with
-  # the default being at the bottom. Increasing `x` moves the glyph to the
-  # right, increasing `y` moves the glyph upward.
-  #glyph_offset:
-  #  x: 0
-  #  y: 0
-
-  # Thin stroke font rendering (macOS only)
-  #
-  # Thin strokes are suitable for retina displays, but for non-retina screens
-  # it is recommended to set `use_thin_strokes` to `false`.
-  #use_thin_strokes: true
-
-# If `true`, bold text is drawn using the bright color variants.
-#draw_bold_text_with_bright_colors: false
-
 # Colors (ArcoLinux)
+# colors:
+#   primary:
+#     # background: '#222222'
+#     background: '#2e3440'
+#     foreground: '#d8dee9'
+#     dim_foreground: '#a5abb6'
+#   cursor:
+#     text: '#2e3440'
+#     cursor: '#d8dee9'
+#   vi_mode_cursor:
+#     text: '#2e3440'
+#     cursor: '#d8dee9'
+#   selection:
+#     text: CellForeground
+#     background: '#4c566a'
+#   search:
+#     matches:
+#       foreground: CellBackground
+#       background: '#88c0d0'
+#     bar:
+#       background: '#434c5e'
+#       foreground: '#d8dee9'
+#   normal:
+#     black: '#3b4252'
+#     red: '#bf616a'
+#     green: '#a3be8c'
+#     yellow: '#ebcb8b'
+#     blue: '#81a1c1'
+#     magenta: '#b48ead'
+#     cyan: '#88c0d0'
+#     white: '#e5e9f0'
+#   bright:
+#     black: '#4c566a'
+#     red: '#bf616a'
+#     green: '#a3be8c'
+#     yellow: '#ebcb8b'
+#     blue: '#81a1c1'
+#     magenta: '#b48ead'
+#     cyan: '#8fbcbb'
+#     white: '#eceff4'
+#   dim:
+#     black: '#373e4d'
+#     red: '#94545d'
+#     green: '#809575'
+#     yellow: '#b29e75'
+#     blue: '#68809a'
+#     magenta: '#8c738c'
+#     cyan: '#6d96a5'
+#     white: '#aeb3bb'
+#
+# TokyoNight Moon Alacritty Colors
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0x222436'
+#     foreground: '0xc8d3f5'
+
+#   # Normal colors
+#   normal:
+#     black:   '0x1b1d2b'
+#     red:     '0xff757f'
+#     green:   '0xc3e88d'
+#     yellow:  '0xffc777'
+#     blue:    '0x82aaff'
+#     magenta: '0xc099ff'
+#     cyan:    '0x86e1fc'
+#     white:   '0x828bb8'
+
+#   # Bright colors
+#   bright:
+#     black:   '0x444a73'
+#     red:     '0xff757f'
+#     green:   '0xc3e88d'
+#     yellow:  '0xffc777'
+#     blue:    '0x82aaff'
+#     magenta: '0xc099ff'
+#     cyan:    '0x86e1fc'
+#     white:   '0xc8d3f5'
+
+#   indexed_colors:
+#     - { index: 16, color: '0xff966c' }
+#     - { index: 17, color: '0xc53b53' }
+# # TokyoNight Night Alacritty Colors
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0x1a1b26'
+#     foreground: '0xc0caf5'
+
+#   # Normal colors
+#   normal:
+#     black:   '0x15161e'
+#     red:     '0xf7768e'
+#     green:   '0x9ece6a'
+#     yellow:  '0xe0af68'
+#     blue:    '0x7aa2f7'
+#     magenta: '0xbb9af7'
+#     cyan:    '0x7dcfff'
+#     white:   '0xa9b1d6'
+
+#   # Bright colors
+#   bright:
+#     black:   '0x414868'
+#     red:     '0xf7768e'
+#     green:   '0x9ece6a'
+#     yellow:  '0xe0af68'
+#     blue:    '0x7aa2f7'
+#     magenta: '0xbb9af7'
+#     cyan:    '0x7dcfff'
+#     white:   '0xc0caf5'
+
+#   indexed_colors:
+#     - { index: 16, color: '0xff9e64' }
+#     - { index: 17, color: '0xdb4b4b' }
+# TokyoNight Storm Alacritty Colors
 colors:
+  # Default colors
   primary:
-    # background: '#222222'
-    background: '#2e3440'
-    foreground: '#d8dee9'
-    dim_foreground: '#a5abb6'
-  cursor:
-    text: '#2e3440'
-    cursor: '#d8dee9'
-  vi_mode_cursor:
-    text: '#2e3440'
-    cursor: '#d8dee9'
-  selection:
-    text: CellForeground
-    background: '#4c566a'
-  search:
-    matches:
-      foreground: CellBackground
-      background: '#88c0d0'
-    bar:
-      background: '#434c5e'
-      foreground: '#d8dee9'
+    background: '0x24283b'
+    foreground: '0xc0caf5'
+
+  # Normal colors
   normal:
-    black: '#3b4252'
-    red: '#bf616a'
-    green: '#a3be8c'
-    yellow: '#ebcb8b'
-    blue: '#81a1c1'
-    magenta: '#b48ead'
-    cyan: '#88c0d0'
-    white: '#e5e9f0'
+    black:   '0x1d202f'
+    red:     '0xf7768e'
+    green:   '0x9ece6a'
+    yellow:  '0xe0af68'
+    blue:    '0x7aa2f7'
+    magenta: '0xbb9af7'
+    cyan:    '0x7dcfff'
+    white:   '0xa9b1d6'
+
+  # Bright colors
   bright:
-    black: '#4c566a'
-    red: '#bf616a'
-    green: '#a3be8c'
-    yellow: '#ebcb8b'
-    blue: '#81a1c1'
-    magenta: '#b48ead'
-    cyan: '#8fbcbb'
-    white: '#eceff4'
-  dim:
-    black: '#373e4d'
-    red: '#94545d'
-    green: '#809575'
-    yellow: '#b29e75'
-    blue: '#68809a'
-    magenta: '#8c738c'
-    cyan: '#6d96a5'
-    white: '#aeb3bb'
+    black:   '0x414868'
+    red:     '0xf7768e'
+    green:   '0x9ece6a'
+    yellow:  '0xe0af68'
+    blue:    '0x7aa2f7'
+    magenta: '0xbb9af7'
+    cyan:    '0x7dcfff'
+    white:   '0xc0caf5'
+
+  indexed_colors:
+    - { index: 16, color: '0xff9e64' }
+    - { index: 17, color: '0xdb4b4b' }
 # Bell
 #
 # The bell is rung every time the BEL control character is received.
