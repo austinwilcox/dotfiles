@@ -11,7 +11,7 @@ require('nvim-surround').setup()
 require('colorizer').setup()
 
 require('lualine').setup{
-  options = { theme = 'tokyonight-storm' }
+  options = { theme = 'tokyonight' }
 }
 
 require'marks'.setup {
