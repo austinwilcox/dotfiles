@@ -138,6 +138,7 @@ require'lspconfig'.sumneko_lua.setup{
 --CSS
 --Installation
 --npm install --location=global vscode-langservers-extracted
+--npm install --save vscode-css-languageservice
 require'lspconfig'.cssls.setup{
   capabilities = capabilities,
   on_attach = custom_attach
