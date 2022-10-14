@@ -47,8 +47,8 @@ export PATH="$PATH:/home/austin/.BrowserDrivers/"
  #User specific aliases and functions
 # LS overwrite using lsd, a much better file display tool
 alias nuget="mono /usr/local/bin/nuget.exe"
-alias ls='lsd'
-alias lsa='lsd -all'
+alias ls='exa'
+alias lsa='exa --all'
 
 alias vim='nvim'
 alias v='nvim'

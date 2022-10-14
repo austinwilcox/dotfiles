@@ -2,16 +2,16 @@ scrolling:
   history: 50000
 font:
   normal:
-    family: Ubuntu Mono
+    family: FiraCode Nerd Font
     style: Regular
   bold:
-    family: Ubuntu Mono
+    family: FiraCode Nerd Font
     style: Bold
   italic:
-    family: Ubuntu Mono
+    family: FiraCode Nerd Font
     style: Italic
   bold_italic:
-    family: Ubuntu Mono
+    family: FiraCode Nerd Font
     style: Bold Italic
   size: 11.0
 # Colors (ArcoLinux)
