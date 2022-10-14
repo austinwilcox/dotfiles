@@ -63,9 +63,18 @@ return require'packer'.startup(function(use)
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
   --Plugins on my local machine
-  use { '/home/austin/plugins/nvim-color-swap' }
-  use { '/home/austin/plugins/nvim-keybind-snippet' }
-  use { '/home/austin/plugins/nvim-surround' }
+  -- use { '/home/austin/plugins/nvim-color-swap' }
+  -- use { '/home/austin/plugins/nvim-keybind-snippet' }
+  -- use { '/home/austin/plugins/nvim-surround' }
+  use({
+    "kylechui/nvim-surround",
+    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    config = function()
+        require("nvim-surround").setup({
+            -- Configuration here, or leave empty to use defaults
+        })
+    end
+  })
 
   --Goto Preview, use lsp and show information in a popup window
   use {

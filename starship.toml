@@ -1,0 +1,27 @@
+# Don't print a new line at the start of the prompt
+add_newline = false
+
+# Replaces the default "❯" symbol in the prompt with "➜"
+[character]                             # The name of the module we are configuring is "character"
+success_symbol = "[➜](bold green)"      # The "success_symbol" segment is being set to "➜" with the color "bold green"
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+##Add the following below the file
+#[battery]
+#full_symbol = "🔋"
+#charging_symbol = "⚡️"
+#discharging_symbol = "💀"
+
+###The display configuration option is used to define when the battery indicator should be shown (threshold) and what it looks like (style).
+
+#[[battery.display]]
+#threshold = 10
+#style = "bold red"
+
+#[[battery.display]]  # "bold yellow" style when capacity is between 10% and 30%
+#threshold = 30
+#style = "bold yellow"
+

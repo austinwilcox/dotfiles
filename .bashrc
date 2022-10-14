@@ -86,8 +86,6 @@ else
   pfetch
 fi
 
-eval "$(starship init bash)"
-
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
@@ -101,10 +99,11 @@ export NVM_DIR="$HOME/.nvm"
 export PATH=$PATH:/usr/local/go/bin
 
 # Start tmux by default whenever a launch a new terminal
-if [[ -z "$TMUX"  ]]; then
-  if ! tmux has-session -t "$USER"; then
-    tmux new-session -d -s "$USER"
-  fi
-  tmux a -t "$USER"
-fi
+# if [[ -z "$TMUX"  ]]; then
+#   if ! tmux has-session -t "$USER"; then
+#     tmux new-session -d -s "$USER"
+#   fi
+#   tmux a -t "$USER"
+# fi
 
+eval "$(starship init bash)"
