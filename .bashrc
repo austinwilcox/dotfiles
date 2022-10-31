@@ -47,8 +47,8 @@ export PATH="$PATH:/home/austin/.BrowserDrivers/"
  #User specific aliases and functions
 # LS overwrite using lsd, a much better file display tool
 alias nuget="mono /usr/local/bin/nuget.exe"
-alias ls='lsd'
-alias lsa='lsd -all'
+alias ls='exa'
+alias lsa='exa --all'
 
 alias python=python3
 
@@ -80,9 +80,14 @@ alias autoUploadToAsana='~/Software/arbinger/autoUploadToAsana/bin/release/net5.
 #https://theserogroup.com/sql-server/getting-started-with-sql-server-in-a-docker-container/
 
 alias colemakdh='sudo kmonad ~/.dotfiles/kmonad-layouts/colemak-dh-extend-ansi.kbd'
-pfetch
-
-eval "$(starship init bash)"
+alias startJellyfin='podman run --detach --label "io.containers.autoupdate=registry" --name jellyfinssd --publish 8096:8096/tcp --rm --user $(id -u):$(id -g) --userns keep-id --volume jellyfin-cache:/cache:Z --volume jellyfin-config:/config:Z --mount type=bind,source=/home/austin/JellyFinSSD/Jellyfin,destination=/Jellyfin,ro=true docker.io/jellyfin/jellyfin:latest'
+if [[ "${splitIFS[1]}" == "$desktopName" ]]
+then
+  # colorscript -r
+  paleofetch
+else
+  pfetch
+fi
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
@@ -95,6 +100,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/home/austin/Android/Sdk/emulator/
+export ANDROID_HOME=/home/austin/Android/Sdk/
 export PATH=$PATH:/home/austin/WebDrivers
 
 # Start tmux by default whenever a launch a new terminal
@@ -105,3 +112,4 @@ export PATH=$PATH:/home/austin/WebDrivers
 #   tmux a -t "$USER"
 # fi
 
+eval "$(starship init bash)"

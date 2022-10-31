@@ -1,0 +1,98 @@
+# Don't print a new line at the start of the prompt
+add_newline = false
+
+# Replaces the default "❯" symbol in the prompt with "➜"
+[character]                             # The name of the module we are configuring is "character"
+success_symbol = "[](bold green)"      # The "success_symbol" segment is being set to "➜" with the color "bold green"
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+##Add the following below the file
+#[battery]
+#full_symbol = "🔋"
+#charging_symbol = "⚡️"
+#discharging_symbol = "💀"
+
+###The display configuration option is used to define when the battery indicator should be shown (threshold) and what it looks like (style).
+
+#[[battery.display]]
+#threshold = 10
+#style = "bold red"
+
+#[[battery.display]]  # "bold yellow" style when capacity is between 10% and 30%
+#threshold = 30
+#style = "bold yellow"
+
+# Configure the number of directories to truncate in the current path
+# [directory]
+# truncation_length = 3
+# truncate_to_repo = true
+# style = "blue"
+
+# # Configure the duration of the last command
+# [cmd_duration]
+# min_time = 100
+# style = "dimmed white"
+# disabled = true
+
+# # Configure the Git prompt
+# [git_branch]
+# style = "green"
+
+# # Configure the Git symbols
+# [git_status]
+# conflicted = "  "
+# deleted = " 﫧"
+# modified = "  "
+# stashed = "  "
+# staged = "  "
+# renamed = "  "
+# untracked = "  "
+# prefix = "|"
+# suffix = " | "
+# show_sync_count = true
+# conflicted_count.enabled = true
+# deleted_count.enabled = true
+# modified_count.enabled = true
+# stashed_count.enabled = true
+# staged_count.enabled = true
+# renamed_count.enabled = true
+# untracked_count.enabled = true
+
+# # Configure the SSH prompt
+# # [hostname]
+# # ssh_only = true
+# # prefix = "⟪"
+# # suffix = "⟫"
+
+# # # Configure the battery display
+# # [battery]
+# # full_symbol = ""
+# # charging_symbol = ""
+# # discharging_symbol = ""
+
+# # # Configure the background jobs
+# # [jobs]
+# # symbol = ""
+
+# # # Configure the .NET module
+# # [dotnet]
+# # symbol = " "
+# # style = "dimmed blue"
+  
+# # # Configure the Rust module
+# # [rust]
+# # symbol = " "
+# # style = "dimmed red"
+
+# # # Configure the Node.js module
+# # [nodejs]
+# # symbol = " "
+# # style = "dimmed green"
+
+# # # Configure the Java module
+# # [java]
+# # symbol = " "
+# # style = "dimmed purple"
