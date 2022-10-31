@@ -50,6 +50,8 @@ alias nuget="mono /usr/local/bin/nuget.exe"
 alias ls='lsd'
 alias lsa='lsd -all'
 
+alias python=python3
+
 alias vim='nvim'
 alias v='nvim'
 
@@ -78,13 +80,7 @@ alias autoUploadToAsana='~/Software/arbinger/autoUploadToAsana/bin/release/net5.
 #https://theserogroup.com/sql-server/getting-started-with-sql-server-in-a-docker-container/
 
 alias colemakdh='sudo kmonad ~/.dotfiles/kmonad-layouts/colemak-dh-extend-ansi.kbd'
-if [[ "${splitIFS[1]}" == "$desktopName" ]]
-then
-  # colorscript -r
-  paleofetch
-else
-  pfetch
-fi
+pfetch
 
 eval "$(starship init bash)"
 
@@ -99,12 +95,13 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/home/austin/WebDrivers
 
 # Start tmux by default whenever a launch a new terminal
-if [[ -z "$TMUX"  ]]; then
-  if ! tmux has-session -t "$USER"; then
-    tmux new-session -d -s "$USER"
-  fi
-  tmux a -t "$USER"
-fi
+# if [[ -z "$TMUX"  ]]; then
+#   if ! tmux has-session -t "$USER"; then
+#     tmux new-session -d -s "$USER"
+#   fi
+#   tmux a -t "$USER"
+# fi
 

@@ -76,7 +76,7 @@ cmp.setup({
 })
 
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local custom_attach = function(client)
   --Older native lsp configuration options
   -- buf_nnoremap { "K", vim.lsp.buf.hover }
