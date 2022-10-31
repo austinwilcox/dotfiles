@@ -78,6 +78,7 @@ alias autoUploadToAsana='~/Software/arbinger/autoUploadToAsana/bin/release/net5.
 #https://theserogroup.com/sql-server/getting-started-with-sql-server-in-a-docker-container/
 
 alias colemakdh='sudo kmonad ~/.dotfiles/kmonad-layouts/colemak-dh-extend-ansi.kbd'
+alias startJellyfin='podman run --detach --label "io.containers.autoupdate=registry" --name jellyfinssd --publish 8096:8096/tcp --rm --user $(id -u):$(id -g) --userns keep-id --volume jellyfin-cache:/cache:Z --volume jellyfin-config:/config:Z --mount type=bind,source=/home/austin/JellyFinSSD/Jellyfin,destination=/Jellyfin,ro=true docker.io/jellyfin/jellyfin:latest'
 if [[ "${splitIFS[1]}" == "$desktopName" ]]
 then
   # colorscript -r
@@ -97,6 +98,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/home/austin/Android/Sdk/emulator/
+export ANDROID_HOME=/home/austin/Android/Sdk/
 
 # Start tmux by default whenever a launch a new terminal
 # if [[ -z "$TMUX"  ]]; then
