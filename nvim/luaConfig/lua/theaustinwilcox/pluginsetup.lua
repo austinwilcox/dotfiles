@@ -4,6 +4,14 @@ require('pretty-fold.preview').setup {
    key = 'h', -- choose 'h' or 'l' key
 }
 
+-- Ultisnips setup
+vim.cmd[[
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpFowardTrigger='<c-j>'
+let g:UltiSnipsJumpBackwardTrigger='<c-k>'
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "my_snippets"]
+]]
+
 --Nvim Surround
 require('nvim-surround').setup()
 
