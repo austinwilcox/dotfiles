@@ -114,6 +114,12 @@ end
 --   }
 -- })
 
+-- Rust Setup
+require'lspconfig'.rust_analyzer.setup({
+  capabilities = capabilities,
+  on_attach = custom_attach
+})
+
 -- Typescript Setup
 require'lspconfig'.tsserver.setup{
   capabilities = capabilities,

@@ -99,3 +99,5 @@ require('goto-preview').setup {
 	force_close = true, -- passed into vim.api.nvim_win_close's second argument. See :h nvim_win_close
 	bufhidden = "wipe", -- the bufhidden option to set on the floating window. See :h bufhidden
 }
+
+require("mason").setup()
