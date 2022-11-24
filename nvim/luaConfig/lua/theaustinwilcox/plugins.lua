@@ -45,6 +45,9 @@ return require'packer'.startup(function(use)
   -- Chentoast Marks - A better experience with Marks in NVIM
   use { 'chentoast/marks.nvim' }
 
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
+
   -- Prettier - Currently do not like any of the solutions
   -- use { 'prettier/vim-prettier', run = 'yarn install', ft = {'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'} }
   -- use { 'jose-elias-alvarez/null-ls.nvim' }

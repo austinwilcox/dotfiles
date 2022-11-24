@@ -4,6 +4,14 @@ require('pretty-fold.preview').setup {
    key = 'h', -- choose 'h' or 'l' key
 }
 
+-- Ultisnips setup
+vim.cmd[[
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpFowardTrigger='<c-j>'
+let g:UltiSnipsJumpBackwardTrigger='<c-k>'
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "my_snippets"]
+]]
+
 --Nvim Surround
 require('nvim-surround').setup()
 
@@ -91,3 +99,5 @@ require('goto-preview').setup {
 	force_close = true, -- passed into vim.api.nvim_win_close's second argument. See :h nvim_win_close
 	bufhidden = "wipe", -- the bufhidden option to set on the floating window. See :h bufhidden
 }
+
+require("mason").setup()
