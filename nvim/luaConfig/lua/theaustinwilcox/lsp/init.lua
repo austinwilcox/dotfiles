@@ -79,23 +79,22 @@ cmp.setup({
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local custom_attach = function(client)
   --Older native lsp configuration options
-  -- buf_nnoremap { "K", vim.lsp.buf.hover }
-  -- buf_nnoremap { "gd", vim.lsp.buf.definition }
-  -- buf_nnoremap { "<leader>gn", vim.diagnostic.goto_next }
-  -- buf_nnoremap { "<leader>gp", vim.diagnostic.goto_prev }
-  -- buf_nnoremap { "<leader>gr", vim.lsp.buf.rename }
+  buf_nnoremap { "K", vim.lsp.buf.hover }
+  buf_nnoremap { "gd", vim.lsp.buf.definition }
+  buf_nnoremap { "<leader>gn", vim.diagnostic.goto_next }
+  buf_nnoremap { "<leader>gp", vim.diagnostic.goto_prev }
+  buf_nnoremap { "<leader>gr", vim.lsp.buf.rename }
   buf_nnoremap { "gt", vim.lsp.buf.type_definition }
   buf_nnoremap { "gi", vim.lsp.buf.implementation }
   buf_nnoremap { "<leader>gl", "<cmd>Telescope diagnostics<cr>"} 
   buf_nnoremap { "<leader>ca", vim.lsp.buf.code_action }
-  
   --LSP Saga additions
-  buf_inoremap { "<C-k>", "<Cmd>Lspsaga signature_help<cr>" }
-  buf_nnoremap { "<leader>gr", "<Cmd>Lspsaga rename<cr>"}
-  buf_nnoremap { "K", "<Cmd>Lspsaga hover_doc<cr>" }
-  buf_nnoremap { "gd", "<Cmd>Lspsaga lsp_finder<cr>"}
-  buf_nnoremap { "<leader>gn", "<Cmd>Lspsaga diagnostic_jump_next<cr>"}
-  buf_nnoremap { "<leader>gp", "<Cmd>Lspsaga diagnostic_jump_prev<cr>" }
+  -- buf_inoremap { "<C-k>", "<Cmd>Lspsaga signature_help<cr>" }
+  -- buf_nnoremap { "<leader>gr", "<Cmd>Lspsaga rename<cr>"}
+  -- buf_nnoremap { "K", "<Cmd>Lspsaga hover_doc<cr>" }
+  -- buf_nnoremap { "gd", "<Cmd>Lspsaga lsp_finder<cr>"}
+  -- buf_nnoremap { "<leader>gn", "<Cmd>Lspsaga diagnostic_jump_next<cr>"}
+  -- buf_nnoremap { "<leader>gp", "<Cmd>Lspsaga diagnostic_jump_prev<cr>" }
 end
 
 -- This is supposed to show this in a popup window, but it is not working. Likely a conflict with ALE
@@ -123,15 +122,17 @@ require'lspconfig'.rust_analyzer.setup({
 -- Typescript Setup
 require'lspconfig'.tsserver.setup{
   capabilities = capabilities,
-  on_attach = custom_attach
+  on_attach = custom_attach,
+  root_dir = require'lspconfig'.util.root_pattern("package.json")
 }
 
 -- Deno Setup
 -- Currently this interferes to much with tsserver
--- require'deno-nvim'.setup({
---   capabilities = capabilities,
---   on_attach = custom_attach
--- })
+ require'lspconfig'.denols.setup({
+   capabilities = capabilities,
+   on_attach = custom_attach,
+   root_dir = require'lspconfig'.util.root_pattern("deno.json", "deno.jsonc")
+ })
 
 -- LUA
 -- Installation

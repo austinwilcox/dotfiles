@@ -92,6 +92,8 @@ map('n', 'gpr', ':lua require("goto-preview").goto_preview_references()<CR>', no
 --Disable auto pairs shortcut toggling
 vim.cmd [[
   let g:user_emmet_leader_key=','
+  let g:user_emmet_install_global = 0
+  autocmd FileType html,css,tsx,jsx EmmetInstall
   let g:AutoPairsShortcutToggle=''
 ]]
 
