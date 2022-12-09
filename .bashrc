@@ -81,6 +81,7 @@ alias autoUploadToAsana='~/Software/arbinger/autoUploadToAsana/bin/release/net5.
 
 alias colemakdh='sudo kmonad ~/.dotfiles/kmonad-layouts/colemak-dh-extend-ansi.kbd'
 alias startJellyfin='podman run --detach --label "io.containers.autoupdate=registry" --name jellyfinssd --publish 8096:8096/tcp --rm --user $(id -u):$(id -g) --userns keep-id --volume jellyfin-cache:/cache:Z --volume jellyfin-config:/config:Z --mount type=bind,source=/home/austin/JellyFinSSD/Jellyfin,destination=/Jellyfin,ro=true docker.io/jellyfin/jellyfin:latest'
+alias startJellyfinFiles='podman run --detach --label "io.containers.autoupdate=registry" --name jellyfinssd --publish 8096:8096/tcp --rm --user $(id -u):$(id -g) --userns keep-id --volume jellyfin-cache:/cache:Z --volume jellyfin-config:/config:Z --mount type=bind,source=/home/austin/Files/Jellyfin,destination=/Jellyfin,ro=true docker.io/jellyfin/jellyfin:latest'
 if [[ "${splitIFS[1]}" == "$desktopName" ]]
 then
   # colorscript -r
