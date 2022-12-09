@@ -3,7 +3,7 @@ return require'packer'.startup(function(use)
   -- Colorschemes
   use { 'Mofiqul/dracula.nvim' }
   use "gruvbox-community/gruvbox"
-  use "EdenEast/nightfox.nvim" 
+  use "EdenEast/nightfox.nvim"
   use "folke/tokyonight.nvim"
 
   -- To get Telescope live grep working you need ripgrep
