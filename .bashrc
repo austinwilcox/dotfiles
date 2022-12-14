@@ -48,7 +48,7 @@ export PATH="$PATH:/home/austin/.BrowserDrivers/"
 # LS overwrite using lsd, a much better file display tool
 alias nuget="mono /usr/local/bin/nuget.exe"
 alias ls='exa'
-alias lsa='exa --all'
+alias lsa='exa -all'
 
 alias python=python3
 
