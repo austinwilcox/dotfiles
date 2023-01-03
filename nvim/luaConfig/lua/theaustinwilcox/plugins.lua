@@ -1,5 +1,6 @@
 return require'packer'.startup(function(use)
   use 'wbthomason/packer.nvim' -- this is essential.
+
   -- Colorschemes
   use { 'Mofiqul/dracula.nvim' }
   use "gruvbox-community/gruvbox"
@@ -7,6 +8,7 @@ return require'packer'.startup(function(use)
   use "folke/tokyonight.nvim"
 
   -- To get Telescope live grep working you need ripgrep
+  -- Ubuntu/Debian based
   -- sudo apt install ripgrep
   use "austinwilcox/pretty-fold.nvim"
   use "nvim-telescope/telescope.nvim"
@@ -28,6 +30,8 @@ return require'packer'.startup(function(use)
   use "hrsh7th/cmp-buffer"
   use "hrsh7th/nvim-cmp"
   use "lukas-reineke/lsp-format.nvim"
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
   use { 'tjdevries/nlua.nvim', requires = { 'nvim-lua/completion-nvim', 'euclidianAce/BetterLua.vim' } }
   use { 'onsails/lspkind.nvim' } -- Vscode like pictograms
 
@@ -44,11 +48,13 @@ return require'packer'.startup(function(use)
   use "tpope/vim-commentary"
   use "tpope/vim-dotenv"
 
+  -- GIT
+  use "mhinz/vim-signify"
+  use "tpope/vim-rhubarb"
+  use "junegunn/gv.vim"
+
   -- Chentoast Marks - A better experience with Marks in NVIM
   use { 'chentoast/marks.nvim' }
-
-  use 'williamboman/mason.nvim'
-  use 'williamboman/mason-lspconfig.nvim'
 
   -- Prettier - Currently do not like any of the solutions
   -- use { 'prettier/vim-prettier', run = 'yarn install', ft = {'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'} }
@@ -71,6 +77,7 @@ return require'packer'.startup(function(use)
   -- use { '/home/austin/plugins/nvim-color-swap' }
   -- use { '/home/austin/plugins/nvim-keybind-snippet' }
   -- use { '/home/austin/plugins/nvim-surround' }
+
   use({
     "kylechui/nvim-surround",
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
