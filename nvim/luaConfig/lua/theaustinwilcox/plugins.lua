@@ -50,7 +50,6 @@ return require'packer'.startup(function(use)
 
   -- GIT
   use "mhinz/vim-signify"
-  use "tpope/vim-rhubarb"
   use "junegunn/gv.vim"
 
   -- Chentoast Marks - A better experience with Marks in NVIM
