@@ -10,7 +10,6 @@ return require'packer'.startup(function(use)
   -- To get Telescope live grep working you need ripgrep
   -- Ubuntu/Debian based
   -- sudo apt install ripgrep
-  use "austinwilcox/pretty-fold.nvim"
   use "nvim-telescope/telescope.nvim"
   use "mattn/emmet-vim"
   use "dense-analysis/ale"

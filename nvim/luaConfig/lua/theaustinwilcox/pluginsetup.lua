@@ -1,9 +1,3 @@
---Pretty Fold
-require('pretty-fold').setup{ }
-require('pretty-fold.preview').setup {
-   key = 'h', -- choose 'h' or 'l' key
-}
-
 -- Ultisnips setup
 vim.cmd[[
 let g:UltiSnipsExpandTrigger='<tab>'
