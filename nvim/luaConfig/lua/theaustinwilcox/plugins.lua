@@ -62,9 +62,6 @@ return require'packer'.startup(function(use)
   --Lualine
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt=true }}
 
-  --Auto Pairs auto close ( [ {
-  use { 'jiangmiao/auto-pairs' }
-
   --Rainbow for ( [ {  } ] )
   use { 'luochen1990/rainbow' }
 

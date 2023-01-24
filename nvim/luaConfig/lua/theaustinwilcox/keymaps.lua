@@ -89,12 +89,10 @@ map('n', 'gP', ':lua require("goto-preview").close_all_win()<CR>', noremap_optio
 map('n', 'gpr', ':lua require("goto-preview").goto_preview_references()<CR>', noremap_options)
 
 --Setup the Emmet Leader key to comma
---Disable auto pairs shortcut toggling
 vim.cmd [[
   let g:user_emmet_leader_key=','
   let g:user_emmet_install_global = 0
   autocmd FileType html,css,tsx,jsx EmmetInstall
-  let g:AutoPairsShortcutToggle=''
 ]]
 
 
