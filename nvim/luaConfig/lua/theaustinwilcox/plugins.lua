@@ -10,7 +10,6 @@ return require'packer'.startup(function(use)
   -- To get Telescope live grep working you need ripgrep
   -- Ubuntu/Debian based
   -- sudo apt install ripgrep
-  use "austinwilcox/pretty-fold.nvim"
   use "nvim-telescope/telescope.nvim"
   use "mattn/emmet-vim"
   use "dense-analysis/ale"
@@ -62,9 +61,6 @@ return require'packer'.startup(function(use)
 
   --Lualine
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt=true }}
-
-  --Auto Pairs auto close ( [ {
-  use { 'jiangmiao/auto-pairs' }
 
   --Rainbow for ( [ {  } ] )
   use { 'luochen1990/rainbow' }
