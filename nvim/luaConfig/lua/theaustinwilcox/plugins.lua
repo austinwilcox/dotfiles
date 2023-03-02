@@ -19,6 +19,15 @@ return require'packer'.startup(function(use)
   -- Colorizer, provided color highlights
   use { 'norcalli/nvim-colorizer.lua' }
 
+  -- NVIM Todo Comments
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup{}
+    end
+  }
+
   -- Harpoon
   use "nvim-lua/plenary.nvim"
   use "ThePrimeagen/harpoon"
