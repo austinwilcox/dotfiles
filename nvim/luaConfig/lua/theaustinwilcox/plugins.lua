@@ -50,6 +50,12 @@ return require'packer'.startup(function(use)
   -- NVIM Dap
   -- use "mfussenegger/nvim-dap"
 
+  -- Auto Pairs
+  use {
+    "windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup{} end
+  }
+
   -- TPOPE
   use "tpope/vim-fugitive"
   use "tpope/vim-surround"
