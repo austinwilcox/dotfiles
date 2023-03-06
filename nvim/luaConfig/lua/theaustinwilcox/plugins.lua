@@ -19,6 +19,15 @@ return require'packer'.startup(function(use)
   -- Colorizer, provided color highlights
   use { 'norcalli/nvim-colorizer.lua' }
 
+  -- NVIM Todo Comments
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup{}
+    end
+  }
+
   -- Harpoon
   use "nvim-lua/plenary.nvim"
   use "ThePrimeagen/harpoon"
@@ -40,6 +49,12 @@ return require'packer'.startup(function(use)
 
   -- NVIM Dap
   -- use "mfussenegger/nvim-dap"
+
+  -- Auto Pairs
+  use {
+    "windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup{} end
+  }
 
   -- TPOPE
   use "tpope/vim-fugitive"

@@ -136,10 +136,10 @@ require'lspconfig'.tsserver.setup{
 -- LUA
 -- Installation
 -- Install via VSCode
-require'lspconfig'.sumneko_lua.setup{
-  capabilities = capabilities,
-  on_attach = custom_attach
-}
+-- require'lspconfig'.sumneko_lua.setup{
+--   capabilities = capabilities,
+--   on_attach = custom_attach
+-- }
 
 --CSS
 --Installation
