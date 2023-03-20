@@ -83,12 +83,6 @@ return require'packer'.startup(function(use)
   --Beautiful Treesitter
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
-  --Org Mode
-  use {'nvim-orgmode/orgmode', config = function()
-    require('orgmode').setup{}
-  end
-  }
-
   --Plugins on my local machine
   -- use { '/home/austin/plugins/nvim-color-swap' }
   -- use { '/home/austin/plugins/nvim-keybind-snippet' }

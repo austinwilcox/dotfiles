@@ -27,9 +27,6 @@ require('lualine').setup{
   options = { theme = 'tokyonight' }
 }
 
---OrgMode
-require('orgmode').setup_ts_grammar()
-
 require'marks'.setup {
   -- whether to map keybinds or not. default true
   default_mappings = true,
@@ -64,10 +61,9 @@ require'marks'.setup {
 
 -- Treesitter configuration
 require'nvim-treesitter.configs'.setup {
-	ensure_installed = { "c_sharp", "bash", "css", "html", "javascript", "json", "lua", "python", "regex", "scss", "tsx", "typescript", "vim", "yaml", "rust", "org"  },
+	ensure_installed = { "c_sharp", "bash", "css", "html", "javascript", "json", "lua", "python", "regex", "scss", "tsx", "typescript", "vim", "yaml", "rust"},
 	highlight = {
 		enable = true,
-    additional_vim_regex_highlighting = {'org'},
 	},
   textobjects = {
     select = {
@@ -86,12 +82,6 @@ require'nvim-treesitter.configs'.setup {
     },
   },
 }
-
---Finish out org mode setup
-require("orgmode").setup({
-  org_agenda_files = {'~/Documents/org/*'},
-  org_default_notes_file = '~/Documents/org/refile.org'
-})
 
 --GoTo Preview Setup
 require('goto-preview').setup {
