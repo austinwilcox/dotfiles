@@ -1,3 +1,8 @@
+--vimwiki setup
+-- vim.cmd[[
+-- let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
+-- ]]
+
 -- Ultisnips setup
 vim.cmd[[
 let g:UltiSnipsExpandTrigger='<tab>'
