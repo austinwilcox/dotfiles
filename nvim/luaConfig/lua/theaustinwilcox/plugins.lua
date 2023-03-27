@@ -7,6 +7,9 @@ return require'packer'.startup(function(use)
   use "EdenEast/nightfox.nvim"
   use "folke/tokyonight.nvim"
 
+  -- Austin Wilcox Plugins
+  use "austinwilcox/hex2rgba"
+
   -- To get Telescope live grep working you need ripgrep
   -- Ubuntu/Debian based
   -- sudo apt install ripgrep

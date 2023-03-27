@@ -61,6 +61,9 @@ map('n', '<leader>he', ':lua require("harpoon.ui").nav_file(2)<cr>', noremap_opt
 map('n', '<leader>hi', ':lua require("harpoon.ui").nav_file(3)<cr>', noremap_options)
 map('n', '<leader>ho', ':lua require("harpoon.ui").nav_file(4)<cr>', noremap_options)
 
+--Hex 2 RGBA Plugin
+map('n', '<leader>cs', ':lua require("hex2rgba").hex2rgba()<cr>', noremap_options)
+
 --Dotfiles snippets
 map('n', ',html', ':-1read $HOME/.dotfiles/skeletons/skeleton.html<CR>3jwf>a', noremap_options)
 map('n', ',react', ':-1read $HOME/.dotfiles/skeletons/skeleton.jsx<CR>2j3wce', noremap_options)
@@ -72,9 +75,6 @@ map('n', '<leader>tt', ':vnew term://bash<CR>', noremap_options)
 
 --Disable Escape p for Auto Pairs. Escape p trigger auto pairs to toggle
 map('n', '<M-p>', '<Nop>', noremap_options)
-
---Color Swap keymapping
-map('n', '<leader>cs', ':lua require("nvimcolorswap").hex2rgb()<CR>', noremap_options)
 
 --Keybindings popup
 map('n', '<leader>test', ':lua require("nvimkeybindsnippet").toggle_keybinding_menu()<CR>', noremap_options)
