@@ -29,7 +29,7 @@ require('nvim-surround').setup()
 require('colorizer').setup()
 
 require('lualine').setup{
-  options = { theme = 'tokyonight' }
+  options = { theme = 'dracula' }
 }
 
 require'marks'.setup {
