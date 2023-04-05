@@ -108,6 +108,8 @@ export ANDROID_HOME=/home/austin/Android/Sdk/
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+# This command is the ideal brightness for my laptop on the go
+# sudo brightnessctl set 100%
 
 # Start tmux by default whenever a launch a new terminal
 # if [[ -z "$TMUX"  ]]; then
