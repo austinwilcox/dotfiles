@@ -108,6 +108,12 @@ export ANDROID_HOME=/home/austin/Android/Sdk/
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+if command -v batcat >/dev/null 2>&1; then
+  alias cat='batcat'
+else
+  echo "Batcat not found"
+fi
+
 # This command is the ideal brightness for my laptop on the go
 # sudo brightnessctl set 100%
 
