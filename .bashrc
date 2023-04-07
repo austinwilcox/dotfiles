@@ -44,7 +44,7 @@ fi
 
 export PATH="$PATH:/home/austin/.BrowserDrivers/"
 
- #User specific aliases and functions
+# User specific aliases and functions
 # LS overwrite using lsd, a much better file display tool
 alias nuget="mono /usr/local/bin/nuget.exe"
 alias ls='exa'
@@ -65,7 +65,6 @@ alias updatestarship='sh -c "$(curl -fsSL https://starship.rs/install.sh)"'
 alias evimrc='vim ~/.vimrc'
 alias ssh-arblaptop='ssh austin@192.168.1.19'
 alias startDefaultNetwork='sudo virsh net-start default'
-#alias nuget="mono /usr/local/bin/nuget.exe"
 alias mountFilesDrive='udisksctl mount -b /dev/sda1'
 alias rider='~/Downloads/"JetBrains Rider-2021.2.2"/bin/rider.sh'
   export DENO_INSTALL="/home/austin/.deno"
@@ -76,12 +75,11 @@ alias arbPortalUnitTests='~/.dotfiles/arbPortalUnitTestsTmux.sh'
 alias goKanban='~/.dotfiles/goKanbanTmux.sh'
 alias swd='~/.dotfiles/secondswebdevTmux.sh'
 alias startSqlServer='sudo docker start sql2019'
-alias stopSqlServer='sudo docker stop sql2019'
+alias stopSqlServer='sudo docker stop sql2019' #https://theserogroup.com/sql-server/getting-started-with-sql-server-in-a-docker-container/
 alias autoUploadToAsana='~/Software/arbinger/autoUploadToAsana/bin/release/net5.0/linux-x64/publish/autoUploadToAsana -f ~/Software/arbinger/autoUploadToAsana/config.json'
-#https://theserogroup.com/sql-server/getting-started-with-sql-server-in-a-docker-container/
-
 alias colemakdh='sudo kmonad ~/.dotfiles/kmonad-layouts/colemak-dh-extend-ansi.kbd'
 alias startJellyfinFiles='podman run --detach --label "io.containers.autoupdate=registry" --name jellyfinssd --publish 8096:8096/tcp --rm --user $(id -u):$(id -g) --userns keep-id --volume jellyfin-cache:/cache:Z --volume jellyfin-config:/config:Z --mount type=bind,source=/home/austin/Files/Jellyfin,destination=/Jellyfin,ro=true docker.io/jellyfin/jellyfin:latest'
+
 if [[ "${splitIFS[1]}" == "$desktopName" ]]
 then
   # colorscript -r
@@ -111,7 +109,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 if command -v batcat >/dev/null 2>&1; then
   alias cat='batcat'
 else
-  echo "Batcat not found"
+  echo "Batcat not found, if you are on an ubuntu based machine please run: sudo apt install batcat"
 fi
 
 # This command is the ideal brightness for my laptop on the go
