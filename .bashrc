@@ -100,6 +100,8 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/home/austin/WebDrivers
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # Android Studio/React Native Dev Setup
 export ANDROID_HOME=/home/austin/Android/Sdk/
