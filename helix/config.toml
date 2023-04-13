@@ -3,6 +3,7 @@ theme = "gruvbox"
 [editor]
 line-number = "relative"
 mouse = false
+auto-completion = true
 
 [editor.cursor-shape]
 insert = "bar"
@@ -11,4 +12,12 @@ select = "underline"
 
 [editor.file-picker]
 hidden = false
+
+[editor.auto-pairs]
+'{' = '}'
+'(' = ')'
+'"' = '"'
+'`' = '`'
+'<' = '>'
+"'" = "'"
 
