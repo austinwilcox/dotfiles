@@ -1,6 +1,17 @@
 return require'packer'.startup(function(use)
   use 'wbthomason/packer.nvim' -- this is essential.
 
+  -- Neorg
+  use {
+    "nvim-neorg/neorg",
+    run = ":Neorg sync-parsers", -- This is the important bit!
+    config = function()
+        require("neorg").setup {
+            -- configuration here
+        }
+    end,
+  }
+
   -- Colorschemes
   use { 'Mofiqul/dracula.nvim' }
   use "gruvbox-community/gruvbox"

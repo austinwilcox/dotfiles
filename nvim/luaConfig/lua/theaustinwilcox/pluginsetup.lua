@@ -64,9 +64,26 @@ require'marks'.setup {
   mappings = {}
 }
 
+-- Neorg Setup
+require('neorg').setup {
+    load = {
+        ["core.defaults"] = {},
+        ["core.concealer"] = {},
+        ["core.dirman"] = {
+          config = {
+            workspaces = {
+              work = "~/notes/work",
+              home = "~/notes/home"
+            },
+            default_workspace = "work"
+          }
+        }
+    }
+}
+
 -- Treesitter configuration
 require'nvim-treesitter.configs'.setup {
-	ensure_installed = { "c_sharp", "bash", "css", "html", "javascript", "json", "lua", "python", "regex", "scss", "tsx", "typescript", "vim", "yaml", "rust"},
+	ensure_installed = { "c_sharp", "bash", "css", "html", "javascript", "json", "lua", "python", "regex", "scss", "tsx", "typescript", "vim", "yaml", "rust", "norg"},
 	highlight = {
 		enable = true,
 	},
