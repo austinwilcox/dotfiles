@@ -129,5 +129,7 @@ export PATH=$PATH:/home/austin/.local/bin/netcoredbg/
 #   fi
 #   tmux a -t "$USER"
 # fi
+#
+set -o vi
 
 eval "$(starship init bash)"
