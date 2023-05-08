@@ -72,7 +72,7 @@ require('neorg').setup {
         ["core.dirman"] = {
           config = {
             workspaces = {
-              work = "~/notes/work",
+              work = "~/OneDrive/notes/work",
               home = "~/notes/home"
             },
             default_workspace = "work"
