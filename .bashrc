@@ -50,6 +50,8 @@ alias nuget="mono /usr/local/bin/nuget.exe"
 alias ls='exa'
 alias lsa='exa -all'
 
+alias mv='mv -i'
+
 alias python=python3
 
 alias vim='nvim'
@@ -111,6 +113,9 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # Add custom path to Omnisharp
 export PATH=$PATH:/home/austin/Software/omnisharp
 export PATH=$PATH:/home/austin/.local/bin/netcoredbg/
+
+# Learned about thefuck the other day, and experimenting with it
+# eval $(thefuck --alias fuck)
 
 # batcat does not support piping right away, which is a dealbreaker, I will use batcat specifically instead of aliasing over cat
 # if command -v batcat >/dev/null 2>&1; then
