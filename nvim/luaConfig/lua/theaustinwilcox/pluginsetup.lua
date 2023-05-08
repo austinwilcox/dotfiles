@@ -69,10 +69,14 @@ require('neorg').setup {
     load = {
         ["core.defaults"] = {},
         ["core.concealer"] = {},
+        ["core.integrations.treesitter"] = {},
+        ["core.ui"] = {},
+        ["core.qol.toc"] = {},
         ["core.dirman"] = {
           config = {
             workspaces = {
               work = "~/OneDrive/notes/work",
+              zettle = "~/notes/zettlekasten",
               home = "~/notes/home"
             },
             default_workspace = "work"
