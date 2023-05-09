@@ -12,6 +12,15 @@ return require'packer'.startup(function(use)
     end,
   }
 
+  -- Pretty Landing Screen for Nvim
+  use {
+      'goolord/alpha-nvim',
+      requires = { 'nvim-tree/nvim-web-devicons' },
+      config = function ()
+          require'alpha'.setup(require'alpha.themes.startify'.config)
+      end
+  }
+
   -- Colorschemes
   use { 'Mofiqul/dracula.nvim' }
   use "gruvbox-community/gruvbox"
