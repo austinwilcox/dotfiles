@@ -17,7 +17,7 @@ return require'packer'.startup(function(use)
       'goolord/alpha-nvim',
       requires = { 'nvim-tree/nvim-web-devicons' },
       config = function ()
-          require'alpha'.setup(require'alpha.themes.startify'.config)
+          require'alpha'.setup(require'alpha.themes.dashboard'.config)
       end
   }
 
@@ -86,12 +86,28 @@ return require'packer'.startup(function(use)
     "windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup{} end
   }
-
+  
   -- TPOPE
   use "tpope/vim-fugitive"
   use "tpope/vim-surround"
   use "tpope/vim-commentary"
   use "tpope/vim-dotenv"
+
+  -- Ranger Nvim
+  -- Currently I like it, but I also just want to toggle this, instead of it being the default
+  -- I still really like netrw
+  -- use {
+  --   "kelly-lin/ranger.nvim",
+  --   config = function()
+  --     require("ranger-nvim").setup({ replace_netrw = false })
+  --     vim.api.nvim_set_keymap("n", "<leader>ef", "", {
+  --       noremap = true,
+  --       callback = function()
+  --         require("ranger-nvim").open(true)
+  --       end,
+  --     })
+  --   end,
+  -- }
 
   -- GIT
   use "mhinz/vim-signify"
