@@ -113,6 +113,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # Add custom path to Omnisharp
 export PATH=$PATH:/home/austin/Software/omnisharp
 export PATH=$PATH:/home/austin/.local/bin/netcoredbg/
+export PATH=$PATH:/home/austin/.config/emacs/bin
 
 # Learned about thefuck the other day, and experimenting with it
 # eval $(thefuck --alias fuck)

@@ -104,9 +104,6 @@ map('n', 'gpr', ':lua require("goto-preview").goto_preview_references()<CR>', no
 
 --Setup the Emmet Leader key to comma
 vim.cmd [[
-  let g:user_emmet_leader_key=','
-  let g:user_emmet_install_global = 0
-  autocmd FileType html,css,tsx,jsx EmmetInstall
+  let g:user_emmet_leader_key='<C-Z>'
 ]]
-
 

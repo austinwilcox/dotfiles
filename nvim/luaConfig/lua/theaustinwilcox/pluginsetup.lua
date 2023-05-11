@@ -3,6 +3,9 @@
 -- let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
 -- ]]
 
+-- nvim-noicons setup
+require('nvim-nonicons').setup {}
+
 -- Ultisnips setup
 vim.cmd[[
 let g:UltiSnipsExpandTrigger='<tab>'
@@ -71,6 +74,7 @@ require('neorg').setup {
         ["core.concealer"] = {},
         ["core.integrations.treesitter"] = {},
         ["core.ui"] = {},
+        ["core.itero"] = {},
         ["core.qol.toc"] = {},
         ["core.dirman"] = {
           config = {
