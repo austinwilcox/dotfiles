@@ -9,6 +9,19 @@ return require'packer'.startup(function(use)
   use 'nvim-tree/nvim-web-devicons'
   use 'kyazdani42/nvim-web-devicons'
 
+  -- A pretty list for showing diagnostics, references telescope results, qf, and location lists
+ use({
+      "folke/trouble.nvim",
+      config = function()
+          require("trouble").setup {
+              icons = false,
+              -- your configuration comes here
+              -- or leave it empty to use the default settings
+              -- refer to the configuration section below
+          }
+      end
+  })
+
   -- Neorg
   use {
     "nvim-neorg/neorg",
@@ -71,6 +84,29 @@ return require'packer'.startup(function(use)
   use "nvim-lua/plenary.nvim"
   use "ThePrimeagen/harpoon"
 
+  use {
+	  'VonHeikemen/lsp-zero.nvim',
+	  branch = 'v1.x',
+	  requires = {
+		  -- LSP Support
+		  {'neovim/nvim-lspconfig'},
+		  {'williamboman/mason.nvim'},
+		  {'williamboman/mason-lspconfig.nvim'},
+
+		  -- Autocompletion
+		  {'hrsh7th/nvim-cmp'},
+		  {'hrsh7th/cmp-buffer'},
+		  {'hrsh7th/cmp-path'},
+		  {'saadparwaiz1/cmp_luasnip'},
+		  {'hrsh7th/cmp-nvim-lsp'},
+		  {'hrsh7th/cmp-nvim-lua'},
+
+		  -- Snippets
+		  -- {'L3MON4D3/LuaSnip'},
+		  -- {'rafamadriz/friendly-snippets'},
+	  }
+  }
+
   -- LSP Setup
   use "neovim/nvim-lspconfig"
   use "hrsh7th/cmp-nvim-lsp"
@@ -97,25 +133,7 @@ return require'packer'.startup(function(use)
   
   -- TPOPE
   use "tpope/vim-fugitive"
-  use "tpope/vim-surround"
   use "tpope/vim-commentary"
-  use "tpope/vim-dotenv"
-
-  -- Ranger Nvim
-  -- Currently I like it, but I also just want to toggle this, instead of it being the default
-  -- I still really like netrw
-  -- use {
-  --   "kelly-lin/ranger.nvim",
-  --   config = function()
-  --     require("ranger-nvim").setup({ replace_netrw = false })
-  --     vim.api.nvim_set_keymap("n", "<leader>ef", "", {
-  --       noremap = true,
-  --       callback = function()
-  --         require("ranger-nvim").open(true)
-  --       end,
-  --     })
-  --   end,
-  -- }
 
   -- GIT
   use "mhinz/vim-signify"
@@ -136,15 +154,10 @@ return require'packer'.startup(function(use)
   use { 'luochen1990/rainbow' }
 
   --Beautiful Treesitter
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-
-  -- VimWiki
-  use { 'vimwiki/vimwiki' }
-
-  --Plugins on my local machine
-  -- use { '/home/austin/plugins/nvim-color-swap' }
-  -- use { '/home/austin/plugins/nvim-keybind-snippet' }
-  -- use { '/home/austin/plugins/nvim-surround' }
+  use { 'nvim-treesitter/nvim-treesitter', run = function()
+    local ts_update = require('nvim-treesitter.install').update({ with_sync = true})
+    ts_update()
+  end}
 
   use({
     "kylechui/nvim-surround",
