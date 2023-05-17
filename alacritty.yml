@@ -59,6 +59,7 @@ font:
 #     black: '#373e4d'
 #     red: '#94545d'
 #     green: '#809575'
+#     /
 #     yellow: '#b29e75'
 #     blue: '#68809a'
 #     magenta: '#8c738c'
@@ -131,6 +132,7 @@ font:
 #     - { index: 17, color: '0xdb4b4b' }
 # TokyoNight Storm Alacritty Colors
 colors:
+  background_opacity: 0.0,
   # Default colors
   primary:
     background: '0x24283b'
@@ -206,7 +208,9 @@ colors:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-window.opacity: 1.0
+window:
+  opacity: 0.5
+# window.opacity: 0.5
 
 #selection:
   # This string contains all characters that are used as separators for
