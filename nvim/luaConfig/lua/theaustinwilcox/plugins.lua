@@ -7,7 +7,6 @@ return require'packer'.startup(function(use)
     requires = {'kyazdani42/nvim-web-devicons'}
   }
   use 'nvim-tree/nvim-web-devicons'
-  use 'kyazdani42/nvim-web-devicons'
 
   -- A pretty list for showing diagnostics, references telescope results, qf, and location lists
  use({
