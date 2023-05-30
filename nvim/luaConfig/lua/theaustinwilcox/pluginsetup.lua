@@ -80,7 +80,7 @@ require('neorg').setup {
           config = {
             workspaces = {
               work = "~/OneDrive/notes/work",
-              zettle = "~/notes/zettlekasten",
+              zettel = "~/notes/zettelkasten",
               home = "~/notes/home"
             },
             default_workspace = "work"
