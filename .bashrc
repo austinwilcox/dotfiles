@@ -47,8 +47,8 @@ alias mv='mv -i'
 
 alias python=python3
 
-alias vim='hx'
-alias v='hx'
+alias vim='nvim'
+alias v='nvim'
 
 alias gs='git status'
 alias gp='git push'
