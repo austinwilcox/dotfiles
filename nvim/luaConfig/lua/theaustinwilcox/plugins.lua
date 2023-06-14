@@ -142,9 +142,8 @@ return require'packer'.startup(function(use)
   use { 'chentoast/marks.nvim' }
 
   -- Prettier - Currently do not like any of the solutions
-  -- use { 'prettier/vim-prettier', run = 'yarn install', ft = {'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'} }
-  -- use { 'jose-elias-alvarez/null-ls.nvim' }
-  -- use { 'MunifTanjim/prettier.nvim' }
+  use { 'jose-elias-alvarez/null-ls.nvim' }
+  use { 'MunifTanjim/prettier.nvim' }
 
   --Lualine
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt=true }}
