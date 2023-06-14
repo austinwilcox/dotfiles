@@ -1,12 +1,9 @@
 return require'packer'.startup(function(use)
   use 'wbthomason/packer.nvim' -- this is essential.
 
-  -- Web Dev Icons
-  use {
-    'yamatsum/nvim-nonicons',
-    requires = {'kyazdani42/nvim-web-devicons'}
-  }
+  -- Webdev icons
   use 'nvim-tree/nvim-web-devicons'
+  use 'kyazdani42/nvim-web-devicons'
 
   -- A pretty list for showing diagnostics, references telescope results, qf, and location lists
  use({
