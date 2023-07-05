@@ -1,6 +1,9 @@
 return require'packer'.startup(function(use)
   use 'wbthomason/packer.nvim' -- this is essential.
 
+  -- Github copilot
+  use 'github/copilot.vim'
+
   -- Webdev icons
   use 'kyazdani42/nvim-web-devicons'
 
