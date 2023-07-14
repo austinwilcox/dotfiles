@@ -20,6 +20,11 @@ return require'packer'.startup(function(use)
       end
   })
 
+  -- gh.nvim - Github PR reviewing in neovim
+  use {
+    'ldelossa/gh.nvim',
+    requires = { { 'ldelossa/litee.nvim' } }
+  }
   -- Neorg
   use {
     "nvim-neorg/neorg",
