@@ -170,3 +170,10 @@ require'lspconfig'.gopls.setup{
   capabilities = capabilities,
   on_attach = on_attach,
 }
+
+require'lspconfig'.vls.setup{
+  capabilities = capabilities,
+  on_attach = on_attach,
+  filetypes = {"vue"},
+  cmd = { "vls" },
+}
