@@ -62,6 +62,7 @@ return require'packer'.startup(function(use)
   use "dense-analysis/ale"
   use "nvim-lua/popup.nvim"
   use "ap/vim-css-color"
+  use {'nvim-telescope/telescope-ui-select.nvim' }
 
   -- Colorizer, provided color highlights
   use { 'norcalli/nvim-colorizer.lua' }
