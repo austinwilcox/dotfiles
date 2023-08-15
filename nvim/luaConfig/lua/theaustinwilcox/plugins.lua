@@ -31,7 +31,8 @@ return require'packer'.startup(function(use)
           subdir="Resources/Templates"
         },
         finder="telescope.nvim",
-        open_notes_in="current"
+        open_notes_in="current",
+        disable_frontmatter=true,
       })
     end,
   })
