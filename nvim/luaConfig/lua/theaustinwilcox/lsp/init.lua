@@ -133,6 +133,12 @@ require'lspconfig'.tsserver.setup{
    root_dir = require'lspconfig'.util.root_pattern("deno.json", "deno.jsonc")
  })
 
+ require'lspconfig'.marksman.setup({
+   capabilities = capabilities,
+   on_attach = custom_attach,
+   filetypes = {"md"},
+ })
+
 -- LUA
 -- Installation
 -- Install via VSCode
