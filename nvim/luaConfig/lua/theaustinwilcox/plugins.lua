@@ -7,34 +7,44 @@ return require'packer'.startup(function(use)
   -- Webdev icons
   use 'kyazdani42/nvim-web-devicons'
 
+  -- Obsidian plugin
+  use({
+    "epwalsh/obsidian.nvim",
+    requires = {
+      -- Required.
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+      "nvim-telescope/telescope.nvim",
+    },
+    config = function()
+      require("obsidian").setup({
+        dir = "~/Zettelkasten-v2",
+        daily_notes = {
+          folder = "Journal",
+        },
+        completion={
+          nvim_cmp = true,
+          min_chars=2,
+          new_notes_location="current_dir",
+        },
+        templates = {
+          subdir="Resources/Templates"
+        },
+        finder="telescope.nvim",
+        open_notes_in="current"
+      })
+    end,
+  })
+
   -- A pretty list for showing diagnostics, references telescope results, qf, and location lists
  use({
       "folke/trouble.nvim",
       config = function()
           require("trouble").setup {
               icons = true,
-              -- your configuration comes here
-              -- or leave it empty to use the default settings
-              -- refer to the configuration section below
           }
       end
   })
-
-  -- gh.nvim - Github PR reviewing in neovim
-  use {
-    'ldelossa/gh.nvim',
-    requires = { { 'ldelossa/litee.nvim' } }
-  }
-  -- Neorg
-  use {
-    "nvim-neorg/neorg",
-    run = ":Neorg sync-parsers", -- This is the important bit!
-    config = function()
-        require("neorg").setup {
-            -- configuration here
-        }
-    end,
-  }
 
   -- Pretty Landing Screen for Nvim
   use {
@@ -58,11 +68,13 @@ return require'packer'.startup(function(use)
   -- Ubuntu/Debian based
   -- sudo apt install ripgrep
   use "nvim-telescope/telescope.nvim"
-  use "mattn/emmet-vim"
-  use "dense-analysis/ale"
-  use "nvim-lua/popup.nvim"
-  use "ap/vim-css-color"
   use {'nvim-telescope/telescope-ui-select.nvim' }
+
+  -- Emmet for working with html files
+  use "mattn/emmet-vim"
+  use "dense-analysis/ale" -- TODO: Might not need
+  use "nvim-lua/popup.nvim" -- TODO Might not need
+  use "ap/vim-css-color" -- TODO Might not need
 
   -- Colorizer, provided color highlights
   use { 'norcalli/nvim-colorizer.lua' }
@@ -85,8 +97,10 @@ return require'packer'.startup(function(use)
   }
 
   -- Harpoon
-  use "nvim-lua/plenary.nvim"
-  use "ThePrimeagen/harpoon"
+  use {
+    "ThePrimeagen/harpoon",
+    requires = "nvim-lua/plenary.nvim"
+  }
 
   use {
 	  'VonHeikemen/lsp-zero.nvim',
@@ -104,10 +118,6 @@ return require'packer'.startup(function(use)
 		  {'saadparwaiz1/cmp_luasnip'},
 		  {'hrsh7th/cmp-nvim-lsp'},
 		  {'hrsh7th/cmp-nvim-lua'},
-
-		  -- Snippets
-		  -- {'L3MON4D3/LuaSnip'},
-		  -- {'rafamadriz/friendly-snippets'},
 	  }
   }
 
@@ -186,5 +196,4 @@ return require'packer'.startup(function(use)
 
   -- Removing it here so that I can use the main branch version to test
   -- use { 'kylechui/nvim-surround', tag = "*" }
-
 end)
