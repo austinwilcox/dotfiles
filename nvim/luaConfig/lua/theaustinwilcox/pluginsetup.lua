@@ -66,7 +66,7 @@ require'marks'.setup {
 
 -- Treesitter configuration
 require'nvim-treesitter.configs'.setup {
-	ensure_installed = { "c_sharp", "bash", "css", "html", "javascript", "json", "lua", "python", "regex", "scss", "tsx", "typescript", "vim", "yaml", "rust", "norg", "markdown" },
+	ensure_installed = { "c_sharp", "bash", "css", "html", "javascript", "json", "lua", "python", "regex", "scss", "tsx", "typescript", "vim", "yaml", "rust", "markdown", "go", "clojure" },
 	highlight = {
 		enable = true,
 	},
