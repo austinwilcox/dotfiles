@@ -112,10 +112,19 @@ end
 --   }
 -- })
 
+require('hardtime').setup()
+
 -- Rust Setup
 require'lspconfig'.rust_analyzer.setup({
   capabilities = capabilities,
   on_attach = custom_attach
+})
+
+-- Lua Setup
+require'lspconfig'.lua_ls.setup({
+  capabilities = capabilities,
+  on_attach = custom_attach,
+  filetypes = {"lua"},
 })
 
 -- Typescript Setup
