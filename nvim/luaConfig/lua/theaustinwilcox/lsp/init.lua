@@ -112,8 +112,6 @@ end
 --   }
 -- })
 
-require('hardtime').setup()
-
 -- Rust Setup
 require'lspconfig'.rust_analyzer.setup({
   capabilities = capabilities,

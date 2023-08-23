@@ -4,12 +4,6 @@ return require'packer'.startup(function(use)
   -- Github copilot
   use 'github/copilot.vim'
 
-  -- Lets improve what I am doing with vim
-  use {
-     "m4xshen/hardtime.nvim",
-     requires = { 'MunifTanjim/nui.nvim', "nvim-lua/plenary.nvim" }
-  }
-
   -- Webdev icons
   use 'kyazdani42/nvim-web-devicons'
 
