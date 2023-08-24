@@ -1,6 +1,15 @@
 return require'packer'.startup(function(use)
   use 'wbthomason/packer.nvim' -- this is essential.
 
+  -- Refacortoring nvim
+  use {
+      "ThePrimeagen/refactoring.nvim",
+      requires = {
+          {"nvim-lua/plenary.nvim"},
+          {"nvim-treesitter/nvim-treesitter"}
+      }
+  }
+
   -- Github copilot
   use 'github/copilot.vim'
 
