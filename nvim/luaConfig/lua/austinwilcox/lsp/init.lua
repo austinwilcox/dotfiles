@@ -1,5 +1,5 @@
-local imap = require("theaustinwilcox.keymap").imap
-local nmap = require("theaustinwilcox.keymap").nmap
+local imap = require("austinwilcox.keymap").imap
+local nmap = require("austinwilcox.keymap").nmap
 
 local has_lsp, lspconfig = pcall(require, "lspconfig")
 if not has_lsp then
