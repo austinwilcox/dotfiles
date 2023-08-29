@@ -1,1 +1,1 @@
-require('theaustinwilcox')
+require('austinwilcox')

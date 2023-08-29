@@ -1,7 +1,5 @@
---vimwiki setup
--- vim.cmd[[
--- let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
--- ]]
+-- Refactoring.nvim setup
+require('refactoring').setup()
 
 -- Ultisnips setup
 vim.cmd[[
