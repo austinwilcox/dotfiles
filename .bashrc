@@ -74,6 +74,7 @@ alias stopSqlServer='sudo docker stop sql2019' #https://theserogroup.com/sql-ser
 alias autoUploadToAsana='~/Software/arbinger/autoUploadToAsana/bin/release/net5.0/linux-x64/publish/autoUploadToAsana -f ~/Software/arbinger/autoUploadToAsana/config.json'
 alias colemakdh='sudo kmonad ~/.dotfiles/kmonad-layouts/colemak-dh-extend-ansi.kbd'
 alias startJellyfinFiles='podman run --detach --label "io.containers.autoupdate=registry" --name jellyfinssd --publish 8096:8096/tcp --rm --user $(id -u):$(id -g) --userns keep-id --volume jellyfin-cache:/cache:Z --volume jellyfin-config:/config:Z --mount type=bind,source=/home/austin/Files/Jellyfin,destination=/Jellyfin,ro=true docker.io/jellyfin/jellyfin:latest'
+alias startCalibreWeb='podman run -d   --name=calibre-web   -e PUID=1000   -e PGID=1000   -e TZ=Etc/UTC   -e DOCKER_MODS=linuxserver/mods:universal-calibre `#optional`   -e OAUTHLIB_RELAX_TOKEN_SCOPE=1 `#optional`   -p 8083:8083   -v /home/austin/Software/calibreweb/data:/config   -v /home/austin/Software/calibreweb/library:/books   --restart unless-stopped   lscr.io/linuxserver/calibre-web:latest'
 
 if [[ "${splitIFS[1]}" == "$desktopName" ]]
 then
