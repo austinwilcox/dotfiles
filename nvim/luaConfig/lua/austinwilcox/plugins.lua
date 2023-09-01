@@ -73,6 +73,7 @@ return require'packer'.startup(function(use)
       end
   })
 
+
   -- Pretty Landing Screen for Nvim
   use {
       'goolord/alpha-nvim',
@@ -123,6 +124,16 @@ return require'packer'.startup(function(use)
     end
   }
 
+  -- experimental plugin that changes the UI for nvim
+  -- BUG: Currently there's a bug when I am navigating around in normal mode in my nvim config
+  use{
+    "folke/noice.nvim",
+    config = function()
+      require("noice").setup{}
+    end,
+    requires = {'MunifTanjim/nui.nvim', "rcarriga/nvim-notify"}
+  }
+
   -- Harpoon
   use {
     "ThePrimeagen/harpoon",
@@ -163,15 +174,12 @@ return require'packer'.startup(function(use)
   use "SirVer/ultisnips"
   use "honza/vim-snippets"
 
-  -- NVIM Dap
-  -- use "mfussenegger/nvim-dap"
-
   -- Auto Pairs
   use {
     "windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup{} end
   }
-  
+
   -- TPOPE
   use "tpope/vim-fugitive"
   use "tpope/vim-commentary"
@@ -216,11 +224,4 @@ return require'packer'.startup(function(use)
       require('goto-preview').setup {}
     end
   }
-
-  -- Deno support
-  -- Currently this interferes way to much with tsserver
-  -- use 'sigmasd/deno-nvim'
-
-  -- Removing it here so that I can use the main branch version to test
-  -- use { 'kylechui/nvim-surround', tag = "*" }
 end)
