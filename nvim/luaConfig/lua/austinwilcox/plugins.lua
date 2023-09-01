@@ -124,16 +124,6 @@ return require'packer'.startup(function(use)
     end
   }
 
-  -- experimental plugin that changes the UI for nvim
-  -- BUG: Currently there's a bug when I am navigating around in normal mode in my nvim config
-  use{
-    "folke/noice.nvim",
-    config = function()
-      require("noice").setup{}
-    end,
-    requires = {'MunifTanjim/nui.nvim', "rcarriga/nvim-notify"}
-  }
-
   -- Harpoon
   use {
     "ThePrimeagen/harpoon",
