@@ -69,7 +69,6 @@ local plugins = {
   },
   {
     "github/copilot.vim",
-    lazy=true
   },
   {
     "kyazdani42/nvim-web-devicons"
@@ -231,7 +230,10 @@ local plugins = {
     }
   },
   {
-    "neovim/nvim-lspconfig"
+    "neovim/nvim-lspconfig",
+    config = function()
+      require("austinwilcox.lsp")
+    end
   },
   {
     "hrsh7th/cmp-nvim-lsp"
@@ -240,7 +242,44 @@ local plugins = {
     "hrsh7th/cmp-buffer"
   },
   {
-    "hrsh7th/nvim-cmp"
+    "L3MON4D3/LuaSnip",
+    version = "2.*",
+    build = "make install_jsregexp"
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    config = function()
+      local cmp = require("cmp")
+      local luasnip = require("luasnip")
+
+      cmp.setup({
+        mapping = {
+          ["<Tab>"] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                  cmp.select_next_item()
+                -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable() 
+                -- they way you will only jump inside the snippet region
+                elseif luasnip.expand_or_jumpable() then
+                  luasnip.expand_or_jump()
+                elseif has_words_before() then
+                  cmp.complete()
+                else
+                  fallback()
+                end
+              end, { "i", "s" }),
+
+              ["<S-Tab>"] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                  cmp.select_prev_item()
+                elseif luasnip.jumpable(-1) then
+                  luasnip.jump(-1)
+                else
+                  fallback()
+                end
+              end, { "i", "s" }),
+                  }
+        })
+    end
   },
   {
     "lukas-reineke/lsp-format.nvim"
@@ -307,26 +346,6 @@ local plugins = {
       }
       end
     },
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    config=function()
-      require("null-ls").setup({
-        on_attach = function(client, bufnr)
-          if client.supports_method("textDocument/formatting") then
-            vim.keymap.set("n", "<Leader>f", function()
-              vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
-            end, { buffer = bufnr, desc = "[lsp] format" })
-          end
-
-          if client.supports_method("textDocument/rangeFormatting") then
-            vim.keymap.set("x", "<Leader>f", function()
-              vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
-            end, { buffer = bufnr, desc = "[lsp] format" })
-          end
-        end
-        })
-      end
-  },
   {
     "MunifTanjim/prettier.nvim",
     config=function()

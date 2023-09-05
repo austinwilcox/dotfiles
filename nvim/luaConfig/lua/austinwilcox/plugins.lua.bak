@@ -182,7 +182,6 @@ return require'packer'.startup(function(use)
   use { 'chentoast/marks.nvim' }
 
   -- Prettier - Currently do not like any of the solutions
-  use { 'jose-elias-alvarez/null-ls.nvim' }
   use { 'MunifTanjim/prettier.nvim' }
 
   --Lualine

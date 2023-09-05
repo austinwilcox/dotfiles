@@ -83,34 +83,12 @@ local custom_attach = function(client)
   buf_nnoremap { "<leader>gn", vim.diagnostic.goto_next }
   buf_nnoremap { "<leader>gp", vim.diagnostic.goto_prev }
   buf_nnoremap { "<leader>gr", vim.lsp.buf.rename }
+  buf_nnoremap { "<leader>gR", vim.lsp.buf.references}
   buf_nnoremap { "gt", vim.lsp.buf.type_definition }
   buf_nnoremap { "gi", vim.lsp.buf.implementation }
   buf_nnoremap { "<leader>gl", "<cmd>Telescope diagnostics<cr>"} 
   buf_nnoremap { "<leader>ca", vim.lsp.buf.code_action }
-  --LSP Saga additions
-  -- buf_inoremap { "<C-k>", "<Cmd>Lspsaga signature_help<cr>" }
-  -- buf_nnoremap { "<leader>gr", "<Cmd>Lspsaga rename<cr>"}
-  -- buf_nnoremap { "K", "<Cmd>Lspsaga hover_doc<cr>" }
-  -- buf_nnoremap { "gd", "<Cmd>Lspsaga lsp_finder<cr>"}
-  -- buf_nnoremap { "<leader>gn", "<Cmd>Lspsaga diagnostic_jump_next<cr>"}
-  -- buf_nnoremap { "<leader>gp", "<Cmd>Lspsaga diagnostic_jump_prev<cr>" }
 end
-
--- This is supposed to show this in a popup window, but it is not working. Likely a conflict with ALE
--- vim.diagnostic.config({
---   virtual_text = false
--- })
--- vim.o.updatetime = 250
--- vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
-
--- Lua Setup - need to get sunmeko setup
--- require('nlua.lsp.nvim').setup(require('lspconfig'), {
---   on_attach = custom_attach,
---   globals = {
---     -- Colorbuddy
---     "Color", "c", "Group", "g", "s"
---   }
--- })
 
 -- Rust Setup
 require'lspconfig'.rust_analyzer.setup({
