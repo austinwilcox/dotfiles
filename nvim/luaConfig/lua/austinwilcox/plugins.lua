@@ -1,26 +1,82 @@
-return require'packer'.startup(function(use)
-  use 'wbthomason/packer.nvim' -- this is essential.
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
-  -- Refacortoring nvim
-  use {
-      "ThePrimeagen/refactoring.nvim",
-      requires = {
-          {"nvim-lua/plenary.nvim"},
-          {"nvim-treesitter/nvim-treesitter"}
-      }
-  }
-
-  -- Github copilot
-  use 'github/copilot.vim'
-
-  -- Webdev icons
-  use 'kyazdani42/nvim-web-devicons'
-
-  -- Obsidian plugin
-  use({
+local plugins = {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    -- build = ":TSUpdate",
+    event = { 'BufReadPost', 'BufNewFile' },
+    opts = {
+      ensure_installed = {
+       "c_sharp",
+       "bash",
+       "css",
+       "html",
+       "javascript",
+       "json",
+       "lua",
+       "python",
+       "regex",
+       "scss",
+       "tsx",
+       "typescript",
+       "vim",
+       "yaml",
+       "rust",
+       "markdown",
+       "go",
+       "clojure",
+     },
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = true,
+      },
+      auto_install=true,
+      ignore_install = { '' },
+      indent = { enable = true, disable = { "yaml"} },
+    },
+    config=function(_, opts)
+      require'nvim-treesitter.configs'.setup(opts)
+    end
+  },
+  {
+    "folke/tokyonight.nvim",
+    lazy=false,
+    priority=1000,
+    config = function()
+      vim.cmd([[colorscheme tokyonight]])
+    end
+  },
+  {
+    "ThePrimeagen/refactoring.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      -- "nvim-treesitter/nvim-treesitter"
+    },
+    config = function()
+      require('refactoring').setup({})
+    end
+  },
+  {
+    "github/copilot.vim",
+    lazy=true
+  },
+  {
+    "kyazdani42/nvim-web-devicons"
+  },
+  {
     "epwalsh/obsidian.nvim",
-    requires = {
-      -- Required.
+    dependencies = {
       "nvim-lua/plenary.nvim",
       "hrsh7th/nvim-cmp",
       "nvim-telescope/telescope.nvim",
@@ -60,158 +116,288 @@ return require'packer'.startup(function(use)
         open_notes_in="current",
         disable_frontmatter=true,
       })
-    end,
-  })
-
-  -- A pretty list for showing diagnostics, references telescope results, qf, and location lists
- use({
+    end
+  },
+  {
       "folke/trouble.nvim",
       config = function()
           require("trouble").setup {
               icons = true,
           }
       end
-  })
-
-
-  -- Pretty Landing Screen for Nvim
-  use {
-      'goolord/alpha-nvim',
-      requires = { 'nvim-tree/nvim-web-devicons' },
+  },
+  {
+    --TODO Fast load this first thing
+    "goolord/alpha-nvim",
+    dependencies = {
+      "kyazdani42/nvim-web-devicons"
+    },
       config = function ()
           require'alpha'.setup(require'alpha.themes.dashboard'.config)
       end
-  }
+  },
+  {
+    "Mofiqul/dracula.nvim",
+  },
+  {
+    "gruvbox-community/gruvbox",
+  },
+  {
+    "EdenEast/nightfox.nvim",
+  },
+  {
+    "austinwilcox/hex2rgba",
+  },
+  {
+    -- To get Telescope live grep working you need ripgrep
+    -- Ubuntu/Debian based
+    -- sudo apt install ripgrep
+    "nvim-telescope/telescope.nvim",
+    config=function()
+      require("telescope").setup {
+        extensions = {
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown {
+              -- even more opts
+            }
+          }
+        }
+      }
+      -- To get ui-select loaded and working with telescope, you need to call
+      -- load_extension, somewhere after setup function:
+      require("telescope").load_extension("ui-select")
+    end
+  },
+  {
+    "nvim-telescope/telescope-ui-select.nvim",
+  },
+  {
+    "mattn/emmet-vim",
+    config=function()
 
-  -- Colorschemes
-  use { 'Mofiqul/dracula.nvim' }
-  use "gruvbox-community/gruvbox"
-  use "EdenEast/nightfox.nvim"
-  use "folke/tokyonight.nvim"
+    end
+  },
+  {
+    "dense-analysis/ale"
+  },
 
-  -- Austin Wilcox Plugins
-  use "austinwilcox/hex2rgba"
-
-  -- To get Telescope live grep working you need ripgrep
-  -- Ubuntu/Debian based
-  -- sudo apt install ripgrep
-  use "nvim-telescope/telescope.nvim"
-  use {'nvim-telescope/telescope-ui-select.nvim' }
-
-  -- Emmet for working with html files
-  use "mattn/emmet-vim"
-  use "dense-analysis/ale" -- TODO: Might not need
-  use "nvim-lua/popup.nvim" -- TODO Might not need
-  use "ap/vim-css-color" -- TODO Might not need
-
-  -- Colorizer, provided color highlights
-  use { 'norcalli/nvim-colorizer.lua' }
-
-  -- NVIM Todo Comments
-  use {
-    "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
+  {
+    "nvim-lua/popup.nvim"
+  },
+  {
+    "ap/vim-css-color"
+  },
+  {
+    "norcalli/nvim-colorizer.lua",
     config = function()
+      require('colorizer').setup()
+    end
+  },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim"
+    },
+    config=function()
       require("todo-comments").setup{}
     end
-  }
-
-  --Zen Mode
-  use {
+  },
+  {
     "folke/zen-mode.nvim",
     config = function()
       require("zen-mode").setup{}
     end
-  }
-
-  -- Harpoon
-  use {
+  },
+  {
     "ThePrimeagen/harpoon",
-    requires = "nvim-lua/plenary.nvim"
-  }
-
-  use {
-	  'VonHeikemen/lsp-zero.nvim',
-	  branch = 'v1.x',
-	  requires = {
+    dependencies = {
+      "nvim-lua/plenary.nvim"
+    }
+  },
+  {
+    "VonHeikemen/lsp-zero.nvim",
+    dependencies = {
 		  -- LSP Support
-		  {'neovim/nvim-lspconfig'},
-		  {'williamboman/mason.nvim'},
-		  {'williamboman/mason-lspconfig.nvim'},
-
+		  'neovim/nvim-lspconfig',
+		  'williamboman/mason.nvim',
+		  'williamboman/mason-lspconfig.nvim',
 		  -- Autocompletion
-		  {'hrsh7th/nvim-cmp'},
-		  {'hrsh7th/cmp-buffer'},
-		  {'hrsh7th/cmp-path'},
-		  {'saadparwaiz1/cmp_luasnip'},
-		  {'hrsh7th/cmp-nvim-lsp'},
-		  {'hrsh7th/cmp-nvim-lua'},
-	  }
-  }
-
-  -- LSP Setup
-  use "neovim/nvim-lspconfig"
-  use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-buffer"
-  use "hrsh7th/nvim-cmp"
-  use "lukas-reineke/lsp-format.nvim"
-  use 'williamboman/mason.nvim'
-  use 'williamboman/mason-lspconfig.nvim'
-  use { 'tjdevries/nlua.nvim', requires = { 'nvim-lua/completion-nvim', 'euclidianAce/BetterLua.vim' } }
-  use { 'onsails/lspkind.nvim' } -- Vscode like pictograms
-
-  -- Snippet Managers
-  use "SirVer/ultisnips"
-  use "honza/vim-snippets"
-
-  -- Auto Pairs
-  use {
+		  'hrsh7th/nvim-cmp',
+		  'hrsh7th/cmp-buffer',
+		  'hrsh7th/cmp-path',
+		  'saadparwaiz1/cmp_luasnip',
+		  'hrsh7th/cmp-nvim-lsp',
+		  'hrsh7th/cmp-nvim-lua'
+    }
+  },
+  {
+    "neovim/nvim-lspconfig"
+  },
+  {
+    "hrsh7th/cmp-nvim-lsp"
+  },
+  {
+    "hrsh7th/cmp-buffer"
+  },
+  {
+    "hrsh7th/nvim-cmp"
+  },
+  {
+    "lukas-reineke/lsp-format.nvim"
+  },
+  {
+    "williamboman/mason.nvim",
+    config=function()
+      require("mason").setup{}
+    end
+  },
+  {
+    "williamboman/mason-lspconfig.nvim"
+  },
+  {
+    "tjdevries/nlua.nvim",
+    dependencies = {
+      "nvim-lua/completion-nvim",
+      "euclidianAce/BetterLua.vim"
+    }
+  },
+  {
+    "onsails/lspkind.nvim"
+  },
+  {
+    "SirVer/ultisnips"
+  },
+  {
+    "honza/vim-snippets"
+  },
+  {
     "windwp/nvim-autopairs",
-    config = function() require("nvim-autopairs").setup{} end
-  }
+    config = function ()
+      require("nvim-autopairs").setup{}
+    end
+  },
+  {
+    "tpope/vim-fugitive"
+  },
+  {
+    "tpope/vim-commentary"
+  },
+  {
+    "mhinz/vim-signify"
+  },
+  {
+    "junegunn/gv.vim"
+  },
+  {
+    "chentoast/marks.nvim",
+    config=function()
+      require'marks'.setup {
+        default_mappings = true,
+        builtin_marks = { ".", "<", ">", "^" },
+        cyclic = true,
+        force_write_shada = false,
+        refresh_interval = 250,
+        sign_priority = { lower=10, upper=15, builtin=8, bookmark=20 },
+        excluded_filetypes = {},
+        bookmark_0 = {
+          sign = "⚑",
+          virt_text = "hello world"
+        },
+        mappings = {}
+      }
+      end
+    },
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    config=function()
+      require("null-ls").setup({
+        on_attach = function(client, bufnr)
+          if client.supports_method("textDocument/formatting") then
+            vim.keymap.set("n", "<Leader>f", function()
+              vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
+            end, { buffer = bufnr, desc = "[lsp] format" })
+          end
 
-  -- TPOPE
-  use "tpope/vim-fugitive"
-  use "tpope/vim-commentary"
-
-  -- GIT
-  use "mhinz/vim-signify"
-  use "junegunn/gv.vim"
-
-  -- Chentoast Marks - A better experience with Marks in NVIM
-  use { 'chentoast/marks.nvim' }
-
-  -- Prettier - Currently do not like any of the solutions
-  use { 'jose-elias-alvarez/null-ls.nvim' }
-  use { 'MunifTanjim/prettier.nvim' }
-
-  --Lualine
-  use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt=true }}
-
-  --Rainbow for ( [ {  } ] )
-  use { 'luochen1990/rainbow' }
-
-  --Beautiful Treesitter
-  use { 'nvim-treesitter/nvim-treesitter', run = function()
-    local ts_update = require('nvim-treesitter.install').update({ with_sync = true})
-    ts_update()
-  end}
-
-  use({
-    "kylechui/nvim-surround",
-    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-    config = function()
-        require("nvim-surround").setup({
-            -- Configuration here, or leave empty to use defaults
+          if client.supports_method("textDocument/rangeFormatting") then
+            vim.keymap.set("x", "<Leader>f", function()
+              vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
+            end, { buffer = bufnr, desc = "[lsp] format" })
+          end
+        end
         })
+      end
+  },
+  {
+    "MunifTanjim/prettier.nvim",
+    config=function()
+      require("prettier").setup({
+        bin = 'prettier', -- or `'prettierd'` (v0.23.3+)
+        filetypes = {
+          "css",
+          "graphql",
+          "html",
+          "javascript",
+          "javascriptreact",
+          "json",
+          "less",
+          "markdown",
+          "scss",
+          "typescript",
+          "typescriptreact",
+          "yaml",
+        },
+      })
     end
-  })
-
-  --Goto Preview, use lsp and show information in a popup window
-  use {
-    'rmagatti/goto-preview',
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = {
+      "kyazdani42/nvim-web-devicons", opt=true
+    },
     config = function()
-      require('goto-preview').setup {}
+      require('lualine').setup{
+        options = { theme = 'tokyonight' }
+      }
+    end
+  },
+  {
+    "luochen1990/rainbow"
+  },
+  {
+    "kylechui/nvim-surround",
+    version="*",
+    event="VeryLazy",
+    config = function()
+        require("nvim-surround").setup({})
+    end
+  },
+  {
+    "rmagatti/goto-preview",
+    config = function()
+      require('goto-preview').setup {
+       -- SEE: https://github.com/rmagatti/goto-preview#%EF%B8%8F-configuration
+        width = 120; -- Width of the floating window
+        height = 30; -- Height of the floating window
+        border = {"↖", "─" ,"┐", "│", "┘", "─", "└", "│"}; -- Border characters of the floating window
+        default_mappings = false; -- Bind default mappings
+        debug = false; -- Print debug information
+        opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
+        -- resizing_mappings = true; -- Binds arrow keys to resizing the floating window.
+        post_open_hook = nil; -- A function taking two arguments, a buffer and a window to be ran as a hook.
+        references = { -- Configure the telescope UI for slowing the references cycling window.
+          -- telescope = telescope.themes.get_dropdown({ hide_preview = false })
+          -- telescope = require("telescope.themes").get_dropdown({ hide_preview = false, width = 0.75 })
+        };
+        -- These two configs can also be passed down to the goto-preview definition and implementation calls for one off "peak" functionality.
+        focus_on_open = true; -- Focus the floating window when opening it.
+        dismiss_on_move = false; -- Dismiss the floating window when moving the cursor.
+        force_close = true, -- passed into vim.api.nvim_win_close's second argument. See :h nvim_win_close
+        bufhidden = "wipe", -- the bufhidden option to set on the floating window. See :h bufhidden
+      }
     end
   }
-end)
+}
+
+local opts = {}
+
+require("lazy").setup(plugins, opts)
