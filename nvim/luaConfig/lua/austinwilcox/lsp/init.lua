@@ -77,6 +77,22 @@ cmp.setup({
 
 --local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local custom_attach = function(client)
+  local active_clients = vim.lsp.get_active_clients()
+  if client.name == "denols" then
+    for _, client_ in pairs(active_clients) do
+      -- stop tsserver if denols is already active
+      if client_.name == "tsserver" then
+        client_.stop()
+      end
+    end
+  elseif client.name == "tsserver" then
+    for _, client_ in pairs(active_clients) do
+      -- prevent tsserver from starting if denols is already active
+      if client_.name == "denols" then
+        client.stop()
+      end
+    end
+  end
   --Older native lsp configuration options
   buf_nnoremap { "K", vim.lsp.buf.hover }
   buf_nnoremap { "gd", vim.lsp.buf.definition }
