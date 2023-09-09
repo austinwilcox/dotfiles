@@ -150,7 +150,9 @@ local plugins = {
   {
     "austinwilcox/Obsidian-nvim-move-file",
     config=function()
-      require("Obsidian-nvim-move-file").setup{}
+      require("Obsidian-nvim-move-file").setup{
+        dir = "/home/austin/Zettelkasten-v2",
+      }
     end
   },
   {
