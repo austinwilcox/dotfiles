@@ -148,6 +148,12 @@ local plugins = {
     "austinwilcox/hex2rgba",
   },
   {
+    "austinwilcox/Obsidian-nvim-move-file",
+    config=function()
+      require("Obsidian-nvim-move-file").setup{}
+    end
+  },
+  {
     -- To get Telescope live grep working you need ripgrep
     -- Ubuntu/Debian based
     -- sudo apt install ripgrep
