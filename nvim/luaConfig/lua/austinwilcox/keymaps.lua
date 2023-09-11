@@ -102,6 +102,10 @@ map('n', 'gP', ':lua require("goto-preview").close_all_win()<CR>', noremap_optio
 -- Only set if you have telescope installed
 map('n', 'gpr', ':lua require("goto-preview").goto_preview_references()<CR>', noremap_options)
 
+--Helix remappings with going to to the end of the line and the beginning of the line
+map('v', 'gl', '$', noremap_options)
+map('v', 'gh', '$', noremap_options)
+
 --Setup the Emmet Leader key to comma
 vim.cmd [[
   let g:user_emmet_leader_key='<C-Z>'
