@@ -178,5 +178,8 @@ cdnvm() {
 alias cd='cdnvm'
 cdnvm "$PWD" || exit
 
-eval "$(starship init bash)"
+DOTNET_CLI_TELEMETRY_OPTOUT=1
 
+# eval "$(starship init bash)"
+
+eval "$(oh-my-posh init bash --config /home/austin/.dotfiles/omp.json)"
