@@ -40,8 +40,8 @@ export PATH="$PATH:/home/austin/.BrowserDrivers/"
 # User specific aliases and functions
 # LS overwrite using lsd, a much better file display tool
 alias nuget="mono /usr/local/bin/nuget.exe"
-alias ls='exa'
-alias lsa='exa -all'
+alias ls='eza'
+alias lsa='eza -all'
 
 alias mv='mv -i'
 
@@ -180,6 +180,6 @@ cdnvm "$PWD" || exit
 
 DOTNET_CLI_TELEMETRY_OPTOUT=1
 
-# eval "$(starship init bash)"
+eval "$(starship init bash)"
 
-eval "$(oh-my-posh init bash --config /home/austin/.dotfiles/omp.json)"
+# eval "$(oh-my-posh init bash --config /home/austin/.dotfiles/omp.json)"

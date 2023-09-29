@@ -40,9 +40,11 @@ map('n', 'cT\'', 'dT\'dlha', noremap_options)
 -- map('v', '//', 'y\\/V<C-R>=escape(@","/\")<CR><CR>', noremap_options)
 
 --Fugitive Keybinding
--- map('n', '<leader>gn', ':diffget //3<CR>', {})
--- map('n', '<leader>gt', ':diffget //2<CR>', {})
+map('n', '<leader>gfn', ':diffget //3<CR>', {})
+map('n', '<leader>gft', ':diffget //2<CR>', {})
 map('n', '<leader>gs', ':G<CR>', {})
+-- map("c", "meld", ":Gvdiffsplit!<CR>", {})
+vim.cmd[[command! -nargs=0 Meld Gvdiffsplit!]]
 
 --Telescope
 map('n', '<leader>ff', '<cmd>Telescope find_files<cr>', noremap_options)
