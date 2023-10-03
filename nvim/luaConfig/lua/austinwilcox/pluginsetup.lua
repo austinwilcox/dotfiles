@@ -1,11 +1,3 @@
--- Ultisnips setup
-vim.cmd[[
-let g:UltiSnipsExpandTrigger='<tab>'
-let g:UltiSnipsJumpFowardTrigger='<c-j>'
-let g:UltiSnipsJumpBackwardTrigger='<c-k>'
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "my_snippets"]
-]]
-
 -- Signify Setup
 vim.cmd[[
 let g:signify_sign_add = '+'

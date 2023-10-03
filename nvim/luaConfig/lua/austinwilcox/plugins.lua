@@ -361,34 +361,58 @@ local plugins = {
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
+      local lspkind = require("lspkind")
 
       cmp.setup({
-        mapping = {
-          ["<Tab>"] = cmp.mapping(function(fallback)
-                if cmp.visible() then
-                  cmp.select_next_item()
-                -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable() 
-                -- they way you will only jump inside the snippet region
-                elseif luasnip.expand_or_jumpable() then
-                  luasnip.expand_or_jump()
-                elseif has_words_before() then
-                  cmp.complete()
-                else
-                  fallback()
-                end
-              end, { "i", "s" }),
-
-              ["<S-Tab>"] = cmp.mapping(function(fallback)
-                if cmp.visible() then
-                  cmp.select_prev_item()
-                elseif luasnip.jumpable(-1) then
-                  luasnip.jump(-1)
-                else
-                  fallback()
-                end
-              end, { "i", "s" }),
-                  }
+        snippet = {
+          expand = function(args)
+           luasnip.lsp_expand(args.body)
+          end,
+        },
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
+        },
+        mapping = cmp.mapping.preset.insert({
+            ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+            ['<C-f>'] = cmp.mapping.scroll_docs(4),
+            ['<C-Space>'] = cmp.mapping.complete(),
+            ['<C-e>'] = cmp.mapping.abort(),
+            ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+            ['<Tab>'] = function(fallback)
+              if cmp.visible() then
+                cmp.select_next_item()
+              else
+                fallback()
+              end
+            end,
+            ['<S-Tab>'] = function(fallback)
+              if cmp.visible() then
+                cmp.select_prev_item()
+              else
+                fallback()
+              end
+            end,
+          }),
+        formatting = {
+          format = lspkind.cmp_format({
+            mode = 'symbol',
+            maxwidth = 50,
+            before = function(entry, vim_item)
+              --Can use this to further customize things with lspkind
+              return vim_item
+            end
+          })
+        },
+        sources = cmp.config.sources({
+          { name = 'nvim_lsp', max_item_count = 6 },
+          { name = 'luasnip' },
+          { name = "copilot" },
+          { name = "path" },
+        }, {
+          { name = 'buffer' },
         })
+      })
     end
   },
   {
@@ -414,12 +438,6 @@ local plugins = {
   },
   {
     "onsails/lspkind.nvim"
-  },
-  {
-    "SirVer/ultisnips"
-  },
-  {
-    "honza/vim-snippets"
   },
   {
     "windwp/nvim-autopairs",
