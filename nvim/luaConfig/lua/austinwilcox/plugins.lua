@@ -46,9 +46,9 @@ local plugins = {
     textobjects = {
         select = {
           enable = true,
-          lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+          lookahead = true,
           keymaps = {
-            -- You can use the capture groups defined in textobjects.scm
+            -- NOTE: You can use the capture groups defined in textobjects.scm
             ['aa'] = '@parameter.outer',
             ['ia'] = '@parameter.inner',
             ['af'] = '@function.outer',
@@ -64,7 +64,7 @@ local plugins = {
         },
         move = {
           enable = true,
-          set_jumps = true, -- whether to set jumps in the jumplist
+          set_jumps = true,
           goto_next_start = {
             [']m'] = '@function.outer',
             [']]'] = '@class.outer',
@@ -112,6 +112,33 @@ local plugins = {
     end
   },
   {
+    "folke/noice.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+    config=function()
+      require("noice").setup({
+        lsp = {
+          -- NOTE: override markdown rendering so that **cmp** and other plugins use **Treesitter**
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true,
+          },
+        },
+        -- NOTE: you can enable a preset for easier configuration
+        presets = {
+          bottom_search = true,
+          command_palette = true,
+          long_message_to_split = true,
+          inc_rename = false,
+          lsp_doc_border = false,
+        },
+      })
+    end
+  },
+  {
     "ThePrimeagen/refactoring.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -129,43 +156,40 @@ local plugins = {
     config = function()
       require('litee.lib').setup()
     require('litee.gh').setup({
-      -- deprecated, around for compatability for now.
+      -- NOTE: deprecated, around for compatability for now.
       jump_mode   = "invoking",
-      -- remap the arrow keys to resize any litee.nvim windows.
+      -- NOTE: remap the arrow keys to resize any litee.nvim windows.
       map_resize_keys = false,
-      -- do not map any keys inside any gh.nvim buffers.
+      -- NOTE: do not map any keys inside any gh.nvim buffers.
       disable_keymaps = false,
-      -- the icon set to use.
+      -- NOTE: the icon set to use.
       icon_set = "default",
-      -- any custom icons to use.
+      -- NOTE: any custom icons to use.
       icon_set_custom = nil,
-      -- whether to register the @username and #issue_number omnifunc completion
-      -- in buffers which start with .git/
       git_buffer_completion = true,
-      -- defines keymaps in gh.nvim buffers.
       keymaps = {
-          -- when inside a gh.nvim panel, this key will open a node if it has
+          -- NOTE: when inside a gh.nvim panel, this key will open a node if it has
           -- any futher functionality. for example, hitting <CR> on a commit node
           -- will open the commit's changed files in a new gh.nvim panel.
           open = "<CR>",
-          -- when inside a gh.nvim panel, expand a collapsed node
+          -- NOTE: when inside a gh.nvim panel, expand a collapsed node
           expand = "zo",
-          -- when inside a gh.nvim panel, collpased and expanded node
+          -- NOTE: when inside a gh.nvim panel, collpased and expanded node
           collapse = "zc",
-          -- when cursor is over a "#1234" formatted issue or PR, open its details
+          -- NOTE: when cursor is over a "#1234" formatted issue or PR, open its details
           -- and comments in a new tab.
           goto_issue = "gd",
-          -- show any details about a node, typically, this reveals commit messages
+          -- NOTE: show any details about a node, typically, this reveals commit messages
           -- and submitted review bodys.
           details = "d",
-          -- inside a convo buffer, submit a comment
+          -- NOTE: inside a convo buffer, submit a comment
           submit_comment = "<C-s>",
-          -- inside a convo buffer, when your cursor is ontop of a comment, open
-          -- up a set of actions that can be performed.
+          -- NOTE: inside a convo buffer, when your cursor is ontop of a comment, open
+          -- NOTE: up a set of actions that can be performed.
           actions = "<C-a>",
-          -- inside a thread convo buffer, resolve the thread.
+          -- NOTE: inside a thread convo buffer, resolve the thread.
           resolve_thread = "<C-r>",
-          -- inside a gh.nvim panel, if possible, open the node's web URL in your
+          -- NOTE: inside a gh.nvim panel, if possible, open the node's web URL in your
           -- browser. useful particularily for digging into external failed CI
           -- checks.
           goto_web = "gx"
@@ -188,15 +212,13 @@ local plugins = {
         dir = "~/Zettelkasten-v2",
         notes_subdir = "Fleeting Notes",
         note_id_func = function(title)
-          -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
+          -- NOTE: Create note IDs in a Zettelkasten format with a timestamp and a suffix.
           -- In this case a note with the title 'My new note' will given an ID that looks
           -- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
           local suffix = ""
           if title ~= nil then
-            -- If title is given, transform it into valid file name.
             suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
           else
-            -- If title is nil, just add 4 random uppercase letters to the suffix.
             for _ = 1, 4 do
               suffix = suffix .. string.char(math.random(65, 90))
             end
@@ -229,7 +251,7 @@ local plugins = {
       end
   },
   {
-    --TODO Fast load this first thing
+    -- TODO: Fast load this first thing
     "goolord/alpha-nvim",
     dependencies = {
       "kyazdani42/nvim-web-devicons"
@@ -284,7 +306,7 @@ local plugins = {
   {
     "mattn/emmet-vim",
     config=function()
-      --Setup the Emmet Leader key to C-Z and then comma
+      -- NOTE: Setup the Emmet Leader key to C-Z and then comma
       vim.cmd [[
         let g:user_emmet_leader_key='<C-Z>'
       ]]
@@ -359,7 +381,7 @@ local plugins = {
             ['<C-f>'] = cmp.mapping.scroll_docs(4),
             ['<C-Space>'] = cmp.mapping.complete(),
             ['<C-e>'] = cmp.mapping.abort(),
-            ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+            ['<CR>'] = cmp.mapping.confirm({ select = true }), -- NOTE: Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
             ['<Tab>'] = function(fallback)
               if cmp.visible() then
                 cmp.select_next_item()
@@ -380,7 +402,7 @@ local plugins = {
             mode = 'symbol',
             maxwidth = 50,
             before = function(entry, vim_item)
-              --Can use this to further customize things with lspkind
+              -- NOTE: Can use this to further customize things with lspkind
               return vim_item
             end
           })
@@ -466,7 +488,7 @@ local plugins = {
     "MunifTanjim/prettier.nvim",
     config=function()
       require("prettier").setup({
-        bin = 'prettier', -- or `'prettierd'` (v0.23.3+)
+        bin = 'prettier',
         filetypes = {
           "css",
           "graphql",
@@ -507,24 +529,18 @@ local plugins = {
     "rmagatti/goto-preview",
     config = function()
       require('goto-preview').setup {
-       -- SEE: https://github.com/rmagatti/goto-preview#%EF%B8%8F-configuration
-        width = 120; -- Width of the floating window
-        height = 30; -- Height of the floating window
-        border = {"↖", "─" ,"┐", "│", "┘", "─", "└", "│"}; -- Border characters of the floating window
-        default_mappings = false; -- Bind default mappings
-        debug = false; -- Print debug information
-        opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
-        -- resizing_mappings = true; -- Binds arrow keys to resizing the floating window.
-        post_open_hook = nil; -- A function taking two arguments, a buffer and a window to be ran as a hook.
-        references = { -- Configure the telescope UI for slowing the references cycling window.
-          -- telescope = telescope.themes.get_dropdown({ hide_preview = false })
-          -- telescope = require("telescope.themes").get_dropdown({ hide_preview = false, width = 0.75 })
-        };
-        -- These two configs can also be passed down to the goto-preview definition and implementation calls for one off "peak" functionality.
-        focus_on_open = true; -- Focus the floating window when opening it.
-        dismiss_on_move = false; -- Dismiss the floating window when moving the cursor.
-        force_close = true, -- passed into vim.api.nvim_win_close's second argument. See :h nvim_win_close
-        bufhidden = "wipe", -- the bufhidden option to set on the floating window. See :h bufhidden
+       -- NOTE: https://github.com/rmagatti/goto-preview#%EF%B8%8F-configuration
+        width = 120;
+        height = 30;
+        border = {"↖", "─" ,"┐", "│", "┘", "─", "└", "│"};
+        default_mappings = false;
+        debug = false;
+        opacity = nil;
+        post_open_hook = nil;
+        focus_on_open = true;
+        dismiss_on_move = false;
+        force_close = true,
+        bufhidden = "wipe",
       }
     end
   }
