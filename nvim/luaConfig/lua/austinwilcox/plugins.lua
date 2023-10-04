@@ -294,10 +294,6 @@ local plugins = {
     end
   },
   {
-    "dense-analysis/ale"
-  },
-
-  {
     "nvim-lua/popup.nvim"
   },
   {
