@@ -14,7 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
-    -- build = ":TSUpdate",
     event = { 'BufReadPost', 'BufNewFile' },
     opts = {
       ensure_installed = {
@@ -104,9 +103,7 @@ local plugins = {
     lazy=false,
     priority=1000,
     config = function()
-      -- vim.cmd([[colorscheme tokyonight]])
       local colorscheme = "tokyonight-storm"
-
       local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
       if not status_ok then
         vim.notify("colorscheme " .. colorscheme .. " not found!")
@@ -178,9 +175,6 @@ local plugins = {
   },
   {
     "github/copilot.vim",
-  },
-  {
-    "kyazdani42/nvim-web-devicons"
   },
   {
     "epwalsh/obsidian.nvim",
@@ -265,10 +259,13 @@ local plugins = {
     end
   },
   {
-    -- To get Telescope live grep working you need ripgrep
+    -- NOTE: To get Telescope live grep working you need ripgrep
     -- Ubuntu/Debian based
     -- sudo apt install ripgrep
     "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-telescope/telescope-ui-select.nvim",
+    },
     config=function()
       require("telescope").setup {
         extensions = {
@@ -279,25 +276,19 @@ local plugins = {
           }
         }
       }
-      -- To get ui-select loaded and working with telescope, you need to call
+      -- NOTE: To get ui-select loaded and working with telescope, you need to call
       -- load_extension, somewhere after setup function:
       require("telescope").load_extension("ui-select")
     end
   },
   {
-    "nvim-telescope/telescope-ui-select.nvim",
-  },
-  {
     "mattn/emmet-vim",
     config=function()
-
+      --Setup the Emmet Leader key to C-Z and then comma
+      vim.cmd [[
+        let g:user_emmet_leader_key='<C-Z>'
+      ]]
     end
-  },
-  {
-    "nvim-lua/popup.nvim"
-  },
-  {
-    "ap/vim-css-color"
   },
   {
     "norcalli/nvim-colorizer.lua",
@@ -327,22 +318,6 @@ local plugins = {
     }
   },
   {
-    "VonHeikemen/lsp-zero.nvim",
-    dependencies = {
-		  -- LSP Support
-		  'neovim/nvim-lspconfig',
-		  'williamboman/mason.nvim',
-		  'williamboman/mason-lspconfig.nvim',
-		  -- Autocompletion
-		  'hrsh7th/nvim-cmp',
-		  'hrsh7th/cmp-buffer',
-		  'hrsh7th/cmp-path',
-		  'saadparwaiz1/cmp_luasnip',
-		  'hrsh7th/cmp-nvim-lsp',
-		  'hrsh7th/cmp-nvim-lua'
-    }
-  },
-  {
     "neovim/nvim-lspconfig",
     config = function()
       require("austinwilcox.lsp")
@@ -361,6 +336,9 @@ local plugins = {
   },
   {
     "hrsh7th/nvim-cmp",
+    dependencies = {
+      "onsails/lspkind.nvim"
+    },
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
@@ -430,17 +408,11 @@ local plugins = {
     end
   },
   {
-    "williamboman/mason-lspconfig.nvim"
-  },
-  {
     "tjdevries/nlua.nvim",
     dependencies = {
       "nvim-lua/completion-nvim",
       "euclidianAce/BetterLua.vim"
     }
-  },
-  {
-    "onsails/lspkind.nvim"
   },
   {
     "windwp/nvim-autopairs",
@@ -455,7 +427,18 @@ local plugins = {
     "tpope/vim-commentary"
   },
   {
-    "mhinz/vim-signify"
+    "mhinz/vim-signify",
+    config=function()
+      vim.cmd[[
+      let g:signify_sign_add = '+'
+      let g:signify_sign_delete = '_'
+      let g:signify_sign_delete_first_line = '‾'
+      let g:signify_sign_change = '~'
+
+      let g:signify_sign_show_count = 0
+      let g:signify_sign_show_text = 1
+      ]]
+    end
   },
   {
     "junegunn/gv.vim"
@@ -511,9 +494,6 @@ local plugins = {
         options = { theme = 'tokyonight' }
       }
     end
-  },
-  {
-    "luochen1990/rainbow"
   },
   {
     "kylechui/nvim-surround",

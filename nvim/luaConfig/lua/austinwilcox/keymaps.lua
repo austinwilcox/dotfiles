@@ -108,8 +108,3 @@ map('n', 'gpr', ':lua require("goto-preview").goto_preview_references()<CR>', no
 map('v', 'gl', '$', noremap_options)
 map('v', 'gh', '$', noremap_options)
 
---Setup the Emmet Leader key to comma
-vim.cmd [[
-  let g:user_emmet_leader_key='<C-Z>'
-]]
-

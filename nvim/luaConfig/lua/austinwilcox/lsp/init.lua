@@ -104,6 +104,19 @@ require'lspconfig'.cssls.setup{
   on_attach = custom_attach
 }
 
+--GO
+require'lspconfig'.gopls.setup{
+  capabilities = capabilities,
+  on_attach = custom_attach,
+}
+
+require'lspconfig'.vls.setup{
+  capabilities = capabilities,
+  on_attach = custom_attach,
+  filetypes = {"vue"},
+  cmd = { "vls" },
+}
+
 -- Omnisharp Setup
 require("lsp-format").setup {}
 local on_attach = function(client)
@@ -119,15 +132,3 @@ require'lspconfig'.omnisharp.setup {
   cmd = { "/home/austin/.config/omnisharp/OmniSharp", "--languageserver" , "--hostPID", tostring(pid) },
 }
 
---GO
-require'lspconfig'.gopls.setup{
-  capabilities = capabilities,
-  on_attach = on_attach,
-}
-
-require'lspconfig'.vls.setup{
-  capabilities = capabilities,
-  on_attach = on_attach,
-  filetypes = {"vue"},
-  cmd = { "vls" },
-}

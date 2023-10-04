@@ -55,7 +55,6 @@ vim.g.copilot_assume_mapped = true
 
 -- Options that I don't know how to toggle with lua
 vim.cmd [[
-  let g:rainbow_active=1
   syntax on
   highlight Normal guibg=none
 
