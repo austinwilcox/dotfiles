@@ -198,7 +198,21 @@ local plugins = {
     end
   },
   {
-    "github/copilot.vim",
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+    end
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function ()
+      require("copilot_cmp").setup()
+    end
   },
   {
     "epwalsh/obsidian.nvim",
@@ -366,6 +380,12 @@ local plugins = {
       local luasnip = require("luasnip")
       local lspkind = require("lspkind")
 
+      local has_words_before = function()
+        if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
+      end
+
       cmp.setup({
         snippet = {
           expand = function(args)
@@ -382,13 +402,13 @@ local plugins = {
             ['<C-Space>'] = cmp.mapping.complete(),
             ['<C-e>'] = cmp.mapping.abort(),
             ['<CR>'] = cmp.mapping.confirm({ select = true }), -- NOTE: Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-            ['<Tab>'] = function(fallback)
-              if cmp.visible() then
-                cmp.select_next_item()
+            ['<Tab>'] = vim.schedule_wrap(function(fallback)
+              if cmp.visible() and has_words_before() then
+                cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
               else
                 fallback()
               end
-            end,
+            end),
             ['<S-Tab>'] = function(fallback)
               if cmp.visible() then
                 cmp.select_prev_item()
@@ -401,10 +421,7 @@ local plugins = {
           format = lspkind.cmp_format({
             mode = 'symbol',
             maxwidth = 50,
-            before = function(entry, vim_item)
-              -- NOTE: Can use this to further customize things with lspkind
-              return vim_item
-            end
+            symbol_map = { Copilot = "" },
           })
         },
         sources = cmp.config.sources({
