@@ -1,3 +1,5 @@
+nmap j gj
+nmap k gk
 nmap gl $
 nmap gh ^
 nmap Y y$
