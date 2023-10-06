@@ -26,7 +26,7 @@ export PATH="/opt/mssql/bin:$PATH"
 str=`hostnamectl | grep 'hostname'`
 IFS=':'
 read -rasplitIFS<<< "$str"
-desktopName=" Austin-Desktop"
+desktopName=" pop-os"
 if [[ "${splitIFS[1]}" == "$desktopName" ]]
 then
   export PATH="/usr/share/dotnet:$PATH"
@@ -78,8 +78,7 @@ alias startCalibreWeb='podman run -d   --name=calibre-web   -e PUID=1000   -e PG
 
 if [[ "${splitIFS[1]}" == "$desktopName" ]]
 then
-  # colorscript -r
-  paleofetch
+  neofetch
 else
   pfetch
 fi
