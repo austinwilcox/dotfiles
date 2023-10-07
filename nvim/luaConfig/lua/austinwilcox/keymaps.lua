@@ -28,6 +28,7 @@ end
 --NOTE: Helix inspired mappings
 map('n', 'gl', '$', noremap_options)
 map('n', 'gh', '^', noremap_options)
+map('n', 'ge', 'GG', noremap_options)
 
 --NOTE: My sensible remap for deleting words backwards
 --This will delete the character under the cursor when deleting backwards
