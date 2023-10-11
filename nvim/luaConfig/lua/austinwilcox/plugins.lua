@@ -292,7 +292,7 @@ local plugins = {
       "nvim-lua/plenary.nvim"
     },
     config=function()
-      require("Obsidian-nvim-move-file").setup{
+      require("ZKMoveFile").setup{
         dir = "/home/austin/Zettelkasten-v2",
         title = "ZK Directories",
         layers = 1
