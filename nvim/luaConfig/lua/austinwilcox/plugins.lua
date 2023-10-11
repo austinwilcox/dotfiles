@@ -288,6 +288,9 @@ local plugins = {
   },
   {
     "austinwilcox/Obsidian-nvim-move-file",
+    dependencies = {
+      "nvim-lua/plenary.nvim"
+    },
     config=function()
       require("Obsidian-nvim-move-file").setup{
         dir = "/home/austin/Zettelkasten-v2",
