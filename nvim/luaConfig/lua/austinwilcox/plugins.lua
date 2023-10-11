@@ -291,7 +291,8 @@ local plugins = {
     config=function()
       require("Obsidian-nvim-move-file").setup{
         dir = "/home/austin/Zettelkasten-v2",
-        title = "Test"
+        title = "ZK Directories",
+        layers = 1
       }
     end
   },
