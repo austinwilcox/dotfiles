@@ -287,7 +287,7 @@ local plugins = {
     "austinwilcox/hex2rgba",
   },
   {
-    "austinwilcox/Obsidian-nvim-move-file",
+    "austinwilcox/ZKMoveFile",
     dependencies = {
       "nvim-lua/plenary.nvim"
     },
