@@ -463,6 +463,7 @@ local plugins = {
   },
   {
     "windwp/nvim-autopairs",
+    enabled=true,
     config = function ()
       require("nvim-autopairs").setup{}
     end
@@ -571,6 +572,7 @@ local plugins = {
   },
   {
     "nvim-neotest/neotest",
+    ft = "cs",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
