@@ -53,6 +53,15 @@ local custom_attach = function(client)
   buf_nnoremap { "<leader>ca", vim.lsp.buf.code_action }
 end
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+require'lspconfig'.emmet_ls.setup({
+  capabilities = capabilities,
+  on_attach = custom_attach
+})
+
 -- Rust Setup
 require'lspconfig'.rust_analyzer.setup({
   capabilities = capabilities,

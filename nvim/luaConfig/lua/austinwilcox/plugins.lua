@@ -271,7 +271,10 @@ local plugins = {
       "kyazdani42/nvim-web-devicons"
     },
       config = function ()
-          require'alpha'.setup(require'alpha.themes.dashboard'.config)
+        local alpha = require("alpha")
+        local dashboard = require("alpha.themes.dashboard")
+        dashboard.section.header.val = {"BANNER"}
+        alpha.setup(dashboard.opts)
       end
   },
   {
@@ -320,15 +323,6 @@ local plugins = {
       -- NOTE: To get ui-select loaded and working with telescope, you need to call
       -- load_extension, somewhere after setup function:
       require("telescope").load_extension("ui-select")
-    end
-  },
-  {
-    "mattn/emmet-vim",
-    config=function()
-      -- NOTE: Setup the Emmet Leader key to C-Z and then comma
-      vim.cmd [[
-        let g:user_emmet_leader_key='<C-Z>'
-      ]]
     end
   },
   {
@@ -512,6 +506,7 @@ local plugins = {
     },
   {
     "MunifTanjim/prettier.nvim",
+    ft = {"css", "scss", "jsx", "tsx", "js", "html", "ts", "json", "graphql", "yaml", "markdown"},
     config=function()
       require("prettier").setup({
         bin = 'prettier',
