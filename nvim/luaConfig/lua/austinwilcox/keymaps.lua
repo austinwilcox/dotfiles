@@ -111,4 +111,5 @@ map('n', 'gpr', ':lua require("goto-preview").goto_preview_references()<CR>', no
 --NOTE: Autocommands
 vim.cmd([[
   autocmd FileType markdown setlocal wrap
+  autocmd FileType markdown setlocal linebreak
 ]])
