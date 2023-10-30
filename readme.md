@@ -8,10 +8,10 @@ ______      _    __ _ _
 ```
 
 ## Tmux
-[Tmux config](https://github.com/austinwilcox/dotfiles/blob/master/.tmux.conf).
+[Tmux config](https://github.com/austinwilcox/dotfiles/blob/master/.tmux.conf)
 
 ## Nvim
-[Neovim config](https://github.com/austinwilcox/dotfiles/tree/master/nvim/luaConfig/lua/austinwilcox).
+[Neovim config](https://github.com/austinwilcox/dotfiles/tree/master/nvim/luaConfig/lua/austinwilcox)
 
 ## Obsidian vimrc
 [Obsidian vimrc](https://github.com/austinwilcox/dotfiles/blob/master/.obsidian.vimrc)
