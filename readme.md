@@ -8,13 +8,13 @@ ______      _    __ _ _
 ```
 
 ## Tmux
-[Tmux config](/blob/master/.tmux.conf)
+[Tmux config](/.tmux.conf)
 
 ## Nvim
-[Neovim config](/tree/master/nvim/luaConfig/lua/austinwilcox)
+[Neovim config](/nvim/luaConfig/lua/austinwilcox)
 
 ## Obsidian vimrc
-[Obsidian vimrc](blob/master/.obsidian.vimrc)
+[Obsidian vimrc](.obsidian.vimrc)
 
 ## Beekeeper-Studio vimrc
 <!-- TODO: Add my beekeeper vimrc to dotfiles -->
