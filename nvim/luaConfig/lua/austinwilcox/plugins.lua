@@ -99,11 +99,6 @@ local plugins = {
     end
   },
   {
-      'lukas-reineke/headlines.nvim',
-      dependencies = "nvim-treesitter/nvim-treesitter",
-      config = true, -- or `opts = {}`
-  },
-  {
     "folke/tokyonight.nvim",
     lazy=false,
     priority=1000,
