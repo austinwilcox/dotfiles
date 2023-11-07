@@ -120,6 +120,12 @@ require'lspconfig'.cssls.setup{
   on_attach = custom_attach
 }
 
+--TailwindCSS
+require'lspconfig'.tailwindcss.setup{
+ capabilities = capabilities,
+  on_attach = custom_attach
+}
+
 --GO
 require'lspconfig'.gopls.setup{
   capabilities = capabilities,
