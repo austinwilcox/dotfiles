@@ -73,6 +73,13 @@ require'lspconfig'.lua_ls.setup({
   capabilities = capabilities,
   on_attach = custom_attach,
   filetypes = {"lua"},
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = {"vim"}
+      }
+    }
+  }
 })
 
 -- Bash Lanaguage Server
@@ -103,14 +110,6 @@ require'lspconfig'.tsserver.setup{
    on_attach = custom_attach,
    filetypes = {"md"},
  })
-
--- LUA
--- Installation
--- Install via VSCode
--- require'lspconfig'.sumneko_lua.setup{
---   capabilities = capabilities,
---   on_attach = custom_attach
--- }
 
 --CSS
 --Installation

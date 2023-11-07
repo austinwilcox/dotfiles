@@ -1,52 +1,27 @@
-# Dotfiles
-
-## Tmux cheatsheet
-tells me if tmux is running
 ```
-pgrep tmux
-```
-
-tells me the number of sessions running
-```
-tmux ls
+______      _    __ _ _           
+|  _  \    | |  / _(_) |          
+| | | |___ | |_| |_ _| | ___  ___ 
+| | | / _ \| __|  _| | |/ _ \/ __|
+| |/ / (_) | |_| | | | |  __/\__ \
+|___/ \___/ \__|_| |_|_|\___||___/
 ```
 
-Creates a new session called code from within a session
-```
-tmux new-session -d -s "code" -A
-```
+## Tmux
+[Tmux config](/.tmux.conf)
 
-Switch clients
-```
-tmux switch-client -t "code"
-```
+## Nvim
+[Neovim config](/nvim/luaConfig/lua/austinwilcox)
 
-killall tmux instances
-```
-tmux kill-server
-```
+## Obsidian vimrc
+[Obsidian vimrc](.obsidian.vimrc)
 
-Create a new tmux window
-```
-tmux neww -n "helloworld"
-```
+## Beekeeper-Studio vimrc
+<!-- TODO: Add my beekeeper vimrc to dotfiles -->
+[Beekeeper-Studio vimrc](TODO)
 
-gives a list of all windows
-```
-ctrl+a w
-```
+## Leftwm config
+[Leftwm Config](https://github.com/austinwilcox/dotfiles/tree/master/leftwm)
 
-type this command 
-```
-ctrl+a x
-```
-
-create a new window, execute ls, and then close that window
-```
-tmux neww -n "hello world" "ls"
-```
-
-Create a new blank window with keybindings
-```
-ctrl+b c
-```
+## Kmonad setup
+For my laptop I setup a cron job to run kmonad when I boot up my laptop so that I can use colemak-mod-dh as my keyboard layout. [Here](https://github.com/austinwilcox/dotfiles/tree/master/kmonad-layouts) is my config for that.
