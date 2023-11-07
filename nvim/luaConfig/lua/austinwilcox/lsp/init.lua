@@ -75,6 +75,14 @@ require'lspconfig'.lua_ls.setup({
   filetypes = {"lua"},
 })
 
+-- Bash Lanaguage Server
+require'lspconfig'.bash_language_server.setup{
+  capabilities = capabilities,
+  on_attach = custom_attach,
+  root_dir = require'lspconfig'.util.root_pattern("package.json")
+}
+
+
 -- Typescript Setup
 require'lspconfig'.tsserver.setup{
   capabilities = capabilities,

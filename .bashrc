@@ -182,3 +182,11 @@ DOTNET_CLI_TELEMETRY_OPTOUT=1
 eval "$(starship init bash)"
 
 # eval "$(oh-my-posh init bash --config /home/austin/.dotfiles/omp.json)"
+
+# pnpm
+export PNPM_HOME="/home/austin/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
