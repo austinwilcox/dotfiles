@@ -111,33 +111,33 @@ local plugins = {
       end
     end
   },
-  {
-    "folke/noice.nvim",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    },
-    config=function()
-      require("noice").setup({
-        lsp = {
-          -- NOTE: override markdown rendering so that **cmp** and other plugins use **Treesitter**
-          override = {
-            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-            ["vim.lsp.util.stylize_markdown"] = true,
-            ["cmp.entry.get_documentation"] = true,
-          },
-        },
-        -- NOTE: you can enable a preset for easier configuration
-        presets = {
-          bottom_search = true,
-          command_palette = true,
-          long_message_to_split = true,
-          inc_rename = false,
-          lsp_doc_border = false,
-        },
-      })
-    end
-  },
+  -- {
+  --   "folke/noice.nvim",
+  --   dependencies = {
+  --     "MunifTanjim/nui.nvim",
+  --     "rcarriga/nvim-notify",
+  --   },
+  --   config=function()
+  --     require("noice").setup({
+  --       lsp = {
+  --         -- NOTE: override markdown rendering so that **cmp** and other plugins use **Treesitter**
+  --         override = {
+  --           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+  --           ["vim.lsp.util.stylize_markdown"] = true,
+  --           ["cmp.entry.get_documentation"] = true,
+  --         },
+  --       },
+  --       -- NOTE: you can enable a preset for easier configuration
+  --       presets = {
+  --         bottom_search = true,
+  --         command_palette = true,
+  --         long_message_to_split = true,
+  --         inc_rename = false,
+  --         lsp_doc_border = false,
+  --       },
+  --     })
+  --   end
+  -- },
   {
     "ThePrimeagen/refactoring.nvim",
     dependencies = {

@@ -1,17 +1,8 @@
-local imap = require("austinwilcox.keymap").imap
 local nmap = require("austinwilcox.keymap").nmap
 
-local has_lsp, lspconfig = pcall(require, "lspconfig")
+local has_lsp, _ = pcall(require, "lspconfig")
 if not has_lsp then
   return
-end
-
-local buf_inoremap = function(opts)
-  if opts[3] == nil then
-    opts[3] = {}
-  end
-  opts[3].buffer = 0
-  imap(opts)
 end
 
 local buf_nnoremap = function(opts)
@@ -49,7 +40,7 @@ local custom_attach = function(client)
   buf_nnoremap { "<leader>gR", vim.lsp.buf.references}
   buf_nnoremap { "gt", vim.lsp.buf.type_definition }
   buf_nnoremap { "gi", vim.lsp.buf.implementation }
-  buf_nnoremap { "<leader>gl", "<cmd>Telescope diagnostics<cr>"} 
+  buf_nnoremap { "<leader>gl", "<cmd>Telescope diagnostics<cr>"}
   buf_nnoremap { "<leader>ca", vim.lsp.buf.code_action }
 end
 
