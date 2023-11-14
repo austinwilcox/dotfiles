@@ -73,13 +73,15 @@ require'lspconfig'.lua_ls.setup({
   }
 })
 
--- Bash Lanaguage Server
-require'lspconfig'.bash_language_server.setup{
-  capabilities = capabilities,
-  on_attach = custom_attach,
-  root_dir = require'lspconfig'.util.root_pattern("package.json")
-}
-
+-- vim.lsp.start({
+--   name = 'bash-language-server',
+--   cmd = {'bash-language-server', 'start'},
+--   capabilities = capabilities,
+--   on_attach = custom_attach,
+-- })
+-- -- Bash Lanaguage Server
+-- require'lspconfig'.bashlanguageserver.setup{
+-- }
 
 -- Typescript Setup
 require'lspconfig'.tsserver.setup{

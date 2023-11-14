@@ -297,6 +297,7 @@ local plugins = {
     config=function()
       require("ZKMoveFile").setup{
         dir = "/home/austin/Zettelkasten-v2",
+        permanent_notes_dir = "Permanent Notes",
         title = "ZK Directories",
         layers = 1
       }
