@@ -741,6 +741,9 @@ local plugins = {
         dapui.close()
       end
     end
+  },
+  {
+    'David-Kunz/gen.nvim'
   }
 }
 
