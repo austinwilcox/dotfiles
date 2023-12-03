@@ -43,6 +43,8 @@ alias nuget="mono /usr/local/bin/nuget.exe"
 alias ls='eza'
 alias lsa='eza -all'
 
+alias dsc='disconnected'
+
 alias mv='mv -i'
 
 alias python=python3
