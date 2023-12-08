@@ -198,23 +198,6 @@ local plugins = {
     end
   },
   {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup({
-        suggestion = { enabled = false },
-        panel = { enabled = false },
-      })
-    end
-  },
-  {
-    "zbirenbaum/copilot-cmp",
-    config = function ()
-      require("copilot_cmp").setup()
-    end
-  },
-  {
     "epwalsh/obsidian.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -357,6 +340,9 @@ local plugins = {
     end
   },
   {
+    "github/copilot.vim"
+  },
+  {
     "neovim/nvim-lspconfig",
     config = function()
       require("austinwilcox.lsp")
@@ -405,20 +391,6 @@ local plugins = {
             ['<C-Space>'] = cmp.mapping.complete(),
             ['<C-e>'] = cmp.mapping.abort(),
             ['<CR>'] = cmp.mapping.confirm({ select = true }), -- NOTE: Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-            ['<Tab>'] = vim.schedule_wrap(function(fallback)
-              if cmp.visible() and has_words_before() then
-                cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-              else
-                fallback()
-              end
-            end),
-            ['<S-Tab>'] = function(fallback)
-              if cmp.visible() then
-                cmp.select_prev_item()
-              else
-                fallback()
-              end
-            end,
           }),
         formatting = {
           format = lspkind.cmp_format({
@@ -743,7 +715,17 @@ local plugins = {
     end
   },
   {
-    'David-Kunz/gen.nvim'
+    "epwalsh/pomo.nvim",
+    version = "*",  -- Recommended, use latest release instead of latest commit
+    lazy = true,
+    cmd = { "TimerStart", "TimerRepeat" },
+    dependencies = {
+      -- Optional, but highly recommended if you want to use the "Default" timer
+      "rcarriga/nvim-notify",
+    },
+    opts = {
+      -- See below for full list of options 👇
+    },
   }
 }
 

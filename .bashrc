@@ -43,6 +43,8 @@ alias nuget="mono /usr/local/bin/nuget.exe"
 alias ls='eza'
 alias lsa='eza -all'
 
+alias dsc='disconnected'
+
 alias mv='mv -i'
 
 alias python=python3
@@ -190,3 +192,4 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+export PATH="$PATH:/home/austin/.deno/bin"
