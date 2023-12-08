@@ -575,33 +575,33 @@ local plugins = {
         args = {'--interpreter=vscode'}
       }
 
-      dap.configurations.cs = {
-        {
-          type = "coreclr",
-          name = "launch - netcoredbg",
-          request = "launch",
-          program = function()
-              return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/net6.0/', 'file')
-          end,
-          env = {
-            Environment=json_data.Environment,
-            ConnectionStrings__Local=json_data.ConnectionStrings.Local,
-            ConnectionStrings__LocalLicenseKey=json_data.ConnectionStrings.LocalLicenseKey,
-            ConnectionStrings__Staging=json_data.ConnectionStrings.Staging,
-            ConnectionStrings__StagingLicenseKey=json_data.ConnectionStrings.StagingLicenseKey,
-            ConnectionStrings__Production=json_data.ConnectionStrings.Production,
-            ConnectionStrings__ProductionLicenseKey=json_data.ConnectionStrings.ProductionLicenseKey,
-            EmailServer__APIKey=json_data.EmailServer.APIKey,
-            EmailServer__MailFrom=json_data.EmailServer.MailFrom,
-            EmailServer__Username=json_data.EmailServer.Username,
-            ServiceConfiguration__JwtSettings__Secret=json_data.ServiceConfiguration.JwtSettings.Secret,
-            ServiceConfiguration__JwtSettings__Issuer=json_data.ServiceConfiguration.JwtSettings.Issuer,
-            ServiceConfiguration__JwtSettings__TokenLifetime=json_data.ServiceConfiguration.JwtSettings.TokenLifetime,
-            ServiceConfiguration__SecurePath=json_data.ServiceConfiguration.SecurePath,
-            SupportEmail=json_data.SupportEmail
-          }
-        },
-      }
+      -- dap.configurations.cs = {
+      --   {
+      --     type = "coreclr",
+      --     name = "launch - netcoredbg",
+      --     request = "launch",
+      --     program = function()
+      --         return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/net6.0/', 'file')
+      --     end,
+      --     env = {
+      --       Environment=json_data.Environment,
+      --       ConnectionStrings__Local=json_data.ConnectionStrings.Local,
+      --       ConnectionStrings__LocalLicenseKey=json_data.ConnectionStrings.LocalLicenseKey,
+      --       ConnectionStrings__Staging=json_data.ConnectionStrings.Staging,
+      --       ConnectionStrings__StagingLicenseKey=json_data.ConnectionStrings.StagingLicenseKey,
+      --       ConnectionStrings__Production=json_data.ConnectionStrings.Production,
+      --       ConnectionStrings__ProductionLicenseKey=json_data.ConnectionStrings.ProductionLicenseKey,
+      --       EmailServer__APIKey=json_data.EmailServer.APIKey,
+      --       EmailServer__MailFrom=json_data.EmailServer.MailFrom,
+      --       EmailServer__Username=json_data.EmailServer.Username,
+      --       ServiceConfiguration__JwtSettings__Secret=json_data.ServiceConfiguration.JwtSettings.Secret,
+      --       ServiceConfiguration__JwtSettings__Issuer=json_data.ServiceConfiguration.JwtSettings.Issuer,
+      --       ServiceConfiguration__JwtSettings__TokenLifetime=json_data.ServiceConfiguration.JwtSettings.TokenLifetime,
+      --       ServiceConfiguration__SecurePath=json_data.ServiceConfiguration.SecurePath,
+      --       SupportEmail=json_data.SupportEmail
+      --     }
+      --   },
+      -- }
 
       vim.cmd[[
         nnoremap <silent> <leader>dc <Cmd>lua require'dap'.continue()<CR>
