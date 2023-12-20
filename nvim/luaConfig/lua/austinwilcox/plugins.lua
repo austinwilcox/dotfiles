@@ -395,7 +395,8 @@ local plugins = {
     "williamboman/mason.nvim",
     config=function()
       require("mason").setup({
-        ensure_installed = { 'tsserver', "cssls", "denols", "lua_ls", "rust_analyzer", "vls", "gopls", "marksman" }
+        ensure_installed = { 'tsserver', "cssls", "denols", "lua_ls", "rust_analyzer", "vls", "gopls", "marksman", "bashls", "eslint", "jsonls", "tailwindcss", "graphql", "html", "netcoredbg" },
+        automatic_installation = true,
       })
     end
   },
