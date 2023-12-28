@@ -14,89 +14,90 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
-    event = { 'BufReadPost', 'BufNewFile' },
+    event = { "BufReadPost", "BufNewFile" },
     opts = {
+      auto_install = true,
       ensure_installed = {
-       "bash",
-       "c_sharp",
-       "clojure",
-       "css",
-       "go",
-       "html",
-       "javascript",
-       "json",
-       "lua",
-       "markdown",
-       "markdown_inline",
-       "python",
-       "regex",
-       "rust",
-       "scss",
-       "sql",
-       "tsx",
-       "typescript",
-       "vim",
-       "yaml",
-     },
+        "bash",
+        "c_sharp",
+        "clojure",
+        "css",
+        "go",
+        "html",
+        "javascript",
+        "json",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "regex",
+        "rust",
+        "scss",
+        "sql",
+        "tsx",
+        "typescript",
+        "vim",
+        "yaml",
+      },
       highlight = {
         enable = true,
         additional_vim_regex_highlighting = true,
       },
-      indent = { enable = true, disable = { "yaml"} },
-    textobjects = {
+      indent = { enable = true, disable = { "yaml" } },
+      textobjects = {
         select = {
           enable = true,
           lookahead = true,
           keymaps = {
             -- NOTE: You can use the capture groups defined in textobjects.scm
-            ['aa'] = '@parameter.outer',
-            ['ia'] = '@parameter.inner',
-            ['af'] = '@function.outer',
-            ['if'] = '@function.inner',
-            ['ac'] = '@class.outer',
-            ['ic'] = '@class.inner',
-            ['ii'] = '@conditional.inner',
-            ['ai'] = '@conditional.outer',
-            ['il'] = '@loop.inner',
-            ['al'] = '@loop.outer',
-            ['at'] = '@comment.outer',
+            ["aa"] = "@parameter.outer",
+            ["ia"] = "@parameter.inner",
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["ac"] = "@class.outer",
+            ["ic"] = "@class.inner",
+            ["ii"] = "@conditional.inner",
+            ["ai"] = "@conditional.outer",
+            ["il"] = "@loop.inner",
+            ["al"] = "@loop.outer",
+            ["at"] = "@comment.outer",
           },
         },
         move = {
           enable = true,
           set_jumps = true,
           goto_next_start = {
-            [']m'] = '@function.outer',
-            [']]'] = '@class.outer',
+            ["]m"] = "@function.outer",
+            ["]]"] = "@class.outer",
           },
           goto_next_end = {
-            [']M'] = '@function.outer',
-            [']['] = '@class.outer',
+            ["]M"] = "@function.outer",
+            ["]["] = "@class.outer",
           },
           goto_previous_start = {
-            ['[m'] = '@function.outer',
-            ['[['] = '@class.outer',
+            ["[m"] = "@function.outer",
+            ["[["] = "@class.outer",
           },
           goto_previous_end = {
-            ['[M'] = '@function.outer',
-            ['[]'] = '@class.outer',
+            ["[M"] = "@function.outer",
+            ["[]"] = "@class.outer",
           },
         },
         swap = {
           enable = true,
           swap_next = {
-            ['<leader>a'] = '@parameter.inner',
+            ["<leader>a"] = "@parameter.inner",
           },
           swap_previous = {
-            ['<leader>A'] = '@parameter.inner',
+            ["<leader>A"] = "@parameter.inner",
           },
         },
       },
     },
     dependencies = "nvim-treesitter/nvim-treesitter-textobjects",
-    config=function(_, opts)
-      require'nvim-treesitter.configs'.setup(opts)
-    end
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+    end,
   },
   -- {
   --   "folke/noice.nvim",
@@ -129,32 +130,32 @@ local plugins = {
     "ThePrimeagen/refactoring.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter"
+      "nvim-treesitter/nvim-treesitter",
     },
     config = function()
-      require('refactoring').setup({})
-    end
+      require("refactoring").setup({})
+    end,
   },
   {
-    'ldelossa/gh.nvim',
+    "ldelossa/gh.nvim",
     dependencies = {
-      'ldelossa/litee.nvim'
+      "ldelossa/litee.nvim",
     },
     config = function()
-      require('litee.lib').setup()
-    require('litee.gh').setup({
-      -- NOTE: deprecated, around for compatability for now.
-      jump_mode   = "invoking",
-      -- NOTE: remap the arrow keys to resize any litee.nvim windows.
-      map_resize_keys = false,
-      -- NOTE: do not map any keys inside any gh.nvim buffers.
-      disable_keymaps = false,
-      -- NOTE: the icon set to use.
-      icon_set = "default",
-      -- NOTE: any custom icons to use.
-      icon_set_custom = nil,
-      git_buffer_completion = true,
-      keymaps = {
+      require("litee.lib").setup()
+      require("litee.gh").setup({
+        -- NOTE: deprecated, around for compatability for now.
+        jump_mode = "invoking",
+        -- NOTE: remap the arrow keys to resize any litee.nvim windows.
+        map_resize_keys = false,
+        -- NOTE: do not map any keys inside any gh.nvim buffers.
+        disable_keymaps = false,
+        -- NOTE: the icon set to use.
+        icon_set = "default",
+        -- NOTE: any custom icons to use.
+        icon_set_custom = nil,
+        git_buffer_completion = true,
+        keymaps = {
           -- NOTE: when inside a gh.nvim panel, this key will open a node if it has
           -- any futher functionality. for example, hitting <CR> on a commit node
           -- will open the commit's changed files in a new gh.nvim panel.
@@ -179,10 +180,10 @@ local plugins = {
           -- NOTE: inside a gh.nvim panel, if possible, open the node's web URL in your
           -- browser. useful particularily for digging into external failed CI
           -- checks.
-          goto_web = "gx"
-      }
-    })
-    end
+          goto_web = "gx",
+        },
+      })
+    end,
   },
   {
     "epwalsh/obsidian.nvim",
@@ -212,40 +213,40 @@ local plugins = {
         daily_notes = {
           folder = "Journal",
         },
-        completion={
+        completion = {
           nvim_cmp = true,
-          min_chars=2,
-          new_notes_location="current_dir",
+          min_chars = 2,
+          new_notes_location = "current_dir",
         },
         templates = {
-          subdir="Resources/Templates"
+          subdir = "Resources/Templates",
         },
-        finder="telescope.nvim",
-        open_notes_in="current",
-        disable_frontmatter=true,
+        finder = "telescope.nvim",
+        open_notes_in = "current",
+        disable_frontmatter = true,
       })
-    end
+    end,
   },
   {
-      "folke/trouble.nvim",
-      config = function()
-          require("trouble").setup {
-              icons = true,
-          }
-      end
+    "folke/trouble.nvim",
+    config = function()
+      require("trouble").setup({
+        icons = true,
+      })
+    end,
   },
   {
     -- TODO: Fast load this first thing
     "goolord/alpha-nvim",
     dependencies = {
-      "kyazdani42/nvim-web-devicons"
+      "kyazdani42/nvim-web-devicons",
     },
-      config = function ()
-        local alpha = require("alpha")
-        local dashboard = require("alpha.themes.dashboard")
-        dashboard.section.header.val = {"BANNER"}
-        alpha.setup(dashboard.opts)
-      end
+    config = function()
+      local alpha = require("alpha")
+      local dashboard = require("alpha.themes.dashboard")
+      dashboard.section.header.val = { "BANNER" }
+      alpha.setup(dashboard.opts)
+    end,
   },
   {
     "austinwilcox/hex2rgba",
@@ -253,16 +254,16 @@ local plugins = {
   {
     "austinwilcox/ZKMoveFile",
     dependencies = {
-      "nvim-lua/plenary.nvim"
+      "nvim-lua/plenary.nvim",
     },
-    config=function()
-      require("ZKMoveFile").setup{
+    config = function()
+      require("ZKMoveFile").setup({
         dir = "/home/austin/Zettelkasten-v2",
         permanent_notes_dir = "Permanent Notes",
         title = "ZK Directories",
-        layers = 1
-      }
-    end
+        layers = 1,
+      })
+    end,
   },
   {
     -- NOTE: To get Telescope live grep working you need ripgrep
@@ -272,75 +273,69 @@ local plugins = {
     dependencies = {
       "nvim-telescope/telescope-ui-select.nvim",
     },
-    config=function()
-      require("telescope").setup {
+    config = function()
+      require("telescope").setup({
         extensions = {
           ["ui-select"] = {
-            require("telescope.themes").get_dropdown {
+            require("telescope.themes").get_dropdown({
               -- even more opts
-            }
-          }
-        }
-      }
+            }),
+          },
+        },
+      })
       -- NOTE: To get ui-select loaded and working with telescope, you need to call
       -- load_extension, somewhere after setup function:
       require("telescope").load_extension("ui-select")
-    end
+    end,
   },
   {
     "norcalli/nvim-colorizer.lua",
     config = function()
-      require('colorizer').setup()
-    end
+      require("colorizer").setup()
+    end,
   },
   {
     "folke/todo-comments.nvim",
     dependencies = {
-      "nvim-lua/plenary.nvim"
+      "nvim-lua/plenary.nvim",
     },
-    config=function()
-      require("todo-comments").setup{}
-    end
+    config = function()
+      require("todo-comments").setup({})
+    end,
   },
   {
     "folke/zen-mode.nvim",
     config = function()
-      require("zen-mode").setup{}
-    end
+      require("zen-mode").setup({})
+    end,
   },
   {
     "ThePrimeagen/harpoon",
     dependencies = {
-      "nvim-lua/plenary.nvim"
+      "nvim-lua/plenary.nvim",
     },
     config = function()
-      require("telescope").load_extension('harpoon')
-    end
+      require("telescope").load_extension("harpoon")
+    end,
   },
   {
-    "github/copilot.vim"
+    "github/copilot.vim",
   },
   {
-    "neovim/nvim-lspconfig",
-    config = function()
-      require("austinwilcox.lsp")
-    end
+    "hrsh7th/cmp-nvim-lsp",
   },
   {
-    "hrsh7th/cmp-nvim-lsp"
-  },
-  {
-    "hrsh7th/cmp-buffer"
+    "hrsh7th/cmp-buffer",
   },
   {
     "L3MON4D3/LuaSnip",
     version = "2.*",
-    build = "make install_jsregexp"
+    build = "make install_jsregexp",
   },
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "onsails/lspkind.nvim"
+      "onsails/lspkind.nvim",
     },
     config = function()
       local cmp = require("cmp")
@@ -348,15 +343,18 @@ local plugins = {
       local lspkind = require("lspkind")
 
       local has_words_before = function()
-        if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+        if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+          return false
+        end
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
+        return col ~= 0
+            and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
       end
 
       cmp.setup({
         snippet = {
           expand = function(args)
-           luasnip.lsp_expand(args.body)
+            luasnip.lsp_expand(args.body)
           end,
         },
         window = {
@@ -364,66 +362,103 @@ local plugins = {
           documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
-            ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-            ['<C-f>'] = cmp.mapping.scroll_docs(4),
-            ['<C-Space>'] = cmp.mapping.complete(),
-            ['<C-e>'] = cmp.mapping.abort(),
-            ['<CR>'] = cmp.mapping.confirm({ select = true }), -- NOTE: Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-          }),
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-e>"] = cmp.mapping.abort(),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }), -- NOTE: Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        }),
         formatting = {
           format = lspkind.cmp_format({
-            mode = 'symbol',
+            mode = "symbol",
             maxwidth = 50,
             symbol_map = { Copilot = "" },
-          })
+          }),
         },
         sources = cmp.config.sources({
-          { name = 'nvim_lsp', max_item_count = 6 },
-          { name = 'luasnip' },
+          { name = "nvim_lsp", max_item_count = 6 },
+          { name = "luasnip" },
           { name = "copilot" },
           { name = "path" },
         }, {
-          { name = 'buffer' },
-        })
+          { name = "buffer" },
+        }),
       })
-    end
+    end,
   },
   {
-    "lukas-reineke/lsp-format.nvim"
+    "lukas-reineke/lsp-format.nvim",
   },
   {
     "williamboman/mason.nvim",
-    config=function()
+    config = function()
       require("mason").setup({
-        ensure_installed = { 'tsserver', "cssls", "denols", "lua_ls", "rust_analyzer", "vls", "gopls", "marksman", "bashls", "eslint", "jsonls", "tailwindcss", "graphql", "html", "netcoredbg" },
+        ensure_installed = {
+          "tsserver",
+          "cssls",
+          "denols",
+          "lua_ls",
+          "rust_analyzer",
+          "vls",
+          "gopls",
+          "marksman",
+          "bashls",
+          "eslint",
+          "jsonls",
+          "tailwindcss",
+          "graphql",
+          "html",
+          "netcoredbg",
+        },
         automatic_installation = true,
       })
-    end
+    end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      require("austinwilcox.lsp")
+    end,
+  },
+  {
+    "nvimtools/none-ls.nvim",
+    config = function()
+      local null_ls = require("null-ls")
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.formatting.stylua,
+          null_ls.builtins.formatting.prettier,
+          null_ls.builtins.diagnostics.eslint_d,
+        },
+      })
+
+      vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
+    end,
   },
   {
     "tjdevries/nlua.nvim",
     dependencies = {
       "nvim-lua/completion-nvim",
-      "euclidianAce/BetterLua.vim"
-    }
+      "euclidianAce/BetterLua.vim",
+    },
   },
   {
     "windwp/nvim-autopairs",
-    enabled=true,
-    config = function ()
-      require("nvim-autopairs").setup{}
-    end
+    enabled = true,
+    config = function()
+      require("nvim-autopairs").setup({})
+    end,
   },
   {
-    "tpope/vim-fugitive"
+    "tpope/vim-fugitive",
   },
   {
-    "tpope/vim-commentary"
+    "tpope/vim-commentary",
   },
   {
     "mhinz/vim-signify",
-    config=function()
-      vim.cmd[[
+    config = function()
+      vim.cmd([[
       let g:signify_sign_add = '+'
       let g:signify_sign_delete = '_'
       let g:signify_sign_delete_first_line = '‾'
@@ -431,37 +466,37 @@ local plugins = {
 
       let g:signify_sign_show_count = 0
       let g:signify_sign_show_text = 1
-      ]]
-    end
+      ]])
+    end,
   },
   {
-    "junegunn/gv.vim"
+    "junegunn/gv.vim",
   },
   {
     "chentoast/marks.nvim",
-    config=function()
-      require'marks'.setup {
+    config = function()
+      require("marks").setup({
         default_mappings = true,
         builtin_marks = { ".", "<", ">", "^" },
         cyclic = true,
         force_write_shada = false,
         refresh_interval = 250,
-        sign_priority = { lower=10, upper=15, builtin=8, bookmark=20 },
+        sign_priority = { lower = 10, upper = 15, builtin = 8, bookmark = 20 },
         excluded_filetypes = {},
         bookmark_0 = {
           sign = "⚑",
-          virt_text = "hello world"
+          virt_text = "hello world",
         },
-        mappings = {}
-      }
-      end
-    },
+        mappings = {},
+      })
+    end,
+  },
   {
     "MunifTanjim/prettier.nvim",
-    ft = {"css", "scss", "jsx", "tsx", "js", "html", "ts", "json", "graphql", "yaml", "markdown"},
-    config=function()
+    ft = { "css", "scss", "jsx", "tsx", "js", "html", "ts", "json", "graphql", "yaml", "markdown" },
+    config = function()
       require("prettier").setup({
-        bin = 'prettier',
+        bin = "prettier",
         filetypes = {
           "css",
           "graphql",
@@ -477,7 +512,7 @@ local plugins = {
           "yaml",
         },
       })
-    end
+    end,
   },
   {
     "folke/tokyonight.nvim",
@@ -487,8 +522,8 @@ local plugins = {
   },
   {
     "gruvbox-community/gruvbox",
-    lazy=false,
-    priority=1000,
+    lazy = false,
+    priority = 1000,
     config = function()
       local colorscheme = "gruvbox"
       local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
@@ -496,7 +531,7 @@ local plugins = {
         vim.notify("colorscheme " .. colorscheme .. " not found!")
         return
       end
-    end
+    end,
   },
   {
     "EdenEast/nightfox.nvim",
@@ -504,40 +539,41 @@ local plugins = {
   {
     "nvim-lualine/lualine.nvim",
     dependencies = {
-      "kyazdani42/nvim-web-devicons", opt=true
+      "kyazdani42/nvim-web-devicons",
+      opt = true,
     },
     config = function()
-      require('lualine').setup{
-        options = { theme = 'gruvbox' }
-      }
-    end
+      require("lualine").setup({
+        options = { theme = "gruvbox" },
+      })
+    end,
   },
   {
     "kylechui/nvim-surround",
-    version="*",
-    event="VeryLazy",
+    version = "*",
+    event = "VeryLazy",
     config = function()
-        require("nvim-surround").setup({})
-    end
+      require("nvim-surround").setup({})
+    end,
   },
   {
     "rmagatti/goto-preview",
     config = function()
-      require('goto-preview').setup {
-       -- NOTE: https://github.com/rmagatti/goto-preview#%EF%B8%8F-configuration
-        width = 120;
-        height = 30;
-        border = {"↖", "─" ,"┐", "│", "┘", "─", "└", "│"};
-        default_mappings = false;
-        debug = false;
-        opacity = nil;
-        post_open_hook = nil;
-        focus_on_open = true;
-        dismiss_on_move = false;
+      require("goto-preview").setup({
+        -- NOTE: https://github.com/rmagatti/goto-preview#%EF%B8%8F-configuration
+        width = 120,
+        height = 30,
+        border = { "↖", "─", "┐", "│", "┘", "─", "└", "│" },
+        default_mappings = false,
+        debug = false,
+        opacity = nil,
+        post_open_hook = nil,
+        focus_on_open = true,
+        dismiss_on_move = false,
         force_close = true,
         bufhidden = "wipe",
-      }
-    end
+      })
+    end,
   },
   {
     "nvim-neotest/neotest",
@@ -545,66 +581,66 @@ local plugins = {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      "antoinemadec/FixCursorHold.nvim"
-    }
+      "antoinemadec/FixCursorHold.nvim",
+    },
   },
   {
     "mfussenegger/nvim-dap",
     config = function()
-      local dap = require('dap')
+      local dap = require("dap")
       -- TODO: Move these items to their own file and then load them in on a cs project
-      local function read_json_file(file_path)
-          local file = io.open(file_path, "r")
-          if not file then
-              return nil, "Unable to open file: " .. file_path
-          end
+      -- local function read_json_file(file_path)
+      --     local file = io.open(file_path, "r")
+      --     if not file then
+      --         return nil, "Unable to open file: " .. file_path
+      --     end
 
-          local content = file:read("*all")
-          file:close()
+      --     local content = file:read("*all")
+      --     file:close()
 
-          local success, data = pcall(vim.fn.json_decode, content)
-          if not success then
-              return nil, "Error decoding JSON: " .. data
-          end
+      --     local success, data = pcall(vim.fn.json_decode, content)
+      --     if not success then
+      --         return nil, "Error decoding JSON: " .. data
+      --     end
 
-          return data
-      end
-      local json_data, _ = read_json_file("/home/austin/Software/arbinger/web/ArbingerAPI/ArbingerAPI/appsettings.Development.json")
-      dap.adapters.coreclr = {
-        type = 'executable',
-        command = '/usr/local/bin/netcoredbg/netcoredbg',
-        args = {'--interpreter=vscode'}
-      }
+      --     return data
+      -- end
+      -- local json_data, _ = read_json_file("/home/austin/Software/arbinger/web/ArbingerAPI/ArbingerAPI/appsettings.Development.json")
+      -- dap.adapters.coreclr = {
+      --   type = 'executable',
+      --   command = '/usr/local/bin/netcoredbg/netcoredbg',
+      --   args = {'--interpreter=vscode'}
+      -- }
 
-      dap.configurations.cs = {
-        {
-          type = "coreclr",
-          name = "launch - netcoredbg",
-          request = "launch",
-          program = function()
-              return vim.fn.getcwd() .. '/bin/Debug/net6.0/ArbingerAPI.dll' -- vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/net6.0/', 'file')
-          end,
-          env = {
-            Environment=json_data.Environment,
-            ConnectionStrings__Local=json_data.ConnectionStrings.Local,
-            ConnectionStrings__LocalLicenseKey=json_data.ConnectionStrings.LocalLicenseKey,
-            ConnectionStrings__Staging=json_data.ConnectionStrings.Staging,
-            ConnectionStrings__StagingLicenseKey=json_data.ConnectionStrings.StagingLicenseKey,
-            ConnectionStrings__Production=json_data.ConnectionStrings.Production,
-            ConnectionStrings__ProductionLicenseKey=json_data.ConnectionStrings.ProductionLicenseKey,
-            EmailServer__APIKey=json_data.EmailServer.APIKey,
-            EmailServer__MailFrom=json_data.EmailServer.MailFrom,
-            EmailServer__Username=json_data.EmailServer.Username,
-            ServiceConfiguration__JwtSettings__Secret=json_data.ServiceConfiguration.JwtSettings.Secret,
-            ServiceConfiguration__JwtSettings__Issuer=json_data.ServiceConfiguration.JwtSettings.Issuer,
-            ServiceConfiguration__JwtSettings__TokenLifetime=json_data.ServiceConfiguration.JwtSettings.TokenLifetime,
-            ServiceConfiguration__SecurePath=json_data.ServiceConfiguration.SecurePath,
-            SupportEmail=json_data.SupportEmail
-          }
-        },
-      }
+      -- dap.configurations.cs = {
+      --   {
+      --     type = "coreclr",
+      --     name = "launch - netcoredbg",
+      --     request = "launch",
+      --     program = function()
+      --         return vim.fn.getcwd() .. '/bin/Debug/net6.0/ArbingerAPI.dll' -- vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/net6.0/', 'file')
+      --     end,
+      --     env = {
+      --       Environment=json_data.Environment,
+      --       ConnectionStrings__Local=json_data.ConnectionStrings.Local,
+      --       ConnectionStrings__LocalLicenseKey=json_data.ConnectionStrings.LocalLicenseKey,
+      --       ConnectionStrings__Staging=json_data.ConnectionStrings.Staging,
+      --       ConnectionStrings__StagingLicenseKey=json_data.ConnectionStrings.StagingLicenseKey,
+      --       ConnectionStrings__Production=json_data.ConnectionStrings.Production,
+      --       ConnectionStrings__ProductionLicenseKey=json_data.ConnectionStrings.ProductionLicenseKey,
+      --       EmailServer__APIKey=json_data.EmailServer.APIKey,
+      --       EmailServer__MailFrom=json_data.EmailServer.MailFrom,
+      --       EmailServer__Username=json_data.EmailServer.Username,
+      --       ServiceConfiguration__JwtSettings__Secret=json_data.ServiceConfiguration.JwtSettings.Secret,
+      --       ServiceConfiguration__JwtSettings__Issuer=json_data.ServiceConfiguration.JwtSettings.Issuer,
+      --       ServiceConfiguration__JwtSettings__TokenLifetime=json_data.ServiceConfiguration.JwtSettings.TokenLifetime,
+      --       ServiceConfiguration__SecurePath=json_data.ServiceConfiguration.SecurePath,
+      --       SupportEmail=json_data.SupportEmail
+      --     }
+      --   },
+      -- }
 
-      vim.cmd[[
+      vim.cmd([[
         nnoremap <silent> <leader>dc <Cmd>lua require'dap'.continue()<CR>
         nnoremap <silent> <leader>do <Cmd>lua require'dap'.step_over()<CR>
         nnoremap <silent> <leader>di <Cmd>lua require'dap'.step_into()<CR>
@@ -614,12 +650,12 @@ local plugins = {
         nnoremap <silent> <leader>dp <Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
         nnoremap <silent> <leader>dr <Cmd>lua require'dap'.repl.open()<CR>
         nnoremap <silent> <leader>dl <Cmd>lua require'dap'.run_last()<CR>
-      ]]
-    end
+      ]])
+    end,
   },
   {
     "rcarriga/nvim-dap-ui",
-    config=function()
+    config = function()
       local dap, dapui = require("dap"), require("dapui")
 
       dapui.setup({
@@ -654,7 +690,7 @@ local plugins = {
         layouts = {
           {
             elements = {
-            -- Elements can be strings or table with id and size keys.
+              -- Elements can be strings or table with id and size keys.
               { id = "scopes", size = 0.25 },
               "breakpoints",
               "stacks",
@@ -700,9 +736,8 @@ local plugins = {
         render = {
           max_type_length = nil, -- Can be integer or nil.
           max_value_lines = 100, -- Can be integer or nil.
-        }
+        },
       })
-
 
       dap.listeners.after.event_initialized["dapui_config"] = function()
         dapui.open()
@@ -713,11 +748,11 @@ local plugins = {
       dap.listeners.before.event_exited["dapui_config"] = function()
         dapui.close()
       end
-    end
+    end,
   },
   {
     "epwalsh/pomo.nvim",
-    version = "*",  -- Recommended, use latest release instead of latest commit
+    version = "*", -- Recommended, use latest release instead of latest commit
     lazy = true,
     cmd = { "TimerStart", "TimerRepeat" },
     dependencies = {
@@ -727,7 +762,7 @@ local plugins = {
     opts = {
       -- See below for full list of options 👇
     },
-  }
+  },
 }
 
 local opts = {}
