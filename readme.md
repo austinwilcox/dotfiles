@@ -25,3 +25,5 @@ ______      _    __ _ _
 
 ## Kmonad setup
 For my laptop I setup a cron job to run kmonad when I boot up my laptop so that I can use colemak-mod-dh as my keyboard layout. [Here](https://github.com/austinwilcox/dotfiles/tree/master/kmonad-layouts) is my config for that.
+
+## Testing git hooks
