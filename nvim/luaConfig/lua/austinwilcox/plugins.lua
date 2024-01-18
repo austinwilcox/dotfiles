@@ -99,33 +99,6 @@ local plugins = {
 			require("nvim-treesitter.configs").setup(opts)
 		end,
 	},
-	-- {
-	--   "folke/noice.nvim",
-	--   dependencies = {
-	--     "MunifTanjim/nui.nvim",
-	--     "rcarriga/nvim-notify",
-	--   },
-	--   config=function()
-	--     require("noice").setup({
-	--       lsp = {
-	--         -- NOTE: override markdown rendering so that **cmp** and other plugins use **Treesitter**
-	--         override = {
-	--           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-	--           ["vim.lsp.util.stylize_markdown"] = true,
-	--           ["cmp.entry.get_documentation"] = true,
-	--         },
-	--       },
-	--       -- NOTE: you can enable a preset for easier configuration
-	--       presets = {
-	--         bottom_search = true,
-	--         command_palette = true,
-	--         long_message_to_split = true,
-	--         inc_rename = false,
-	--         lsp_doc_border = false,
-	--       },
-	--     })
-	--   end
-	-- },
 	{
 		"ThePrimeagen/refactoring.nvim",
 		dependencies = {
@@ -659,6 +632,7 @@ local plugins = {
 			dapui.setup({
 				icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
 				mappings = {
+          -- NOTE: 
 					-- Use a table to apply multiple mappings
 					expand = { "<CR>", "<2-LeftMouse>" },
 					open = "o",
@@ -667,17 +641,21 @@ local plugins = {
 					repl = "r",
 					toggle = "t",
 				},
+        -- NOTE:
 				-- Use this to override mappings for specific elements
 				element_mappings = {
+          -- NOTE:
 					-- Example:
 					-- stacks = {
 					--   open = "<CR>",
 					--   expand = "o",
 					-- }
 				},
+        -- NOTE:
 				-- Expand lines larger than the window
 				-- Requires >= 0.7
 				expand_lines = vim.fn.has("nvim-0.7") == 1,
+        -- NOTE:
 				-- Layouts define sections of the screen to place windows.
 				-- The position can be "left", "right", "top" or "bottom".
 				-- The size specifies the height/width depending on position. It can be an Int
@@ -761,6 +739,9 @@ local plugins = {
 			-- See below for full list of options 👇
 		},
 	},
+  {
+    'kristijanhusak/vim-carbon-now-sh'
+  }
 }
 
 local opts = {}
