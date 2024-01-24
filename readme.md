@@ -1,38 +1,13 @@
-```
-______      _    __ _ _           
-|  _  \    | |  / _(_) |          
-| | | |___ | |_| |_ _| | ___  ___ 
-| | | / _ \| __|  _| | |/ _ \/ __|
-| |/ / (_) | |_| | | | |  __/\__ \
-|___/ \___/ \__|_| |_|_|\___||___/
-```
-
-## Tmux
-[Tmux config](/.tmux.conf)
-
-## Nvim
-[Neovim config](/nvim/luaConfig/lua/austinwilcox)
-
-## Obsidian vimrc
-[Obsidian vimrc](.obsidian.vimrc)
-
-## Beekeeper-Studio vimrc
-<!-- TODO: Add my beekeeper vimrc to dotfiles -->
-[Beekeeper-Studio vimrc](TODO)
-
-## Leftwm config
-[Leftwm Config](https://github.com/austinwilcox/dotfiles/tree/master/leftwm)
-
-## Kmonad setup
-For my laptop I setup a cron job to run kmonad when I boot up my laptop so that I can use colemak-mod-dh as my keyboard layout. [Here](https://github.com/austinwilcox/dotfiles/tree/master/kmonad-layouts) is my config for that.
-
-## Testing git hooks
+# Dotfiles
+Here are my dotfiles containing the config for neovim, leftwm, tmux, bash, alacritty and a couple of other small configs
 
 ## Stow
-```
+I use stow to place all these files in the correct location with symlinks, the commands are:
+```bash
 stow .
 ```
-
-```
+and
+```bash
 stow -D .
 ```
+to delete those symlinks
