@@ -632,7 +632,7 @@ local plugins = {
 			dapui.setup({
 				icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
 				mappings = {
-          -- NOTE: 
+					-- NOTE:
 					-- Use a table to apply multiple mappings
 					expand = { "<CR>", "<2-LeftMouse>" },
 					open = "o",
@@ -641,21 +641,21 @@ local plugins = {
 					repl = "r",
 					toggle = "t",
 				},
-        -- NOTE:
+				-- NOTE:
 				-- Use this to override mappings for specific elements
 				element_mappings = {
-          -- NOTE:
+					-- NOTE:
 					-- Example:
 					-- stacks = {
 					--   open = "<CR>",
 					--   expand = "o",
 					-- }
 				},
-        -- NOTE:
+				-- NOTE:
 				-- Expand lines larger than the window
 				-- Requires >= 0.7
 				expand_lines = vim.fn.has("nvim-0.7") == 1,
-        -- NOTE:
+				-- NOTE:
 				-- Layouts define sections of the screen to place windows.
 				-- The position can be "left", "right", "top" or "bottom".
 				-- The size specifies the height/width depending on position. It can be an Int
@@ -739,9 +739,17 @@ local plugins = {
 			-- See below for full list of options 👇
 		},
 	},
-  {
-    'kristijanhusak/vim-carbon-now-sh'
-  }
+	{
+		"kristijanhusak/vim-carbon-now-sh",
+	},
+	{
+		"amrbashir/nvim-docs-view",
+		lazy = true,
+		cmd = "DocsViewToggle",
+		opts = {
+			position = "bottom",
+		},
+	},
 }
 
 local opts = {}
