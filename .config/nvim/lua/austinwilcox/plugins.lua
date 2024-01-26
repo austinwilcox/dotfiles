@@ -750,6 +750,18 @@ local plugins = {
 			position = "bottom",
 		},
 	},
+  {
+    "ThePrimeagen/git-worktree.nvim",
+    config = function()
+      require("telescope").load_extension("git_worktree")
+      require("git-worktree").setup({
+        update_on_change = true,
+        clearjumps_on_change = true,
+        autopush = false,
+        autopull = true,
+      })
+    end,
+  }
 }
 
 local opts = {}

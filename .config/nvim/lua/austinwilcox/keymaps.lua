@@ -48,6 +48,10 @@ map('n', 'cT\'', 'dT\'dlha', noremap_options)
 map('n', '<leader>gfn', ':diffget //3<CR>', {})
 map('n', '<leader>gft', ':diffget //2<CR>', {})
 map('n', '<leader>gs', ':G<CR>', {})
+--
+--NOTE: Git Worktrees Bindings
+map('n', '<leader>gw', ':lua require("telescope").extensions.git_worktree.git_worktrees()<cr>', noremap_options)
+map('n', '<leader>gc', ':lua require("telescope").extensions.git_worktree.create_git_worktree()<cr>', noremap_options)
 
 --NOTE: I use the Meld command here because that's my favorite gui application for
 --handling merge conflicts
