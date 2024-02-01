@@ -190,6 +190,12 @@ local plugins = {
     end,
   },
   {
+    "austinwilcox/jsonhero.nvim",
+    config = function()
+      require("jsonhero").setup({})
+    end
+  },
+  {
     -- NOTE: To get Telescope live grep working you need ripgrep
     -- Ubuntu/Debian based
     -- sudo apt install ripgrep
@@ -245,11 +251,11 @@ local plugins = {
   {
     "hrsh7th/cmp-buffer",
   },
-  {
-    "L3MON4D3/LuaSnip",
-    version = "2.*",
-    build = "make install_jsregexp",
-  },
+  -- {
+  --   "L3MON4D3/LuaSnip",
+  --   version = "2.*",
+  --   build = "make install_jsregexp",
+  -- },
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
@@ -257,7 +263,7 @@ local plugins = {
     },
     config = function()
       local cmp = require("cmp")
-      local luasnip = require("luasnip")
+      -- local luasnip = require("luasnip")
       local lspkind = require("lspkind")
 
       local has_words_before = function()
@@ -272,7 +278,7 @@ local plugins = {
       cmp.setup({
         snippet = {
           expand = function(args)
-            luasnip.lsp_expand(args.body)
+            -- luasnip.lsp_expand(args.body)
           end,
         },
         window = {
@@ -296,7 +302,7 @@ local plugins = {
         sources = cmp.config.sources({
           -- { name = "nvim_lsp", max_item_count = 6 },
           { name = "nvim_lsp" },
-          { name = "luasnip" },
+          -- { name = "luasnip" },
           { name = "copilot" },
           { name = "path" },
         }, {
