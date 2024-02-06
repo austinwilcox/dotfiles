@@ -15,7 +15,7 @@ local Worktree = require("git-worktree")
 Worktree.on_tree_change(function(op, metadata)
   if op == Worktree.Operations.Create then
     if vim.loop.fs_stat(metadata.path .. "/package.json") then
-      if vim.loop.fs_stat(metadata.path .. "/pnpm-lock.yaml") then
+      if vim.loop.fs_stat(metadata.path .. "/pnpm-lock.yaml" or not vim.loop.fs_stat(metadata.path .. "/node_modules")) then
         vim.fn.system({
           "pnpm",
           "install",
