@@ -13,10 +13,25 @@ local Worktree = require("git-worktree")
 --          path = path where worktree deleted
 
 Worktree.on_tree_change(function(op, metadata)
-	if op == Worktree.Operations.Switch then
+  if op == Worktree.Operations.Create then
+    if vim.loop.fs_stat(metadata.path .. "/package.json") then
+      if vim.loop.fs_stat(metadata.path .. "/pnpm-lock.yaml") then
+        vim.fn.system({
+          "pnpm",
+          "install",
+          metadata.path,
+        })
+        print("Installed pnpm packages for " .. metadata.path)
+      end
+    end
+
+    return
+  end
+
+  if op == Worktree.Operations.Switch then
     --TODO: Check if this is a node project, because that will determine whether or not I have a .env file at the root of the project
     --I am okay for right now because I am only using this for a node project while I work with trees
-		local stat = vim.loop.fs_stat(metadata.prev_path .. "/.env")
+    local stat = vim.loop.fs_stat(metadata.prev_path .. "/.env")
     local targetStat = vim.loop.fs_stat(metadata.path .. "/.env")
     if stat and not targetStat then
       local success, err = vim.loop.fs_copyfile(metadata.prev_path .. "/.env", metadata.path .. "/.env", 0)
@@ -26,5 +41,6 @@ Worktree.on_tree_change(function(op, metadata)
         print("Error moving .env file: " .. err)
       end
     end
-	end
+    return
+  end
 end)
