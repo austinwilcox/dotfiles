@@ -116,6 +116,9 @@ local plugins = {
 			"hrsh7th/nvim-cmp",
 			"nvim-telescope/telescope.nvim",
 		},
+    version="*",
+    ft="markdown",
+    lazy=true,
 		config = function()
 			require("obsidian").setup({
 				dir = "~/Zettelkasten-v2",
@@ -148,6 +151,9 @@ local plugins = {
 				finder = "telescope.nvim",
 				open_notes_in = "current",
 				disable_frontmatter = true,
+        ui = {
+          enable = false
+        }
 			})
 		end,
 	},
