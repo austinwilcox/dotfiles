@@ -152,7 +152,7 @@ local plugins = {
         open_notes_in = "current",
         disable_frontmatter = true,
         ui = {
-          enable = true,
+          enable = false,
         },
       })
     end,
