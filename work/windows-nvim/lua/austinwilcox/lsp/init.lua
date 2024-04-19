@@ -48,16 +48,16 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 -- capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-require'lspconfig'.emmet_ls.setup({
-  capabilities = capabilities,
-  on_attach = custom_attach
-})
+-- require'lspconfig'.emmet_ls.setup({
+--   capabilities = capabilities,
+--   on_attach = custom_attach
+-- })
 
 -- Rust Setup
-require'lspconfig'.rust_analyzer.setup({
-  capabilities = capabilities,
-  on_attach = custom_attach
-})
+-- require'lspconfig'.rust_analyzer.setup({
+--   capabilities = capabilities,
+--   on_attach = custom_attach
+-- })
 
 -- Lua Setup
 require'lspconfig'.lua_ls.setup({
@@ -114,10 +114,10 @@ require'lspconfig'.cssls.setup{
 }
 
 --TailwindCSS
-require'lspconfig'.tailwindcss.setup{
- capabilities = capabilities,
-  on_attach = custom_attach
-}
+-- require'lspconfig'.tailwindcss.setup{
+--  capabilities = capabilities,
+--   on_attach = custom_attach
+-- }
 
 --GO
 require'lspconfig'.gopls.setup{
@@ -133,17 +133,17 @@ require'lspconfig'.vls.setup{
 }
 
 -- Omnisharp Setup
-require("lsp-format").setup {}
-local on_attach = function(client)
-  require "lsp-format".on_attach(client)
-  vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-  custom_attach(client)
-end
+-- require("lsp-format").setup {}
+-- local on_attach = function(client)
+--   require "lsp-format".on_attach(client)
+--   vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+--   custom_attach(client)
+-- end
 
-require'lspconfig'.omnisharp.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-  filetypes = {"cs", "csx"},
-  cmd = { "/home/austin/.config/omnisharp/OmniSharp", "--languageserver" , "--hostPID", tostring(pid) },
-}
+-- require'lspconfig'.omnisharp.setup {
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+--   filetypes = {"cs", "csx"},
+--   cmd = { "/home/austin/.config/omnisharp/OmniSharp", "--languageserver" , "--hostPID", tostring(pid) },
+-- }
 
