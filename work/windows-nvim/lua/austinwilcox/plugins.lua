@@ -565,177 +565,177 @@ local plugins = {
       })
     end,
   },
-  {
-    "mfussenegger/nvim-dap",
-    config = function()
-      local dap = require("dap")
-      -- TODO: Move these items to their own file and then load them in on a cs project
-      -- local function read_json_file(file_path)
-      --     local file = io.open(file_path, "r")
-      --     if not file then
-      --         return nil, "Unable to open file: " .. file_path
-      --     end
+  -- {
+  --   "mfussenegger/nvim-dap",
+  --   config = function()
+  --     local dap = require("dap")
+  --     -- TODO: Move these items to their own file and then load them in on a cs project
+  --     -- local function read_json_file(file_path)
+  --     --     local file = io.open(file_path, "r")
+  --     --     if not file then
+  --     --         return nil, "Unable to open file: " .. file_path
+  --     --     end
 
-      --     local content = file:read("*all")
-      --     file:close()
+  --     --     local content = file:read("*all")
+  --     --     file:close()
 
-      --     local success, data = pcall(vim.fn.json_decode, content)
-      --     if not success then
-      --         return nil, "Error decoding JSON: " .. data
-      --     end
+  --     --     local success, data = pcall(vim.fn.json_decode, content)
+  --     --     if not success then
+  --     --         return nil, "Error decoding JSON: " .. data
+  --     --     end
 
-      --     return data
-      -- end
-      -- local json_data, _ = read_json_file("/home/austin/Software/arbinger/web/ArbingerAPI/ArbingerAPI/appsettings.Development.json")
-      -- dap.adapters.coreclr = {
-      --   type = 'executable',
-      --   command = '/usr/local/bin/netcoredbg/netcoredbg',
-      --   args = {'--interpreter=vscode'}
-      -- }
+  --     --     return data
+  --     -- end
+  --     -- local json_data, _ = read_json_file("/home/austin/Software/arbinger/web/ArbingerAPI/ArbingerAPI/appsettings.Development.json")
+  --     -- dap.adapters.coreclr = {
+  --     --   type = 'executable',
+  --     --   command = '/usr/local/bin/netcoredbg/netcoredbg',
+  --     --   args = {'--interpreter=vscode'}
+  --     -- }
 
-      -- dap.configurations.cs = {
-      --   {
-      --     type = "coreclr",
-      --     name = "launch - netcoredbg",
-      --     request = "launch",
-      --     program = function()
-      --         return vim.fn.getcwd() .. '/bin/Debug/net6.0/ArbingerAPI.dll' -- vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/net6.0/', 'file')
-      --     end,
-      --     env = {
-      --       Environment=json_data.Environment,
-      --       ConnectionStrings__Local=json_data.ConnectionStrings.Local,
-      --       ConnectionStrings__LocalLicenseKey=json_data.ConnectionStrings.LocalLicenseKey,
-      --       ConnectionStrings__Staging=json_data.ConnectionStrings.Staging,
-      --       ConnectionStrings__StagingLicenseKey=json_data.ConnectionStrings.StagingLicenseKey,
-      --       ConnectionStrings__Production=json_data.ConnectionStrings.Production,
-      --       ConnectionStrings__ProductionLicenseKey=json_data.ConnectionStrings.ProductionLicenseKey,
-      --       EmailServer__APIKey=json_data.EmailServer.APIKey,
-      --       EmailServer__MailFrom=json_data.EmailServer.MailFrom,
-      --       EmailServer__Username=json_data.EmailServer.Username,
-      --       ServiceConfiguration__JwtSettings__Secret=json_data.ServiceConfiguration.JwtSettings.Secret,
-      --       ServiceConfiguration__JwtSettings__Issuer=json_data.ServiceConfiguration.JwtSettings.Issuer,
-      --       ServiceConfiguration__JwtSettings__TokenLifetime=json_data.ServiceConfiguration.JwtSettings.TokenLifetime,
-      --       ServiceConfiguration__SecurePath=json_data.ServiceConfiguration.SecurePath,
-      --       SupportEmail=json_data.SupportEmail
-      --     }
-      --   },
-      -- }
+  --     -- dap.configurations.cs = {
+  --     --   {
+  --     --     type = "coreclr",
+  --     --     name = "launch - netcoredbg",
+  --     --     request = "launch",
+  --     --     program = function()
+  --     --         return vim.fn.getcwd() .. '/bin/Debug/net6.0/ArbingerAPI.dll' -- vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/net6.0/', 'file')
+  --     --     end,
+  --     --     env = {
+  --     --       Environment=json_data.Environment,
+  --     --       ConnectionStrings__Local=json_data.ConnectionStrings.Local,
+  --     --       ConnectionStrings__LocalLicenseKey=json_data.ConnectionStrings.LocalLicenseKey,
+  --     --       ConnectionStrings__Staging=json_data.ConnectionStrings.Staging,
+  --     --       ConnectionStrings__StagingLicenseKey=json_data.ConnectionStrings.StagingLicenseKey,
+  --     --       ConnectionStrings__Production=json_data.ConnectionStrings.Production,
+  --     --       ConnectionStrings__ProductionLicenseKey=json_data.ConnectionStrings.ProductionLicenseKey,
+  --     --       EmailServer__APIKey=json_data.EmailServer.APIKey,
+  --     --       EmailServer__MailFrom=json_data.EmailServer.MailFrom,
+  --     --       EmailServer__Username=json_data.EmailServer.Username,
+  --     --       ServiceConfiguration__JwtSettings__Secret=json_data.ServiceConfiguration.JwtSettings.Secret,
+  --     --       ServiceConfiguration__JwtSettings__Issuer=json_data.ServiceConfiguration.JwtSettings.Issuer,
+  --     --       ServiceConfiguration__JwtSettings__TokenLifetime=json_data.ServiceConfiguration.JwtSettings.TokenLifetime,
+  --     --       ServiceConfiguration__SecurePath=json_data.ServiceConfiguration.SecurePath,
+  --     --       SupportEmail=json_data.SupportEmail
+  --     --     }
+  --     --   },
+  --     -- }
 
-      vim.cmd([[
-        nnoremap <silent> <leader>dc <Cmd>lua require'dap'.continue()<CR>
-        nnoremap <silent> <leader>do <Cmd>lua require'dap'.step_over()<CR>
-        nnoremap <silent> <leader>di <Cmd>lua require'dap'.step_into()<CR>
-        nnoremap <silent> <leader>dO <Cmd>lua require'dap'.step_out()<CR>
-        nnoremap <silent> <leader>db <Cmd>lua require'dap'.toggle_breakpoint()<CR>
-        nnoremap <silent> <leader>dB <Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
-        nnoremap <silent> <leader>dp <Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
-        nnoremap <silent> <leader>dr <Cmd>lua require'dap'.repl.open()<CR>
-        nnoremap <silent> <leader>dl <Cmd>lua require'dap'.run_last()<CR>
-      ]])
-    end,
-  },
-  {
-    "rcarriga/nvim-dap-ui",
-    config = function()
-      local dap, dapui = require("dap"), require("dapui")
+  --     vim.cmd([[
+  --       nnoremap <silent> <leader>dc <Cmd>lua require'dap'.continue()<CR>
+  --       nnoremap <silent> <leader>do <Cmd>lua require'dap'.step_over()<CR>
+  --       nnoremap <silent> <leader>di <Cmd>lua require'dap'.step_into()<CR>
+  --       nnoremap <silent> <leader>dO <Cmd>lua require'dap'.step_out()<CR>
+  --       nnoremap <silent> <leader>db <Cmd>lua require'dap'.toggle_breakpoint()<CR>
+  --       nnoremap <silent> <leader>dB <Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+  --       nnoremap <silent> <leader>dp <Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+  --       nnoremap <silent> <leader>dr <Cmd>lua require'dap'.repl.open()<CR>
+  --       nnoremap <silent> <leader>dl <Cmd>lua require'dap'.run_last()<CR>
+  --     ]])
+  --   end,
+  -- },
+  -- {
+  --   "rcarriga/nvim-dap-ui",
+  --   config = function()
+  --     local dap, dapui = require("dap"), require("dapui")
 
-      dapui.setup({
-        icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
-        mappings = {
-          -- NOTE:
-          -- Use a table to apply multiple mappings
-          expand = { "<CR>", "<2-LeftMouse>" },
-          open = "o",
-          remove = "d",
-          edit = "e",
-          repl = "r",
-          toggle = "t",
-        },
-        -- NOTE:
-        -- Use this to override mappings for specific elements
-        element_mappings = {
-          -- NOTE:
-          -- Example:
-          -- stacks = {
-          --   open = "<CR>",
-          --   expand = "o",
-          -- }
-        },
-        -- NOTE:
-        -- Expand lines larger than the window
-        -- Requires >= 0.7
-        expand_lines = vim.fn.has("nvim-0.7") == 1,
-        -- NOTE:
-        -- Layouts define sections of the screen to place windows.
-        -- The position can be "left", "right", "top" or "bottom".
-        -- The size specifies the height/width depending on position. It can be an Int
-        -- or a Float. Integer specifies height/width directly (i.e. 20 lines/columns) while
-        -- Float value specifies percentage (i.e. 0.3 - 30% of available lines/columns)
-        -- Elements are the elements shown in the layout (in order).
-        -- Layouts are opened in order so that earlier layouts take priority in window sizing.
-        layouts = {
-          {
-            elements = {
-              -- Elements can be strings or table with id and size keys.
-              { id = "scopes", size = 0.25 },
-              "breakpoints",
-              "stacks",
-              "watches",
-            },
-            size = 40, -- 40 columns
-            position = "left",
-          },
-          {
-            elements = {
-              "repl",
-              "console",
-            },
-            size = 0.25, -- 25% of total lines
-            position = "bottom",
-          },
-        },
-        controls = {
-          -- Requires Neovim nightly (or 0.8 when released)
-          enabled = true,
-          -- Display controls in this element
-          element = "repl",
-          icons = {
-            pause = "",
-            play = "",
-            step_into = "",
-            step_over = "",
-            step_out = "",
-            step_back = "",
-            run_last = "↻",
-            terminate = "□",
-          },
-        },
-        floating = {
-          max_height = nil, -- These can be integers or a float between 0 and 1.
-          max_width = nil, -- Floats will be treated as percentage of your screen.
-          border = "single", -- Border style. Can be "single", "double" or "rounded"
-          mappings = {
-            close = { "q", "<Esc>" },
-          },
-        },
-        windows = { indent = 1 },
-        render = {
-          max_type_length = nil, -- Can be integer or nil.
-          max_value_lines = 100, -- Can be integer or nil.
-        },
-      })
+  --     dapui.setup({
+  --       icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
+  --       mappings = {
+  --         -- NOTE:
+  --         -- Use a table to apply multiple mappings
+  --         expand = { "<CR>", "<2-LeftMouse>" },
+  --         open = "o",
+  --         remove = "d",
+  --         edit = "e",
+  --         repl = "r",
+  --         toggle = "t",
+  --       },
+  --       -- NOTE:
+  --       -- Use this to override mappings for specific elements
+  --       element_mappings = {
+  --         -- NOTE:
+  --         -- Example:
+  --         -- stacks = {
+  --         --   open = "<CR>",
+  --         --   expand = "o",
+  --         -- }
+  --       },
+  --       -- NOTE:
+  --       -- Expand lines larger than the window
+  --       -- Requires >= 0.7
+  --       expand_lines = vim.fn.has("nvim-0.7") == 1,
+  --       -- NOTE:
+  --       -- Layouts define sections of the screen to place windows.
+  --       -- The position can be "left", "right", "top" or "bottom".
+  --       -- The size specifies the height/width depending on position. It can be an Int
+  --       -- or a Float. Integer specifies height/width directly (i.e. 20 lines/columns) while
+  --       -- Float value specifies percentage (i.e. 0.3 - 30% of available lines/columns)
+  --       -- Elements are the elements shown in the layout (in order).
+  --       -- Layouts are opened in order so that earlier layouts take priority in window sizing.
+  --       layouts = {
+  --         {
+  --           elements = {
+  --             -- Elements can be strings or table with id and size keys.
+  --             { id = "scopes", size = 0.25 },
+  --             "breakpoints",
+  --             "stacks",
+  --             "watches",
+  --           },
+  --           size = 40, -- 40 columns
+  --           position = "left",
+  --         },
+  --         {
+  --           elements = {
+  --             "repl",
+  --             "console",
+  --           },
+  --           size = 0.25, -- 25% of total lines
+  --           position = "bottom",
+  --         },
+  --       },
+  --       controls = {
+  --         -- Requires Neovim nightly (or 0.8 when released)
+  --         enabled = true,
+  --         -- Display controls in this element
+  --         element = "repl",
+  --         icons = {
+  --           pause = "",
+  --           play = "",
+  --           step_into = "",
+  --           step_over = "",
+  --           step_out = "",
+  --           step_back = "",
+  --           run_last = "↻",
+  --           terminate = "□",
+  --         },
+  --       },
+  --       floating = {
+  --         max_height = nil, -- These can be integers or a float between 0 and 1.
+  --         max_width = nil, -- Floats will be treated as percentage of your screen.
+  --         border = "single", -- Border style. Can be "single", "double" or "rounded"
+  --         mappings = {
+  --           close = { "q", "<Esc>" },
+  --         },
+  --       },
+  --       windows = { indent = 1 },
+  --       render = {
+  --         max_type_length = nil, -- Can be integer or nil.
+  --         max_value_lines = 100, -- Can be integer or nil.
+  --       },
+  --     })
 
-      dap.listeners.after.event_initialized["dapui_config"] = function()
-        dapui.open()
-      end
-      dap.listeners.before.event_terminated["dapui_config"] = function()
-        dapui.close()
-      end
-      dap.listeners.before.event_exited["dapui_config"] = function()
-        dapui.close()
-      end
-    end,
-  },
+  --     dap.listeners.after.event_initialized["dapui_config"] = function()
+  --       dapui.open()
+  --     end
+  --     dap.listeners.before.event_terminated["dapui_config"] = function()
+  --       dapui.close()
+  --     end
+  --     dap.listeners.before.event_exited["dapui_config"] = function()
+  --       dapui.close()
+  --     end
+  --   end,
+  -- },
   {
     "epwalsh/pomo.nvim",
     version = "*", -- Recommended, use latest release instead of latest commit
