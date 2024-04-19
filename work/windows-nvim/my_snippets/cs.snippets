@@ -1,0 +1,90 @@
+snippet apicontroller "Async Controller"
+using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+[ApiController]
+[Route("[controller]")]
+public class `!p snip.rv = snip.basename` : ControllerBase
+{
+	public class `!p snip.rv = snip.basename`() {}
+}
+endsnippet
+
+snippet service "Use a service"
+using(var ${1:Service} = new `!p snip.rv = t[1][0].upper() + t[1][1:] + '()'`)
+{
+	${2}
+}
+endsnippet
+
+snippet repo "Use a Repository"
+using(var ${1:Repository} = new `!p snip.rv = t[1][0].upper() + t[1][1:] + '()'`)
+{
+	${2}
+}
+endsnippet
+
+snippet prop "Prop for a class"
+public ${1:string} ${2:Text} { get; set; }
+endsnippet
+
+snippet route "Route for an api controller"
+[Http${1:GetPatchPostDelete}]
+[Route("${2:Route}")]
+[ProducesResponseType(StatusCodes.Status204NoContent)]
+[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+public IActionResult ${3:MethodName}(${4:Params})
+{
+	try
+	{
+		${5:Code}
+		return StatusCode(StatusCodes.Status204NoContent);
+	}
+	catch(Exception ex)
+	{
+		return StatusCode(StatusCodes.Status500InternalServerError);
+	}
+}
+endsnippet
+
+snippet asyncroute "Async Route for an api controller"
+[Http${1:GetPatchPostDelete}]
+[Route("${2:Route}")]
+[ProducesResponseType(StatusCodes.Status204NoContent)]
+[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+public async Task<IActionResult> ${3:MethodName}(${4:Params})
+{
+	try
+	{
+		${5:Code}
+		return StatusCode(StatusCodes.Status204NoContent);
+	}
+	catch(Exception ex)
+	{
+		return StatusCode(StatusCodes.Status500InternalServerError);
+	}
+}
+endsnippet
+
+snippet dto "Create a DTO"
+
+public class `!p snip.rv = snip.basename`
+{
+	public ${1:string} ${2:Text} { get; set; }
+}
+
+endsnippet
+
+snippet unittest "Create a Unit Test"
+[Fact]
+public void $1Action_When_Result()
+{
+	//Arrange
+
+	//Act
+
+	//Assert
+}
+endsnippet
