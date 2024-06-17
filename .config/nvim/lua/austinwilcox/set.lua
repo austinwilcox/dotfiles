@@ -1,3 +1,5 @@
+local utils = require("austinwilcox.utils")
+
 vim.g.loaded_matchparen = 1
 
 vim.opt.guicursor = ""
@@ -21,7 +23,11 @@ vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+
+if utils.OS() == 'unix' then
+  vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+end
+
 vim.opt.undofile = true
 
 vim.opt.hlsearch = true
@@ -44,7 +50,7 @@ vim.opt.cmdheight = 1
 -- delays and poor user experience.
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "120"
 
 vim.opt.clipboard = "unnamedplus"
 vim.opt.encoding = "UTF-8"
