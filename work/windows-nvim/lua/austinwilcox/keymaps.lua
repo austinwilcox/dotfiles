@@ -76,14 +76,6 @@ map('n', '<leader>-', ':vertical resize -5<CR>', noremap_options)
 --NOTE: Generate a UUID
 map('i', '<c-u>', '<c-r>=trim(system(\'uuidgen\'))<cr>', noremap_options)
 
---NOTE: Harpoon Key Bindings
-map('n', '<leader>ha', ':lua require("harpoon.mark").add_file()<cr>', noremap_options)
-map('n', '<leader>hs', ':lua require("harpoon.ui").toggle_quick_menu()<cr>', noremap_options)
-map('n', '<leader>hn', ':lua require("harpoon.ui").nav_file(1)<cr>', noremap_options)
-map('n', '<leader>he', ':lua require("harpoon.ui").nav_file(2)<cr>', noremap_options)
-map('n', '<leader>hi', ':lua require("harpoon.ui").nav_file(3)<cr>', noremap_options)
-map('n', '<leader>ho', ':lua require("harpoon.ui").nav_file(4)<cr>', noremap_options)
-
 --NOTE: Hex 2 RGBA Plugin
 map('n', '<leader>cs', ':lua require("hex2rgba").hex2rgba()<cr>', noremap_options)
 

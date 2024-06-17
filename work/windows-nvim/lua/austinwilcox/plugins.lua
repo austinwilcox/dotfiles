@@ -1,4 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
@@ -241,12 +242,10 @@ local plugins = {
   },
   {
     "ThePrimeagen/harpoon",
+    branch = "harpoon2",
     dependencies = {
       "nvim-lua/plenary.nvim",
-    },
-    config = function()
-      require("telescope").load_extension("harpoon")
-    end,
+    }
   },
   {
     "github/copilot.vim",
@@ -772,6 +771,14 @@ local plugins = {
       })
     end,
   },
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    opts = {},
+    config = function(_, opts)
+      require 'lsp_signature'.setup(opts)
+    end
+  }
 }
 
 local opts = {}

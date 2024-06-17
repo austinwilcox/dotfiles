@@ -16,6 +16,7 @@ end
 
 local custom_attach = function(client)
   local active_clients = vim.lsp.get_active_clients()
+  local buffer_number = vim.api.nvim_get_current_buf()
   if client.name == "denols" then
     for _, client_ in pairs(active_clients) do
       -- stop tsserver if denols is already active
@@ -31,6 +32,15 @@ local custom_attach = function(client)
       end
     end
   end
+
+  --NOTE: This is adding floating window help for functions while typing
+  -- require "lsp_signature".on_attach({
+  --   bind = true, -- This is mandatory, otherwise border config won't get registered.
+  --   handler_opts = {
+  --     border = "rounded"
+  --   }
+  -- }, buffer_number)
+
   --Older native lsp configuration options
   buf_nnoremap { "K", vim.lsp.buf.hover }
   buf_nnoremap { "gd", vim.lsp.buf.definition }
@@ -43,6 +53,13 @@ local custom_attach = function(client)
   buf_nnoremap { "<leader>gl", "<cmd>Telescope diagnostics<cr>"}
   buf_nnoremap { "<leader>ca", vim.lsp.buf.code_action }
 end
+
+require "lsp_signature".setup({
+  bind = true, -- This is mandatory, otherwise border config won't get registered.
+  handler_opts = {
+    border = "rounded"
+  }
+})
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
@@ -113,11 +130,11 @@ require'lspconfig'.cssls.setup{
   on_attach = custom_attach
 }
 
---TailwindCSS
--- require'lspconfig'.tailwindcss.setup{
---  capabilities = capabilities,
---   on_attach = custom_attach
--- }
+-- TailwindCSS
+ require'lspconfig'.tailwindcss.setup{
+  capabilities = capabilities,
+  on_attach = custom_attach
+ }
 
 --GO
 require'lspconfig'.gopls.setup{
