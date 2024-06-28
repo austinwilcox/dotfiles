@@ -1,4 +1,5 @@
 local map = vim.api.nvim_set_keymap
+local utils = require("austinwilcox.utils")
 
 map('n', '<Space>', '', {})
 vim.g.mapleader = " "
@@ -32,23 +33,22 @@ map('n', 'gl', '$', noremap_options)
 map('n', 'gh', '^', noremap_options)
 map('n', 'ge', 'GG', noremap_options)
 
---NOTE: My sensible remap for deleting words backwards
---This will delete the character under the cursor when deleting backwards
---Then it will place the cursor on the left of the single or double quotes
-map('n', 'dT"', 'dT"dlh', noremap_options)
-map('n', 'dT\'', 'dT\'dlh', noremap_options)
-map('n', 'cT"', 'dT"dlha', noremap_options)
-map('n', 'cT\'', 'dT\'dlha', noremap_options)
-
 -- BUG: This currently doesn't work/I haven't configured it for lua
 -- Search with visually selected text
 -- map('v', '//', 'y\\/V<C-R>=escape(@","/\")<CR><CR>', noremap_options)
+
+--NOTE: Copy the file name and path to clipboard
+if utils.IsWindows() then
+  map('n', '<leader>cf', ':let @* = expand("%")<CR>', noremap_options)
+else
+  map('n', '<leader>cf', ':let @+ = expand("%")<CR>', noremap_options)
+end
 
 --NOTE: Fugitive Keybinding
 map('n', '<leader>gfn', ':diffget //3<CR>', {})
 map('n', '<leader>gft', ':diffget //2<CR>', {})
 map('n', '<leader>gs', ':G<CR>', {})
---
+
 --NOTE: Git Worktrees Bindings
 map('n', '<leader>gw', ':lua require("telescope").extensions.git_worktree.git_worktrees()<cr>', noremap_options)
 map('n', '<leader>gc', ':lua require("telescope").extensions.git_worktree.create_git_worktree()<cr>', noremap_options)
