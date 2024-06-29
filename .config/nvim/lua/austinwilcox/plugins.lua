@@ -750,18 +750,21 @@ if utils.OS() == 'unix' then
         dir = "~/Zettelkasten-v2",
         notes_subdir = "Fleeting Notes",
         note_id_func = function(title)
+          --TODO: Create a parser here that will figure out the context of where I'm at,
+          --and if it can't figure out the context of where I'm at, lets create a new note number
           -- NOTE: Create note IDs in a Zettelkasten format with a timestamp and a suffix.
           -- In this case a note with the title 'My new note' will given an ID that looks
           -- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
-          local suffix = ""
-          if title ~= nil then
-            suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
-          else
-            for _ = 1, 4 do
-              suffix = suffix .. string.char(math.random(65, 90))
-            end
-          end
-          return tostring(os.time()) .. "-" .. suffix
+          -- local suffix = ""
+          -- if title ~= nil then
+          --   suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+          -- else
+          --   for _ = 1, 4 do
+          --     suffix = suffix .. string.char(math.random(65, 90))
+          --   end
+          -- end
+          -- return tostring(os.time()) .. "-" .. suffix
+          return title
         end,
         daily_notes = {
           folder = "Journal",
