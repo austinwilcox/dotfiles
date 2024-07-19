@@ -16,6 +16,7 @@ map('n', '<leader>j', ':m .+1<CR>==', noremap_options)
 map('n', 'Y', 'y$', noremap_options)
 map('n', 'n', 'nzz', noremap_options)
 
+
 --NOTE: Lua output date for zettels
 -- map('n', '<leader>z', ':lua print_current_date()<cr>', noremap_options)
 -- function print_current_date()
@@ -32,6 +33,8 @@ map('n', '<leader>zt', ':ObsidianTemplate<cr>', noremap_options)
 map('n', 'gl', '$', noremap_options)
 map('n', 'gh', '^', noremap_options)
 map('n', 'ge', 'GG', noremap_options)
+map('v', 'gl', '$', noremap_options)
+map('v', 'gh', '^', noremap_options)
 
 -- BUG: This currently doesn't work/I haven't configured it for lua
 -- Search with visually selected text
