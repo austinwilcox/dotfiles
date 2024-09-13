@@ -775,7 +775,7 @@ if utils.OS() == 'unix' then
           new_notes_location = "current_dir",
         },
         templates = {
-          subdir = "Resources/Templates",
+          subdir = "03-Resources/Templates",
         },
         finder = "telescope.nvim",
         open_notes_in = "current",
