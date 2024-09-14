@@ -19,14 +19,14 @@ local custom_attach = function(client)
   local buffer_number = vim.api.nvim_get_current_buf()
   if client.name == "denols" then
     for _, client_ in pairs(active_clients) do
-      -- stop tsserver if denols is already active
-      if client_.name == "tsserver" then
+      -- stop ts_ls if denols is already active
+      if client_.name == "ts_ls" then
         client_.stop()
       end
     end
-  elseif client.name == "tsserver" then
+  elseif client.name == "ts_ls" then
     for _, client_ in pairs(active_clients) do
-      -- prevent tsserver from starting if denols is already active
+      -- prevent ts_ls from starting if denols is already active
       if client_.name == "denols" then
         client.stop()
       end
@@ -101,14 +101,14 @@ require'lspconfig'.lua_ls.setup({
 -- }
 
 -- Typescript Setup
-require'lspconfig'.tsserver.setup{
+require'lspconfig'.ts_ls.setup{
   capabilities = capabilities,
   on_attach = custom_attach,
   root_dir = require'lspconfig'.util.root_pattern("package.json")
 }
 
 -- Deno Setup
--- Currently this interferes to much with tsserver
+-- Currently this interferes to much with ts_ls
  require'lspconfig'.denols.setup({
    capabilities = capabilities,
    on_attach = custom_attach,
@@ -150,17 +150,17 @@ require'lspconfig'.vls.setup{
 }
 
 -- Omnisharp Setup
--- require("lsp-format").setup {}
--- local on_attach = function(client)
---   require "lsp-format".on_attach(client)
---   vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
---   custom_attach(client)
--- end
+require("lsp-format").setup {}
+local on_attach = function(client)
+  require "lsp-format".on_attach(client)
+  vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  custom_attach(client)
+end
 
--- require'lspconfig'.omnisharp.setup {
---   capabilities = capabilities,
---   on_attach = on_attach,
---   filetypes = {"cs", "csx"},
---   cmd = { "/home/austin/.config/omnisharp/OmniSharp", "--languageserver" , "--hostPID", tostring(pid) },
--- }
+require'lspconfig'.omnisharp.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  filetypes = {"cs", "csx"},
+  cmd = { "/home/austin/.config/omnisharp/OmniSharp", "--languageserver" , "--hostPID", tostring(pid) },
+}
 

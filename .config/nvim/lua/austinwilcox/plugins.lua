@@ -278,6 +278,7 @@ local plugins = {
       require("mason").setup({
         ensure_installed = {
           "tsserver",
+          "ts_ls",
           "cssls",
           "denols",
           "lua_ls",
