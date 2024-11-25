@@ -102,16 +102,6 @@ local plugins = {
     end,
   },
   {
-    "ThePrimeagen/refactoring.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    config = function()
-      require("refactoring").setup({})
-    end,
-  },
-  {
     "folke/trouble.nvim",
     config = function()
       require("trouble").setup({
@@ -188,12 +178,6 @@ local plugins = {
     end,
   },
   {
-    "folke/zen-mode.nvim",
-    config = function()
-      require("zen-mode").setup({})
-    end,
-  },
-  {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
     dependencies = {
@@ -209,11 +193,6 @@ local plugins = {
   {
     "hrsh7th/cmp-buffer",
   },
-  -- {
-  --   "L3MON4D3/LuaSnip",
-  --   version = "2.*",
-  --   build = "make install_jsregexp",
-  -- },
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
@@ -419,25 +398,6 @@ local plugins = {
     "tpope/vim-commentary",
   },
   {
-    "chentoast/marks.nvim",
-    config = function()
-      require("marks").setup({
-        default_mappings = true,
-        builtin_marks = { ".", "<", ">", "^" },
-        cyclic = true,
-        force_write_shada = false,
-        refresh_interval = 250,
-        sign_priority = { lower = 10, upper = 15, builtin = 8, bookmark = 20 },
-        excluded_filetypes = {},
-        bookmark_0 = {
-          sign = "⚑",
-          virt_text = "hello world",
-        },
-        mappings = {},
-      })
-    end,
-  },
-  {
     "MunifTanjim/prettier.nvim",
     ft = { "css", "scss", "jsx", "tsx", "js", "html", "ts", "json", "graphql", "yaml", "markdown" },
     config = function()
@@ -472,12 +432,6 @@ local plugins = {
         return
       end
     end,
-  },
-  {
-    "Mofiqul/dracula.nvim",
-  },
-  {
-    "EdenEast/nightfox.nvim",
   },
   {
     "nvim-lualine/lualine.nvim",
@@ -689,22 +643,6 @@ local plugins = {
   --     end
   --   end,
   -- },
-  {
-    "epwalsh/pomo.nvim",
-    version = "*", -- Recommended, use latest release instead of latest commit
-    lazy = true,
-    cmd = { "TimerStart", "TimerRepeat" },
-    dependencies = {
-      -- Optional, but highly recommended if you want to use the "Default" timer
-      "rcarriga/nvim-notify",
-    },
-    opts = {
-      -- See below for full list of options 👇
-    },
-  },
-  {
-    "kristijanhusak/vim-carbon-now-sh",
-  },
   {
     "amrbashir/nvim-docs-view",
     lazy = true,
