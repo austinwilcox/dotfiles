@@ -492,11 +492,11 @@ local plugins = {
     end,
   },
   {
-    "kylechui/nvim-surround",
+    "echasnovski/mini.surround",
     version = "*",
     event = "VeryLazy",
     config = function()
-      require("nvim-surround").setup({})
+      require("mini.surround").setup({})
     end,
   },
   {
