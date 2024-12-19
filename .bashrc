@@ -22,18 +22,7 @@ export PATH="$HOME/.local/share/nvim/lsp_servers/bashls:$PATH"
 
 # Only needed for work machines
 export PATH="/opt/mssql/bin:$PATH"
-
-str=`hostnamectl | grep 'hostname'`
-IFS=':'
-read -rasplitIFS<<< "$str"
-desktopName=" pop-os"
-if [[ "${splitIFS[1]}" == "$desktopName" ]]
-then
-  export PATH="/usr/share/dotnet:$PATH"
-else
-  export PATH="$PATH:/home/[[USER_NAME]]/.dotnet/tools"
-  export PATH="$PATH:/home/austin/Software/arbinger/publishedConsoleApps/ProcessSalesforceOrders/"
-fi
+export PATH="/usr/share/dotnet:$PATH"
 
 export PATH="$PATH:/home/austin/.BrowserDrivers/"
 
