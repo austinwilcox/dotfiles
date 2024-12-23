@@ -1,2 +1,22 @@
 xmonad-x86_64-linux
 xmonad.o
+.config/beekeeper-studio/.key
+.config/beekeeper-studio/Cache/
+.config/beekeeper-studio/Code Cache/
+.config/beekeeper-studio/Crashpad/
+.config/beekeeper-studio/DawnGraphiteCache/
+.config/beekeeper-studio/DawnWebGPUCache/
+.config/beekeeper-studio/Dictionaries/
+.config/beekeeper-studio/GPUCache/
+.config/beekeeper-studio/Local Storage/
+.config/beekeeper-studio/Network Persistent State
+.config/beekeeper-studio/Preferences
+.config/beekeeper-studio/Shared Dictionary/
+.config/beekeeper-studio/SharedStorage
+.config/beekeeper-studio/SharedStorage-wal
+.config/beekeeper-studio/Trust Tokens
+.config/beekeeper-studio/Trust Tokens-journal
+.config/beekeeper-studio/app.db
+.config/beekeeper-studio/demo.db
+.config/beekeeper-studio/electron-log-preload.js
+.config/beekeeper-studio/logs/

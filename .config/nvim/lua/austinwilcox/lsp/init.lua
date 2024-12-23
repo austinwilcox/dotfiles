@@ -161,6 +161,6 @@ require'lspconfig'.omnisharp.setup {
   capabilities = capabilities,
   on_attach = on_attach,
   filetypes = {"cs", "csx"},
-  cmd = { "/home/austin/.config/omnisharp/OmniSharp", "--languageserver" , "--hostPID", tostring(pid) },
+  cmd = { "/home/austin/omnisharp-linux-x86/run", "--languageserver" , "--hostPID", tostring(pid) },
 }
 
