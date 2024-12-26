@@ -132,7 +132,7 @@ local plugins = {
     },
     config = function()
       require("ZKMoveFile").setup({
-        dir = "/home/austin/Zettelkasten-v2",
+        dir = "/home/austin/Zettelkasten-V2",
         permanent_notes_dir = "Permanent Notes",
         title = "ZK Directories",
         layers = 1,
@@ -695,8 +695,8 @@ if utils.OS() == 'unix' then
     lazy = true,
     config = function()
       require("obsidian").setup({
-        dir = "~/Zettelkasten-v2",
-        notes_subdir = "Fleeting Notes",
+        dir = "~/Zettelkasten-V2",
+        notes_subdir = "pages",
         note_id_func = function(title)
           --TODO: Create a parser here that will figure out the context of where I'm at,
           --and if it can't figure out the context of where I'm at, lets create a new note number
@@ -715,7 +715,7 @@ if utils.OS() == 'unix' then
           return title
         end,
         daily_notes = {
-          folder = "Journal",
+          folder = "journals",
         },
         completion = {
           nvim_cmp = true,
@@ -723,7 +723,7 @@ if utils.OS() == 'unix' then
           new_notes_location = "current_dir",
         },
         templates = {
-          subdir = "03-Resources/Templates",
+          subdir = "",
         },
         finder = "telescope.nvim",
         open_notes_in = "current",

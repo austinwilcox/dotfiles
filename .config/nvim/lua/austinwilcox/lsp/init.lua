@@ -47,10 +47,10 @@ local custom_attach = function(client)
   buf_nnoremap { "<leader>gn", vim.diagnostic.goto_next }
   buf_nnoremap { "<leader>gp", vim.diagnostic.goto_prev }
   buf_nnoremap { "<leader>gr", vim.lsp.buf.rename }
-  buf_nnoremap { "<leader>gR", vim.lsp.buf.references}
+  buf_nnoremap { "<leader>gR", vim.lsp.buf.references }
   buf_nnoremap { "gt", vim.lsp.buf.type_definition }
   buf_nnoremap { "gi", vim.lsp.buf.implementation }
-  buf_nnoremap { "<leader>gl", "<cmd>Telescope diagnostics<cr>"}
+  buf_nnoremap { "<leader>gl", "<cmd>Telescope diagnostics<cr>" }
   buf_nnoremap { "<leader>ca", vim.lsp.buf.code_action }
 end
 
@@ -63,12 +63,8 @@ require "lsp_signature".setup({
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
--- capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
--- require'lspconfig'.emmet_ls.setup({
---   capabilities = capabilities,
---   on_attach = custom_attach
--- })
 
 -- Rust Setup
 -- require'lspconfig'.rust_analyzer.setup({
@@ -77,14 +73,14 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- })
 
 -- Lua Setup
-require'lspconfig'.lua_ls.setup({
+require 'lspconfig'.lua_ls.setup({
   capabilities = capabilities,
   on_attach = custom_attach,
-  filetypes = {"lua"},
+  filetypes = { "lua" },
   settings = {
     Lua = {
       diagnostics = {
-        globals = {"vim"}
+        globals = { "vim" }
       }
     }
   }
@@ -101,51 +97,51 @@ require'lspconfig'.lua_ls.setup({
 -- }
 
 -- Typescript Setup
-require'lspconfig'.ts_ls.setup{
+require 'lspconfig'.ts_ls.setup {
   capabilities = capabilities,
   on_attach = custom_attach,
-  root_dir = require'lspconfig'.util.root_pattern("package.json")
+  root_dir = require 'lspconfig'.util.root_pattern("package.json")
 }
 
 -- Deno Setup
 -- Currently this interferes to much with ts_ls
- require'lspconfig'.denols.setup({
-   capabilities = capabilities,
-   on_attach = custom_attach,
-   root_dir = require'lspconfig'.util.root_pattern("deno.json", "deno.jsonc")
- })
+require 'lspconfig'.denols.setup({
+  capabilities = capabilities,
+  on_attach = custom_attach,
+  root_dir = require 'lspconfig'.util.root_pattern("deno.json", "deno.jsonc")
+})
 
- require'lspconfig'.marksman.setup({
-   capabilities = capabilities,
-   on_attach = custom_attach,
-   filetypes = {"md"},
- })
+require 'lspconfig'.marksman.setup({
+  capabilities = capabilities,
+  on_attach = custom_attach,
+  filetypes = { "md" },
+})
 
 --CSS
 --Installation
 --npm install --location=global vscode-langservers-extracted
 --npm install --save vscode-css-languageservice
-require'lspconfig'.cssls.setup{
+require 'lspconfig'.cssls.setup {
   capabilities = capabilities,
   on_attach = custom_attach
 }
 
 -- TailwindCSS
- require'lspconfig'.tailwindcss.setup{
+require 'lspconfig'.tailwindcss.setup {
   capabilities = capabilities,
   on_attach = custom_attach
- }
+}
 
 --GO
-require'lspconfig'.gopls.setup{
+require 'lspconfig'.gopls.setup {
   capabilities = capabilities,
   on_attach = custom_attach,
 }
 
-require'lspconfig'.vls.setup{
+require 'lspconfig'.vls.setup {
   capabilities = capabilities,
   on_attach = custom_attach,
-  filetypes = {"vue"},
+  filetypes = { "vue" },
   cmd = { "vls" },
 }
 
@@ -157,10 +153,11 @@ local on_attach = function(client)
   custom_attach(client)
 end
 
-require'lspconfig'.omnisharp.setup {
+require 'lspconfig'.omnisharp.setup {
   capabilities = capabilities,
   on_attach = on_attach,
-  filetypes = {"cs", "csx"},
-  cmd = { "/home/austin/omnisharp-linux-x86/run", "--languageserver" , "--hostPID", tostring(pid) },
+  filetypes = { "cs", "csx" },
+  cmd = { "/home/austin/omnisharp-linux-x86/run", "--languageserver", "--hostPID", tostring(pid) },
 }
 
+require 'lspconfig'.emmet_language_server.setup(capabilities)
