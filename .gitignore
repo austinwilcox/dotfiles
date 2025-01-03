@@ -20,3 +20,4 @@ xmonad.o
 .config/beekeeper-studio/demo.db
 .config/beekeeper-studio/electron-log-preload.js
 .config/beekeeper-studio/logs/
+.config/beekeeper-studio/Session Storage/
