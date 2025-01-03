@@ -107,6 +107,17 @@ map('n', 'gP', ':lua require("goto-preview").close_all_win()<CR>', noremap_optio
 --NOTE: Only set if you have telescope installed
 map('n', 'gpr', ':lua require("goto-preview").goto_preview_references()<CR>', noremap_options)
 
+-- map('n', 'gd', ':lua require("omnisharp_extended").lsp_definition()<CR>', noremap_options)
+
+-- -- replaces vim.lsp.buf.type_definition()
+-- nnoremap <leader>D <cmd>lua require('omnisharp_extended').lsp_type_definition()<cr>
+
+-- -- replaces vim.lsp.buf.references()
+-- nnoremap gr <cmd>lua require('omnisharp_extended').lsp_references()<cr>
+
+-- -- replaces vim.lsp.buf.implementation()
+-- nnoremap gi <cmd>lua require('omnisharp_extended').lsp_implementation()<cr>
+
 --NOTE: Autocommands
 vim.cmd([[
   autocmd FileType markdown setlocal wrap

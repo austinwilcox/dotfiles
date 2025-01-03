@@ -679,6 +679,9 @@ local plugins = {
   {
     "folke/zen-mode.nvim",
     opts = { }
+  },
+  {
+    "Hoffs/omnisharp-extended-lsp.nvim"
   }
 }
 
