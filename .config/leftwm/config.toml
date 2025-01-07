@@ -9,8 +9,8 @@ focus_behaviour = "Sloppy"
 focus_new_windows = true
 
 [[scratchpad]]
-name = "Alacritty"
-value = "alacritty"
+name = "Ghostty"
+value = "ghostty"
 x=460
 y=390
 height=500
@@ -24,7 +24,7 @@ key="o"
 
 [[keybind]]
 command="ToggleScratchPad"
-value="Alacritty"
+value="Ghostty"
 modifier=["modkey"]
 key="s"
 
@@ -53,7 +53,7 @@ key = "Return"
 
 [[keybind]]
 command = "Execute"
-value = "alacritty"
+value = "ghostty"
 modifier = ["modkey"]
 key = "Return"
 
