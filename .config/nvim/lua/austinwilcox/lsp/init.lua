@@ -44,8 +44,8 @@ local custom_attach = function(client)
   --Older native lsp configuration options
   buf_nnoremap { "K", vim.lsp.buf.hover }
   buf_nnoremap { "gd", vim.lsp.buf.definition }
-  buf_nnoremap { "<leader>gn", vim.diagnostic.goto_next }
-  buf_nnoremap { "<leader>gp", vim.diagnostic.goto_prev }
+  buf_nnoremap { "]d", vim.diagnostic.goto_next }
+  buf_nnoremap { "[d[", vim.diagnostic.goto_prev }
   buf_nnoremap { "<leader>gr", vim.lsp.buf.rename }
   buf_nnoremap { "<leader>gR", vim.lsp.buf.references }
   buf_nnoremap { "gt", vim.lsp.buf.type_definition }

@@ -103,9 +103,11 @@ local plugins = {
   },
   {
     "austinwilcox/hex2rgba",
+    event = "VeryLazy",
   },
   {
     "austinwilcox/ZKMoveFile",
+    event = "VeryLazy",
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
@@ -120,6 +122,7 @@ local plugins = {
   },
   {
     "austinwilcox/jsonhero.nvim",
+    event = "VeryLazy",
     config = function()
       require("jsonhero").setup({})
     end,
@@ -161,7 +164,7 @@ local plugins = {
     branch = "harpoon2",
     dependencies = {
       "nvim-lua/plenary.nvim",
-    }
+    },
   },
   {
     "github/copilot.vim",
@@ -264,13 +267,16 @@ local plugins = {
   },
   {
     "nvimtools/none-ls.nvim",
+    dependencies = {
+      "nvimtools/none-ls-extras.nvim",
+    },
     config = function()
       local null_ls = require("null-ls")
       null_ls.setup({
         sources = {
           null_ls.builtins.formatting.stylua,
           null_ls.builtins.formatting.prettier,
-          null_ls.builtins.diagnostics.eslint_d,
+          -- null_ls.builtins.diagnostics.eslint_d,
         },
       })
 
@@ -390,19 +396,30 @@ local plugins = {
     event = "VeryLazy",
     opts = {},
     config = function(_, opts)
-      require 'lsp_signature'.setup(opts)
-    end
+      require("lsp_signature").setup(opts)
+    end,
   },
   {
     "folke/zen-mode.nvim",
-    opts = { }
+    opts = {},
   },
   {
-    "Hoffs/omnisharp-extended-lsp.nvim"
-  }
+    "Hoffs/omnisharp-extended-lsp.nvim",
+  },
+  {
+    "chentoast/marks.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
+  {
+    "MagicDuck/grug-far.nvim",
+    config = function()
+      require("grug-far").setup({})
+    end,
+  },
 }
 
-if utils.OS() == 'unix' then
+if utils.OS() == "unix" then
   table.insert(plugins, {
     "epwalsh/obsidian.nvim",
     dependencies = {
