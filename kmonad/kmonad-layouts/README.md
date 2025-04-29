@@ -12,3 +12,17 @@ to Colemak Mod-dh **Alternative to that is to use the below cron script mapped t
 ```
 @reboot sudo /home/austin/.dotfiles/kmonad-0.4.1-linux /home/austin/.dotfiles/kmonad-layouts/colemak-dh-extend-ansi.kbd
 ```
+
+## Windows setup
+To set up kmonad to run at startup in windows you will need to create a shortcut at your startup folder.
+
+1. Press `Win + R` and type `shell:startup` to open the startup folder.
+2. Create a shortcut to the kmonad executable in this folder.
+3. Right-click the shortcut and select `Properties`.
+4. In the `Target` field, add the path to your kmonad layout file after the path to the kmonad executable.
+5. Click `Apply` to save the changes.
+Example:
+Target
+```shell
+"C:\Users\YourUsername\kmonad.exe" "C:\Users\YourUsername\kmonad-layouts\colemak-dh-extend-ansi-win.kbd"
+```
