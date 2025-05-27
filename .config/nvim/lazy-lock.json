@@ -1,10 +1,12 @@
 {
+  "R.nvim": { "branch": "main", "commit": "382858fcf23aabbf47ff06279baf69d52260b939" },
   "ZKMoveFile": { "branch": "master", "commit": "09e24fae48c21de20a346b8df715dd8f2578be93" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "99290b3ec1322070bcfb9e846450a46f6efa50f0" },
   "copilot.vim": { "branch": "release", "commit": "cd7f01009fb7b30e22840cadc4faad88b05c6eef" },
   "git-worktree.nvim": { "branch": "master", "commit": "f247308e68dab9f1133759b05d944569ad054546" },
   "goto-preview": { "branch": "main", "commit": "0ff941433a8c91ea7d07eda9c9277cc6161ee2c1" },
+  "grug-far.nvim": { "branch": "main", "commit": "3a8690461afac34c0e5bacb0f7b4bc3066aab665" },
   "harpoon": { "branch": "harpoon2", "commit": "ed1f853847ffd04b2b61c314865665e1dadf22c7" },
   "hex2rgba": { "branch": "main", "commit": "c2664dde6af3be62d4d2049468410fb84727af1b" },
   "jsonhero.nvim": { "branch": "master", "commit": "b2ec710cccec6ae2c7ddcd9e3bd33b0e4ed3e985" },

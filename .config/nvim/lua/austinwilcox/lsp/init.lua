@@ -15,7 +15,7 @@ local buf_nnoremap = function(opts)
 end
 
 local custom_attach = function(client)
-  local active_clients = vim.lsp.get_active_clients()
+  local active_clients = vim.lsp.get_clients()
   local buffer_number = vim.api.nvim_get_current_buf()
   if client.name == "denols" then
     for _, client_ in pairs(active_clients) do
@@ -84,6 +84,12 @@ require 'lspconfig'.lua_ls.setup({
       }
     }
   }
+})
+
+require 'lspconfig'.r_language_server.setup({
+  -- capabilities = custom_attach,
+  on_attach = custom_attach,
+  flags = { debounc_text_changes = 150 },
 })
 
 -- vim.lsp.start({

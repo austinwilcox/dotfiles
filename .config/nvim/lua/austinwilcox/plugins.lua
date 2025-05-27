@@ -32,6 +32,8 @@ local plugins = {
         "markdown",
         "markdown_inline",
         "python",
+        "r",
+        "rnoweb",
         "regex",
         "rust",
         "scss",
@@ -417,6 +419,10 @@ local plugins = {
       require("grug-far").setup({})
     end,
   },
+  {
+    "R-nvim/R.nvim",
+    lazy = false
+  }
 }
 
 if utils.OS() == "unix" then
