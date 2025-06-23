@@ -321,6 +321,32 @@ local plugins = {
       })
     end,
   },
+  -- {
+  --   "shaunsingh/nord.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     local colorscheme = "nord"
+  --     local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+  --     if not status_ok then
+  --       vim.notify("colorscheme " .. colorscheme .. " not found!")
+  --       return
+  --     end
+  --   end,
+  -- },
+  -- {
+  -- 	"ellisonleao/gruvbox.nvim",
+  -- 	lazy = false,
+  -- 	priority = 1000,
+  -- 	config = function()
+  -- 		local colorscheme = "gruvbox"
+  -- 		local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+  -- 		if not status_ok then
+  -- 			vim.notify("colorscheme " .. colorscheme .. " not found!")
+  -- 			return
+  -- 		end
+  -- 	end,
+  -- },
   {
     "folke/tokyonight.nvim",
     lazy = false,
@@ -408,6 +434,9 @@ local plugins = {
   {
     "Hoffs/omnisharp-extended-lsp.nvim",
   },
+  -- {
+  -- 	"OmniSharp/omnisharp-vim",
+  -- },
   {
     "chentoast/marks.nvim",
     event = "VeryLazy",
@@ -421,8 +450,8 @@ local plugins = {
   },
   {
     "R-nvim/R.nvim",
-    lazy = false
-  }
+    lazy = false,
+  },
 }
 
 if utils.OS() == "unix" then
