@@ -21,6 +21,8 @@ smart_borders on
 gaps inner 5
 gaps outer 5
 
+focus_follows_mouse yes
+
 # Hide window title bars
 default_border pixel 1
 default_floating_border pixel 1
