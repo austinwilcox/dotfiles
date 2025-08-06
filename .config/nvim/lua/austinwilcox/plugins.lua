@@ -211,7 +211,7 @@ local plugins = {
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-x>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
-          ["<C-y>"] = cmp.mapping.confirm({ select = true })
+          ["<C-y>"] = cmp.mapping.confirm({ select = true }),
           -- ["<CR>"] = cmp.mapping(function(fallback)
           --   if cmp.visible() and cmp.get_selected_entry() then
           --     cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
@@ -459,10 +459,7 @@ local plugins = {
     "R-nvim/R.nvim",
     lazy = false,
   },
-}
-
-if utils.OS() == "unix" then
-  table.insert(plugins, {
+  {
     "epwalsh/obsidian.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -512,8 +509,8 @@ if utils.OS() == "unix" then
         },
       })
     end,
-  })
-end
+  },
+}
 
 local opts = {}
 
