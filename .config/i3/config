@@ -18,7 +18,7 @@ font pango:monospace 8
 #window borders
 new_window 1pixel
 smart_borders on
-gaps inner 5
+gaps inner 8
 gaps outer 5
 
 focus_follows_mouse yes
@@ -26,7 +26,7 @@ focus_follows_mouse yes
 # Hide window title bars
 default_border pixel 1
 default_floating_border pixel 1
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 3
 
 #Enable workspace back and forth
 workspace_auto_back_and_forth yes

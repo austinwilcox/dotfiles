@@ -33,14 +33,15 @@ map("n", "<leader>zt", ":ObsidianTemplate<cr>", noremap_options)
 map("n", "gl", "$", noremap_options)
 map("n", "gh", "^", noremap_options)
 map("n", "ge", "GG", noremap_options)
-map("v", "gl", "$", noremap_options)
-map("v", "gh", "^", noremap_options)
 map("n", "mm", "%", noremap_options)
 map("v", "mm", "%", noremap_options)
 
--- BUG: This currently doesn't work/I haven't configured it for lua
--- Search with visually selected text
--- map('v', '//', 'y\\/V<C-R>=escape(@","/\")<CR><CR>', noremap_options)
+vim.keymap.set("v", "//", function()
+	vim.cmd('normal! "vy')
+	local word = vim.fn.escape(vim.fn.getreg('"'), [[\/]])
+	vim.fn.setreg("/", "\\V" .. word)
+	vim.cmd("normal! n")
+end, { noremap = true, silent = true })
 
 --NOTE: Copy the file name and path to clipboard
 if utils.IsWindows() then
