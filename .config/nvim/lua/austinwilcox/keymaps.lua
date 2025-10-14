@@ -18,20 +18,23 @@ map("n", "Y", "y$", noremap_options)
 map("n", "n", "nzz", noremap_options)
 
 --NOTE: Lua output date for zettels
--- map('n', '<leader>z', ':lua print_current_date()<cr>', noremap_options)
--- function print_current_date()
---   local current_date = os.date("%Y%m%d%H%M%S")
---   local r, c = unpack(vim.api.nvim_win_get_cursor(0))
---   local lines = vim.api.nvim_buf_get_lines(0, r-1, r, false)
---   local line = unpack(lines)
---   vim.api.nvim_buf_set_lines(0, r-1, r, -1, {current_date .. line})
--- end
+map('n', '<leader>z', ':lua print_current_date()<cr>', noremap_options)
+function print_current_date()
+  local current_date = os.date("%Y%m%d%H%M%S")
+  local r, c = unpack(vim.api.nvim_win_get_cursor(0))
+  local lines = vim.api.nvim_buf_get_lines(0, r-1, r, false)
+  local line = unpack(lines)
+  vim.api.nvim_buf_set_lines(0, r-1, r, -1, {current_date .. line})
+end
 map("n", "<leader>zn", ":ObsidianNew ", noremap_options)
 map("n", "<leader>zt", ":ObsidianTemplate<cr>", noremap_options)
+map("n", "<leader>zd", ":ObsidianToday<cr>", noremap_options)
 
 --NOTE: Helix inspired mappings
 map("n", "gl", "$", noremap_options)
 map("n", "gh", "^", noremap_options)
+map("v", "gl", "$", noremap_options)
+map("v", "gh", "^", noremap_options)
 map("n", "ge", "GG", noremap_options)
 map("n", "mm", "%", noremap_options)
 map("v", "mm", "%", noremap_options)
