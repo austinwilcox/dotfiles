@@ -45,6 +45,7 @@ alias gs='git status'
 alias gp='git push'
 alias :G='git $1'
 alias glog='git log --oneline --graph'
+alias glo='git log --oneline'
 
 alias randombg='feh --randomize --bg-scale ~/Pictures/*'
 alias showrouters='nmcli device wifi list'

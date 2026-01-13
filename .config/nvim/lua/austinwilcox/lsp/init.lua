@@ -108,6 +108,9 @@ require("lspconfig").r_language_server.setup({
 -- require'lspconfig'.bashlanguageserver.setup{
 -- }
 
+-- BIOME setup
+vim.lsp.enable("biome")
+
 -- Typescript Setup
 require("lspconfig").ts_ls.setup({
   capabilities = capabilities,

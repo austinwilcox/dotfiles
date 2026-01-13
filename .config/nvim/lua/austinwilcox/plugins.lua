@@ -288,7 +288,7 @@ local plugins = {
 			null_ls.setup({
 				sources = {
 					null_ls.builtins.formatting.stylua,
-					null_ls.builtins.formatting.prettier,
+					-- null_ls.builtins.formatting.prettier,
 					-- null_ls.builtins.diagnostics.eslint_d,
 				},
 			})
@@ -309,29 +309,29 @@ local plugins = {
 	{
 		"tpope/vim-commentary",
 	},
-	{
-		"MunifTanjim/prettier.nvim",
-		ft = { "css", "scss", "jsx", "tsx", "js", "html", "ts", "json", "graphql", "yaml", "markdown" },
-		config = function()
-			require("prettier").setup({
-				bin = "prettier",
-				filetypes = {
-					"css",
-					"graphql",
-					"html",
-					"javascript",
-					"javascriptreact",
-					"json",
-					"less",
-					"markdown",
-					"scss",
-					"typescript",
-					"typescriptreact",
-					"yaml",
-				},
-			})
-		end,
-	},
+	-- {
+	-- 	"MunifTanjim/prettier.nvim",
+	-- 	ft = { "css", "scss", "jsx", "tsx", "js", "html", "ts", "json", "graphql", "yaml", "markdown" },
+	-- 	config = function()
+	-- 		require("prettier").setup({
+	-- 			bin = "prettier",
+	-- 			filetypes = {
+	-- 				"css",
+	-- 				"graphql",
+	-- 				"html",
+	-- 				"javascript",
+	-- 				"javascriptreact",
+	-- 				"json",
+	-- 				"less",
+	-- 				"markdown",
+	-- 				"scss",
+	-- 				"typescript",
+	-- 				"typescriptreact",
+	-- 				"yaml",
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 	-- {
 	--   "shaunsingh/nord.nvim",
 	--   lazy = false,
