@@ -1,10 +1,5 @@
 local nmap = require("austinwilcox.keymap").nmap
 
-local has_lsp, _ = pcall(require, "lspconfig")
-if not has_lsp then
-  return
-end
-
 local buf_nnoremap = function(opts)
   if opts[3] == nil then
     opts[3] = {}
@@ -33,21 +28,6 @@ local custom_attach = function(client)
     end
   end
 
-  -- if client and client.name == "omnisharp" then
-  --   nmap("gd", require("omnisharp_extended").lsp_definition, "[G]oto [D]efinition")
-  --   nmap("gr", require("omnisharp_extended").lsp_references, "[G]oto [R]eferences")
-  --   nmap("gI", require("omnisharp_extended").lsp_implementation, "[G]oto [I]mplementation")
-  --   nmap("<leader>D", require("omnisharp_extended").lsp_type_definition, "Type [D]efinition")
-  -- end
-
-  --NOTE: This is adding floating window help for functions while typing
-  -- require "lsp_signature".on_attach({
-  --   bind = true, -- This is mandatory, otherwise border config won't get registered.
-  --   handler_opts = {
-  --     border = "rounded"
-  --   }
-  -- }, buffer_number)
-
   --Older native lsp configuration options
   buf_nnoremap({ "K", vim.lsp.buf.hover })
   buf_nnoremap({ "gd", vim.lsp.buf.definition })
@@ -69,17 +49,10 @@ require("lsp_signature").setup({
 })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
--- Rust Setup
--- require'lspconfig'.rust_analyzer.setup({
---   capabilities = capabilities,
---   on_attach = custom_attach
--- })
-
 -- Lua Setup
-require("lspconfig").lua_ls.setup({
+vim.lsp.config("lua_ls", {
   capabilities = capabilities,
   on_attach = custom_attach,
   filetypes = { "lua" },
@@ -91,74 +64,72 @@ require("lspconfig").lua_ls.setup({
     },
   },
 })
+vim.lsp.enable("lua_ls")
 
-require("lspconfig").r_language_server.setup({
-  -- capabilities = custom_attach,
+-- R Language Server
+vim.lsp.config("r_language_server", {
   on_attach = custom_attach,
   flags = { debounc_text_changes = 150 },
 })
-
--- vim.lsp.start({
---   name = 'bash-language-server',
---   cmd = {'bash-language-server', 'start'},
---   capabilities = capabilities,
---   on_attach = custom_attach,
--- })
--- -- Bash Lanaguage Server
--- require'lspconfig'.bashlanguageserver.setup{
--- }
+vim.lsp.enable("r_language_server")
 
 -- BIOME setup
 vim.lsp.enable("biome")
 
 -- Typescript Setup
-require("lspconfig").ts_ls.setup({
+vim.lsp.config("ts_ls", {
   capabilities = capabilities,
   on_attach = custom_attach,
-  root_dir = require("lspconfig").util.root_pattern("package.json"),
+  root_markers = { "package.json" },
 })
+vim.lsp.enable("ts_ls")
 
 -- Deno Setup
--- Currently this interferes to much with ts_ls
-require("lspconfig").denols.setup({
+vim.lsp.config("denols", {
   capabilities = capabilities,
   on_attach = custom_attach,
-  root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
+  root_markers = { "deno.json", "deno.jsonc" },
 })
+vim.lsp.enable("denols")
 
-require("lspconfig").marksman.setup({
+-- Marksman (Markdown)
+vim.lsp.config("marksman", {
   capabilities = capabilities,
   on_attach = custom_attach,
   filetypes = { "md" },
 })
+vim.lsp.enable("marksman")
 
---CSS
---Installation
---npm install --location=global vscode-langservers-extracted
---npm install --save vscode-css-languageservice
-require("lspconfig").cssls.setup({
+-- CSS
+-- Installation: npm install --location=global vscode-langservers-extracted
+vim.lsp.config("cssls", {
   capabilities = capabilities,
   on_attach = custom_attach,
 })
+vim.lsp.enable("cssls")
 
 -- TailwindCSS
-require("lspconfig").tailwindcss.setup({
+vim.lsp.config("tailwindcss", {
   capabilities = capabilities,
   on_attach = custom_attach,
 })
+vim.lsp.enable("tailwindcss")
 
---GO
-require("lspconfig").gopls.setup({
+-- GO
+vim.lsp.config("gopls", {
   capabilities = capabilities,
   on_attach = custom_attach,
 })
+vim.lsp.enable("gopls")
 
-require("lspconfig").vls.setup({
+-- Vue
+vim.lsp.config("vls", {
   capabilities = capabilities,
   on_attach = custom_attach,
   filetypes = { "vue" },
   cmd = { "vls" },
 })
+vim.lsp.enable("vls")
 
 -- Omnisharp Setup
 require("lsp-format").setup({})
@@ -168,25 +139,10 @@ local on_attach = function(client)
   custom_attach(client)
 end
 
--- local mason_root = vim.fn.stdpath "data" .. "/mason/packages/"
--- require("lspconfig").omnisharp.setup({
--- 	cmd = { "dotnet", mason_root .. "omnisharp/libexec/OmniSharp.dll" },
--- 	capabilities = capabilities,
--- 	on_attach = on_attach,
--- 	filetypes = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets", "tproj", "slngen", "fproj" },
--- 	settings = {
--- 		FormattingOptions = {
--- 			OrganizeImports = true,
--- 		},
--- 	},
--- })
-
 local mason_path = vim.fn.stdpath("data") .. "/mason/packages/omnisharp"
 local omnisharp_bin = mason_path .. "/omnisharp"
 
--- local omnisharp_bin = "/home/austin/Downloads/omnisharp-linux-x64/run"
-
-require("lspconfig").omnisharp.setup({
+vim.lsp.config("omnisharp", {
   cmd = { omnisharp_bin },
   capabilities = capabilities,
   on_attach = on_attach,
@@ -201,13 +157,11 @@ require("lspconfig").omnisharp.setup({
     ["textDocument/references"] = require("omnisharp_extended").references_handler,
     ["textDocument/implementation"] = require("omnisharp_extended").implementation_handler,
   },
-  -- root_dir = function()
-  --   return vim.loop.cwd() -- current working directory
-  -- end,
-  -- cmd = { "/home/austin/Downloads/omnisharp-linux-x64/OmniSharp" },
-  -- cmd = { "dotnet",
-  --   "/home/austin/Downloads/omnisharp-linux-x64-net6.0/OmniSharp.dll",
-  -- },
 })
+vim.lsp.enable("omnisharp")
 
-require("lspconfig").emmet_language_server.setup(capabilities)
+-- Emmet
+vim.lsp.config("emmet_language_server", {
+  capabilities = capabilities,
+})
+vim.lsp.enable("emmet_language_server")

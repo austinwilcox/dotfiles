@@ -100,7 +100,7 @@ local plugins = {
 		},
 		dependencies = "nvim-treesitter/nvim-treesitter-textobjects",
 		config = function(_, opts)
-			require("nvim-treesitter.configs").setup(opts)
+			require("nvim-treesitter").setup(opts)
 		end,
 	},
 	{
