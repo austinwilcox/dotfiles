@@ -535,8 +535,12 @@ local plugins = {
 			})
 		end,
 	},
-	-- # Causes browser to crash when using within github
-	-- { "glacambre/firenvim", build = ":call firenvim#install(0)" },
+	{
+		"dlants/magenta.nvim",
+		lazy = false, -- you could also bind to <leader>mt
+		build = "npm ci --production",
+		opts = {},
+	},
 }
 
 local opts = {}
