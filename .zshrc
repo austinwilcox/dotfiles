@@ -3,7 +3,9 @@
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export VOLTA_HOME=$HOME/.volta
 
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -111,6 +113,8 @@ export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 alias lsa="ls -all"
+alias dsc="disconnected"
+alias nvim="/Users/awilcox/Downloads/nvim-macos-arm64/bin/nvim"
 
 fastfetch
 eval "$(oh-my-posh init zsh)"
