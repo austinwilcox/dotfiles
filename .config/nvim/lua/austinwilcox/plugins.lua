@@ -254,7 +254,7 @@ local plugins = {
 					"tsserver",
 					"ts_ls",
 					"cssls",
-					"denols",
+					-- "denols",
 					"lua_ls",
 					"rust_analyzer",
 					"vls",
