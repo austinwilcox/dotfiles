@@ -85,12 +85,12 @@ vim.lsp.config("ts_ls", {
 vim.lsp.enable("ts_ls")
 
 -- Deno Setup
-vim.lsp.config("denols", {
-  capabilities = capabilities,
-  on_attach = custom_attach,
-  root_markers = { "deno.json", "deno.jsonc" },
-})
-vim.lsp.enable("denols")
+-- vim.lsp.config("denols", {
+--   capabilities = capabilities,
+--   on_attach = custom_attach,
+--   root_markers = { "deno.json", "deno.jsonc" },
+-- })
+-- vim.lsp.enable("denols")
 
 -- Marksman (Markdown)
 vim.lsp.config("marksman", {
@@ -143,14 +143,29 @@ local mason_path = vim.fn.stdpath("data") .. "/mason/packages/omnisharp"
 local omnisharp_bin = mason_path .. "/omnisharp"
 
 vim.lsp.config("omnisharp", {
-  cmd = { omnisharp_bin },
+  cmd = {
+    omnisharp_bin,
+    "-z",
+    "--hostPID",
+    tostring(vim.fn.getpid()),
+    "DotNet:enablePackageRestore=false",
+    "--encoding",
+    "utf-8",
+    "--languageserver",
+  },
   capabilities = capabilities,
   on_attach = on_attach,
   filetypes = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets", "tproj", "slngen", "fproj" },
-  enable_roslyn_analysers = false,
-  enable_import_completion = true,
-  organize_imports_on_format = true,
-  enable_decompilation_support = true,
+  settings = {
+    FormattingOptions = {
+      OrganizeImports = true,
+    },
+    RoslynExtensionsOptions = {
+      EnableAnalyzersSupport = false,
+      EnableImportCompletion = true,
+      EnableDecompilationSupport = true,
+    },
+  },
   handlers = {
     ["textDocument/definition"] = require("omnisharp_extended").definition_handler,
     ["textDocument/typeDefinition"] = require("omnisharp_extended").type_definition_handler,
