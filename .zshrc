@@ -110,10 +110,26 @@ export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-alias lsa="ls -all"
+alias ls='eza'
+alias lsa='eza -all'
+
+alias mv='mv -i'
+
+alias python=python3
+
+alias vim='nvim'
+alias v='nvim'
+
+alias gs='git status'
+alias gp='git push'
+alias :G='git $1'
+alias glog='git log --oneline --graph'
+alias glo='git log --oneline'
+alias gcane='git commit --amend --no-edit'
 
 fastfetch
-eval "$(oh-my-posh init zsh)"
+# Oh My Posh with Nerd Font theme (requires FiraCode Nerd Font in terminal)
+eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/agnoster.omp.json)"
 
 # bun completions
 [ -s "/Users/austin/.bun/_bun" ] && source "/Users/austin/.bun/_bun"
@@ -121,3 +137,11 @@ eval "$(oh-my-posh init zsh)"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/Users/austin/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
