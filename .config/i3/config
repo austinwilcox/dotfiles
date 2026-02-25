@@ -46,6 +46,9 @@ exec --no-startup-id dex --autostart --environment i3
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
+# Inhibit sleep/suspend while on AC power
+exec --no-startup-id bash -c 'while true; do if grep -q 1 /sys/class/power_supply/*/online 2>/dev/null; then systemd-inhibit --what=idle:sleep --who=i3 --why="On AC power" --mode=block sleep 120; else sleep 60; fi; done'
+
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet

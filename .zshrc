@@ -138,15 +138,10 @@ eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/agnoster
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# pnpm
 export PNPM_HOME="/Users/austin/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
-
-# OpenClaw Completion
-source "/Users/austin/.openclaw/completions/openclaw.zsh"
 
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
