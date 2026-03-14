@@ -23,6 +23,7 @@ export PATH="$HOME/.local/share/nvim/lsp_servers/bashls:$PATH"
 # Only needed for work machines
 export PATH="/opt/mssql/bin:$PATH"
 export PATH="/usr/share/dotnet:$PATH"
+export PATH="$PATH:/home/austin/.dotnet/tools"
 
 export PATH="$PATH:/home/austin/.BrowserDrivers/"
 
