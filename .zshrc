@@ -10,7 +10,7 @@ export VOLTA_HOME=$HOME/.volta
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="random"
+ZSH_THEME="fwalch"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -155,3 +155,4 @@ esac
 
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
 alias wtc='wt switch --create --no-cd'
+export PATH="/opt/homebrew/opt/dotnet@8/bin:$PATH"
