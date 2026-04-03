@@ -1,4 +1,5 @@
 xmonad-x86_64-linux
 xmonad.o
+.config/nvim/lazy-lock.json
 .config/beekeeper-studio/*
 !.config/beekeeper-studio/.beekeeper.vimrc
