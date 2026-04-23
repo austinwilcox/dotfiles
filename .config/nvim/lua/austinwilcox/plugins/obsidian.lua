@@ -10,7 +10,40 @@ return {
   },
   config = function()
     require("obsidian").setup({
-      dir = "~/Zettelkasten-V2",
+      workspaces = {
+        {
+          name = "personal",
+          path = "~/Zettelkasten-V2",
+          overrides = {
+            templates = { folder = "Templates" },
+            daily_notes = { folder = "10-journals" },
+          },
+        },
+        {
+          name = "arbinger",
+          path = "~/ArbingerObsidianVault",
+          overrides = {
+            templates = { folder = "Templates" },
+            daily_notes = { folder = "Daily" },
+          },
+        },
+        {
+          name = "blog",
+          path = "~/theaustinwilcox",
+          overrides = {
+            templates = { folder = "templates" },
+            daily_notes = { folder = vim.NIL },
+          },
+        },
+        {
+          name = "blog-src",
+          path = "~/Software/theAustinWilcox",
+          overrides = {
+            templates = { folder = "templates" },
+            daily_notes = { folder = vim.NIL },
+          },
+        },
+      },
       note_id_func = function(title)
         local suffix = ""
         if title ~= nil then
@@ -51,7 +84,7 @@ return {
       },
       new_notes_location = "current_dir",
       templates = {
-        folder = "03-Resources/Templates",
+        folder = "Templates",
       },
       finder = "telescope.nvim",
       open_notes_in = "current",
