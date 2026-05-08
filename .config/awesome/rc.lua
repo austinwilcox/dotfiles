@@ -259,8 +259,14 @@ for i = 1, 10 do
         awful.key({ modkey }, key, function()
             local screen = awful.screen.focused()
             local tag = screen.tags[i]
-            if tag then tag:view_only() end
-        end, { description = "view tag " .. i, group = "tag" }),
+            if tag then
+                if tag == screen.selected_tag then
+                    awful.tag.history.restore(screen, 1)
+                else
+                    tag:view_only()
+                end
+            end
+        end, { description = "view tag " .. i .. " (toggle back if current)", group = "tag" }),
         awful.key({ modkey, "Shift" }, key, function()
             if client.focus then
                 local tag = client.focus.screen.tags[i]
