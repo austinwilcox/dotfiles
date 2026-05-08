@@ -72,7 +72,6 @@ return {
         map("n", "<leader>hb", function() gs.blame_line({ full = true }) end, opts)
         map("n", "<leader>hr", gs.reset_hunk, opts)
         map("n", "<leader>hR", gs.reset_buffer, opts)
-        map("n", "<leader>hs", gs.stage_hunk, opts)
         map("n", "<leader>hu", gs.undo_stage_hunk, opts)
       end,
     },
