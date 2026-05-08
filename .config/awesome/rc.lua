@@ -32,7 +32,7 @@ end
 -- Theme
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 beautiful.useless_gap   = 8     -- inner gap (i3: gaps inner 8)
-beautiful.gap_single_client = true
+beautiful.gap_single_client = false  -- single client = no gap (fullscreen feel)
 beautiful.border_width  = 1     -- i3: new_window 1pixel
 beautiful.border_normal = "#16161e"
 beautiful.border_focus  = "#285577"
@@ -42,20 +42,32 @@ beautiful.fg_normal     = "#e0e0e0"
 beautiful.fg_focus      = "#ffffff"
 beautiful.font          = "monospace 9"
 
+-- i3bar-like wibar palette
+beautiful.wibar_bg          = "#1a1a2e"
+beautiful.wibar_fg          = "#a0a0a0"
+beautiful.taglist_bg_focus  = "#285577"
+beautiful.taglist_fg_focus  = "#ffffff"
+beautiful.taglist_bg_urgent = "#900000"
+beautiful.taglist_fg_urgent = "#ffffff"
+beautiful.taglist_bg_occupied = "#1a1a2e"
+beautiful.taglist_fg_occupied = "#ffffff"
+beautiful.taglist_bg_empty  = "#1a1a2e"
+beautiful.taglist_fg_empty  = "#888888"
+beautiful.tasklist_bg_normal = "#1a1a2e"
+beautiful.tasklist_fg_normal = "#a0a0a0"
+beautiful.tasklist_bg_focus  = "#1a1a2e"
+beautiful.tasklist_fg_focus  = "#ffffff"
+beautiful.tasklist_align     = "center"
+
 -- Defaults
 local terminal   = "ghostty"
 local editor     = os.getenv("EDITOR") or "nvim"
 local editor_cmd = terminal .. " -e " .. editor
 local modkey     = "Mod4"
 
--- Layouts — tile first = master-stack default
+-- Layouts — master-stack only
 awful.layout.layouts = {
-    awful.layout.suit.tile,            -- master-stack (default)
-    awful.layout.suit.tile.bottom,     -- master on top, stack below
-    awful.layout.suit.tile.left,
-    awful.layout.suit.fair,            -- ~ stacking
-    awful.layout.suit.max,             -- ~ tabbed (one visible)
-    awful.layout.suit.floating,
+    awful.layout.suit.tile,            -- master-stack (only)
 }
 
 -- Wibar: per-screen taglist + tasklist + clock
@@ -75,11 +87,22 @@ local tasklist_buttons = gears.table.join(
     awful.button({}, 3, function() awful.menu.client_list({ theme = { width = 250 } }) end)
 )
 
-local mytextclock = wibox.widget.textclock(" %a %b %d  %H:%M ")
+local mytextclock = wibox.widget.textclock(
+    "<span foreground='#ffffff'> %a %b %d  %H:%M </span>")
+
+local function sep()
+    return wibox.widget({
+        markup = "<span foreground='#666666'> | </span>",
+        widget = wibox.widget.textbox,
+    })
+end
 
 awful.screen.connect_for_each_screen(function(s)
     -- Tags 1..10 named like i3 workspaces
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, s, awful.layout.layouts[1])
+    local tags = awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, s, awful.layout.layouts[1])
+    for _, t in ipairs(tags) do
+        t.gap_single_client = false
+    end
 
     s.mypromptbox = awful.widget.prompt()
     s.mylayoutbox = awful.widget.layoutbox(s)
@@ -99,12 +122,19 @@ awful.screen.connect_for_each_screen(function(s)
         filter  = awful.widget.tasklist.filter.currenttags,
         buttons = tasklist_buttons,
     })
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = 22 })
+    s.mywibox = awful.wibar({ position = "bottom", screen = s, height = 22, bg = beautiful.wibar_bg, fg = beautiful.wibar_fg })
     s.mywibox:setup({
         layout = wibox.layout.align.horizontal,
         { layout = wibox.layout.fixed.horizontal, s.mytaglist, s.mypromptbox },
         s.mytasklist,
-        { layout = wibox.layout.fixed.horizontal, wibox.widget.systray(), mytextclock, s.mylayoutbox },
+        {
+            layout = wibox.layout.fixed.horizontal,
+            wibox.widget.systray(),
+            sep(),
+            mytextclock,
+            sep(),
+            s.mylayoutbox,
+        },
     })
 end)
 
@@ -135,8 +165,8 @@ local globalkeys = gears.table.join(
     -- Launch (i3: Mod+Return / Mod+Shift+Return)
     awful.key({ modkey }, "Return", function() awful.spawn(terminal) end,
         { description = "open terminal", group = "launcher" }),
-    awful.key({ modkey, "Shift" }, "Return", function() awful.spawn("dmenu_run") end,
-        { description = "dmenu", group = "launcher" }),
+    awful.key({ modkey, "Shift" }, "Return", function() awful.spawn("rofi -show drun") end,
+        { description = "app launcher (rofi)", group = "launcher" }),
 
     -- Kill (i3: Mod+Shift+c)
     awful.key({ modkey, "Shift" }, "c", function() if client.focus then client.focus:kill() end end,
@@ -182,19 +212,9 @@ local globalkeys = gears.table.join(
         if client.focus then awful.client.swap.global_bydirection("down")  end end,
         { description = "move down", group = "client" }),
 
-    -- Layouts (i3: s=stacking, w=tabbed, e=toggle split)
-    awful.key({ modkey }, "s", function() awful.layout.set(awful.layout.suit.fair) end,
-        { description = "fair (stacking)", group = "layout" }),
-    awful.key({ modkey }, "w", function() awful.layout.set(awful.layout.suit.max) end,
-        { description = "max (tabbed)", group = "layout" }),
-    awful.key({ modkey }, "e", function()
-        local cur = awful.layout.get(awful.screen.focused())
-        if cur == awful.layout.suit.tile then
-            awful.layout.set(awful.layout.suit.tile.bottom)
-        else
-            awful.layout.set(awful.layout.suit.tile)
-        end
-    end, { description = "toggle split", group = "layout" }),
+    -- Layout — master-stack only, force on demand
+    awful.key({ modkey }, "e", function() awful.layout.set(awful.layout.suit.tile) end,
+        { description = "force master-stack", group = "layout" }),
 
     -- Floating + focus toggles (i3: Shift+space, space)
     awful.key({ modkey }, "space", function()
@@ -300,11 +320,15 @@ client.connect_signal("manage", function(c)
       and not c.size_hints.program_position then
         awful.placement.no_offscreen(c)
     end
+    if not awesome.startup then awful.client.setslave(c) end
 end)
 
 -- focus_follows_mouse (i3: yes)
 client.connect_signal("mouse::enter", function(c)
-    c:emit_signal("request::activate", "mouse_enter", { raise = false })
+    if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
+      and awful.client.focus.filter(c) then
+        client.focus = c
+    end
 end)
 
 client.connect_signal("focus",   function(c) c.border_color = beautiful.border_focus  end)
