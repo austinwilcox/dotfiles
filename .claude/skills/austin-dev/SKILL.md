@@ -36,6 +36,7 @@ All `[preference]` unless noted.
 ### Frontend
 - **React.**
 - **Tanstack ecosystem:** Query, Form, Router, Devtools, Virtual.
+  - **Tanstack Router: file-based routing only.** Never the route config file approach. `[principle]`
 - **Zustand** for client global state.
 - **shadcn** for component library.
 - **Tailwind** for CSS.
@@ -180,6 +181,12 @@ Format: principle. **Why:** rationale. **How to apply:** when this kicks in.
 **`useState` for local-only state.**
 **Why:** State that never leaves the component shouldn't pay zustand tax.
 **How to apply:** Form input local to one component, hover state, modal open/close confined to one tree → `useState`.
+
+### Routing
+
+**Tanstack Router: file-based routing, never config-based.**
+**Why:** File-based scales with the app, colocates route with code, plays well with codegen. Config file becomes a god-object that drifts from reality and bottlenecks every route change.
+**How to apply:** New Tanstack Router project → file-based routing from day one. Existing config-based setup → flag as refactor candidate.
 
 ### API design
 
