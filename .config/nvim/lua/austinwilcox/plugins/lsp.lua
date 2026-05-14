@@ -4,7 +4,6 @@ return {
     dependencies = {
       "williamboman/mason.nvim",
       "hrsh7th/cmp-nvim-lsp",
-      "Hoffs/omnisharp-extended-lsp.nvim",
       "lukas-reineke/lsp-format.nvim",
       "ray-x/lsp_signature.nvim",
     },
@@ -134,36 +133,46 @@ return {
       vim.lsp.config("emmet_language_server", { capabilities = capabilities })
       vim.lsp.enable("emmet_language_server")
 
-      -- C# (Omnisharp)
-      local mason_path = vim.fn.stdpath("data") .. "/mason/packages/omnisharp"
+      -- C# (Roslyn LS) — disabled, requires .NET 10. Re-enable when system has it.
+      -- vim.lsp.config("roslyn_ls", {
+      --   cmd = {
+      --     vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "bin", "roslyn"),
+      --     "--logLevel", "Information",
+      --     "--extensionLogDirectory", vim.fs.joinpath(vim.uv.os_tmpdir(), "roslyn_ls/logs"),
+      --     "--stdio",
+      --   },
+      --   capabilities = capabilities,
+      --   on_attach = function(client, bufnr)
+      --     require("lsp-format").on_attach(client)
+      --     on_attach(client)
+      --   end,
+      --   settings = {
+      --     ["csharp|background_analysis"] = {
+      --       dotnet_analyzer_diagnostics_scope = "openFiles",
+      --       dotnet_compiler_diagnostics_scope = "openFiles",
+      --     },
+      --     ["csharp|inlay_hints"] = {
+      --       csharp_enable_inlay_hints_for_implicit_object_creation = true,
+      --       csharp_enable_inlay_hints_for_implicit_variable_types = true,
+      --       csharp_enable_inlay_hints_for_lambda_parameter_types = true,
+      --       csharp_enable_inlay_hints_for_types = true,
+      --     },
+      --   },
+      -- })
+      -- vim.lsp.enable("roslyn_ls")
+
+      -- C# (OmniSharp) — Mason installs binary at mason/bin/OmniSharp.
       vim.lsp.config("omnisharp", {
         cmd = {
-          mason_path .. "/omnisharp", "-z",
+          vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "bin", "OmniSharp"),
+          "-z",
           "--hostPID", tostring(vim.fn.getpid()),
           "DotNet:enablePackageRestore=false",
           "--encoding", "utf-8",
           "--languageserver",
         },
         capabilities = capabilities,
-        on_attach = function(client)
-          require("lsp-format").on_attach(client)
-          on_attach(client)
-        end,
-        filetypes = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets", "tproj", "slngen", "fproj" },
-        settings = {
-          FormattingOptions = { OrganizeImports = true },
-          RoslynExtensionsOptions = {
-            EnableAnalyzersSupport = false,
-            EnableImportCompletion = true,
-            EnableDecompilationSupport = true,
-          },
-        },
-        handlers = {
-          ["textDocument/definition"] = require("omnisharp_extended").definition_handler,
-          ["textDocument/typeDefinition"] = require("omnisharp_extended").type_definition_handler,
-          ["textDocument/references"] = require("omnisharp_extended").references_handler,
-          ["textDocument/implementation"] = require("omnisharp_extended").implementation_handler,
-        },
+        on_attach = on_attach,
       })
       vim.lsp.enable("omnisharp")
 
@@ -188,7 +197,7 @@ return {
           "ts_ls", "cssls", "lua_ls", "rust_analyzer", "vls",
           "gopls", "marksman", "bashls", "eslint", "jsonls",
           "tailwindcss", "graphql", "html", "netcoredbg",
-          "stylua", "prettierd", "goimports",
+          "omnisharp", "stylua", "prettierd", "goimports",
         },
         automatic_installation = true,
       })

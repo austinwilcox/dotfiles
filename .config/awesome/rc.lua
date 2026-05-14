@@ -165,7 +165,7 @@ local globalkeys = gears.table.join(
     -- Launch (i3: Mod+Return / Mod+Shift+Return)
     awful.key({ modkey }, "Return", function() awful.spawn(terminal) end,
         { description = "open terminal", group = "launcher" }),
-    awful.key({ modkey, "Shift" }, "Return", function() awful.spawn("rofi -show drun") end,
+    awful.key({ modkey, "Shift" }, "Return", function() awful.spawn({ "rofi", "-show", "combi", "-modes", "combi", "-combi-modes", "drun,run" }) end,
         { description = "app launcher (rofi)", group = "launcher" }),
 
     -- Kill (i3: Mod+Shift+c)
@@ -233,6 +233,12 @@ local globalkeys = gears.table.join(
     -- Resize mode (i3: Mod+r)
     awful.key({ modkey }, "r", function() resize_mode() end,
         { description = "resize mode", group = "client" }),
+
+    -- Quick resize (no mode)
+    awful.key({ modkey, "Shift" }, "t", function() awful.tag.incmwfact(-resize_step) end,
+        { description = "shrink master", group = "client" }),
+    awful.key({ modkey, "Shift" }, "n", function() awful.tag.incmwfact(resize_step) end,
+        { description = "grow master", group = "client" }),
 
     -- Screenshot (i3: Mod+o)
     awful.key({ modkey }, "o", function() awful.spawn("flameshot gui") end,
