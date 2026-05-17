@@ -97,6 +97,36 @@ local function sep()
     })
 end
 
+-- Battery widget (reads /sys/class/power_supply/BAT0)
+local battery_widget = wibox.widget.textbox()
+local function read_file(path)
+    local f = io.open(path, "r")
+    if not f then return nil end
+    local s = f:read("*l")
+    f:close()
+    return s
+end
+local function update_battery()
+    local cap = tonumber(read_file("/sys/class/power_supply/BAT0/capacity"))
+    local status = read_file("/sys/class/power_supply/BAT0/status") or ""
+    if not cap then
+        battery_widget.markup = "<span foreground='#888888'> BAT ? </span>"
+        return
+    end
+    local color = "#ffffff"
+    if cap <= 15 then color = "#ff5555"
+    elseif cap <= 35 then color = "#f1fa8c" end
+    local prefix = (status == "Charging" or status == "Full") and "⚡" or "🔋"
+    battery_widget.markup = string.format(
+        "<span foreground='%s'> %s %d%% </span>", color, prefix, cap)
+end
+update_battery()
+gears.timer({
+    timeout   = 30,
+    autostart = true,
+    callback  = update_battery,
+})
+
 awful.screen.connect_for_each_screen(function(s)
     -- Tags 1..10 named like i3 workspaces
     local tags = awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, s, awful.layout.layouts[1])
@@ -130,6 +160,8 @@ awful.screen.connect_for_each_screen(function(s)
         {
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
+            sep(),
+            battery_widget,
             sep(),
             mytextclock,
             sep(),
