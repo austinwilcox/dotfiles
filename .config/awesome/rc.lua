@@ -323,6 +323,9 @@ awful.rules.rules = {
     },
     { rule_any = { type = { "dialog" }, class = { "Pavucontrol" } },
       properties = { floating = true } },
+    { rule_any = { class = { "Thunar", "Picard", "MusicBrainz-picard" } },
+      properties = { maximized = false, maximized_vertical = false,
+                     maximized_horizontal = false, floating = false } },
 }
 
 -- Signals
