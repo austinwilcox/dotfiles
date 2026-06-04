@@ -58,13 +58,37 @@ return {
       })
       vim.lsp.enable("lua_ls")
 
-      -- TypeScript
+      -- TypeScript (Node projects). root_markers excludes Deno projects so
+      -- denols owns those instead.
       vim.lsp.config("ts_ls", {
         capabilities = capabilities,
         on_attach = on_attach,
         root_markers = { "package.json" },
+        -- Don't attach in a Deno project even if a stray package.json exists.
+        root_dir = function(bufnr, on_dir)
+          local fname = vim.api.nvim_buf_get_name(bufnr)
+          if vim.fs.root(fname, { "deno.json", "deno.jsonc" }) then
+            return
+          end
+          on_dir(vim.fs.root(fname, { "package.json", "tsconfig.json", "jsconfig.json" }))
+        end,
       })
       vim.lsp.enable("ts_ls")
+
+      -- Deno: starts only when a deno.json/deno.jsonc is present in the project.
+      vim.lsp.config("denols", {
+        capabilities = capabilities,
+        on_attach = on_attach,
+        root_markers = { "deno.json", "deno.jsonc" },
+        settings = {
+          deno = {
+            enable = true,
+            lint = true,
+            unstable = true,
+          },
+        },
+      })
+      vim.lsp.enable("denols")
 
       -- Biome
       vim.lsp.enable("biome")
@@ -194,7 +218,7 @@ return {
     config = function()
       require("mason").setup({
         ensure_installed = {
-          "ts_ls", "cssls", "lua_ls", "rust_analyzer", "vls",
+          "ts_ls", "denols", "cssls", "lua_ls", "rust_analyzer", "vls",
           "gopls", "marksman", "bashls", "eslint", "jsonls",
           "tailwindcss", "graphql", "html", "netcoredbg",
           "omnisharp", "stylua", "prettierd", "goimports",
