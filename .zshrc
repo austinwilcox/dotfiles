@@ -156,3 +156,7 @@ esac
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
 alias wtc='wt switch --create --no-cd'
 export PATH="/opt/homebrew/opt/dotnet@8/bin:$PATH"
+export PATH="$HOME/.deno/bin:$PATH"
+
+fpath=(~/.zsh/completions $fpath)
+autoload -Uz compinit && compinit
