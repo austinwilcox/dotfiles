@@ -127,6 +127,54 @@ gears.timer({
     callback  = update_battery,
 })
 
+-- CPU widget (reads /proc/stat, computes % from deltas between ticks)
+local cpu_widget = wibox.widget.textbox()
+local prev_total, prev_idle = 0, 0
+local function update_cpu()
+    local f = io.open("/proc/stat", "r")
+    if not f then return end
+    local line = f:read("*l")
+    f:close()
+    local user, nice, sys, idle, iowait, irq, softirq, steal =
+        line:match("cpu%s+(%d+)%s+(%d+)%s+(%d+)%s+(%d+)%s+(%d+)%s+(%d+)%s+(%d+)%s+(%d+)")
+    if not user then return end
+    local idle_all = idle + iowait
+    local total = user + nice + sys + idle + iowait + irq + softirq + steal
+    local dt = total - prev_total
+    local di = idle_all - prev_idle
+    prev_total, prev_idle = total, idle_all
+    if dt <= 0 then return end
+    local pct = math.floor((dt - di) * 100 / dt + 0.5)
+    local color = "#ffffff"
+    if pct >= 85 then color = "#ff5555"
+    elseif pct >= 60 then color = "#f1fa8c" end
+    cpu_widget.markup = string.format("<span foreground='%s'> 💻 %d%% </span>", color, pct)
+end
+update_cpu()
+gears.timer({ timeout = 3, autostart = true, callback = update_cpu })
+
+-- RAM widget (reads /proc/meminfo — used = MemTotal - MemAvailable)
+local mem_widget = wibox.widget.textbox()
+local function update_mem()
+    local total_kb, avail_kb
+    for l in io.lines("/proc/meminfo") do
+        local t = l:match("^MemTotal:%s+(%d+)");     if t then total_kb = tonumber(t) end
+        local a = l:match("^MemAvailable:%s+(%d+)"); if a then avail_kb = tonumber(a) end
+        if total_kb and avail_kb then break end
+    end
+    if not (total_kb and avail_kb and total_kb > 0) then return end
+    local used_kb = total_kb - avail_kb
+    local pct = math.floor(used_kb * 100 / total_kb + 0.5)
+    local color = "#ffffff"
+    if pct >= 90 then color = "#ff5555"
+    elseif pct >= 75 then color = "#f1fa8c" end
+    mem_widget.markup = string.format(
+        "<span foreground='%s'> 🧠 %.1f/%.1fG </span>",
+        color, used_kb / 1048576, total_kb / 1048576)
+end
+update_mem()
+gears.timer({ timeout = 5, autostart = true, callback = update_mem })
+
 awful.screen.connect_for_each_screen(function(s)
     -- Tags 1..10 named like i3 workspaces
     local tags = awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, s, awful.layout.layouts[1])
@@ -160,6 +208,10 @@ awful.screen.connect_for_each_screen(function(s)
         {
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
+            sep(),
+            cpu_widget,
+            sep(),
+            mem_widget,
             sep(),
             battery_widget,
             sep(),
