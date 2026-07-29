@@ -140,7 +140,7 @@ eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/agnoster
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-export PNPM_HOME="/Users/austin/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 
 # Java setup
 export ANDROID_HOME=$HOME/Library/Android/sdk

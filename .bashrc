@@ -163,13 +163,13 @@ eval "$(starship init bash)"
 # eval "$(oh-my-posh init bash --config /home/austin/.dotfiles/omp.json)"
 
 # pnpm
-export PNPM_HOME="/home/austin/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-export PATH="$PATH:/home/austin/.deno/bin"
+export PATH="$PATH:$HOME/.deno/bin"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -178,5 +178,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init bash)"; fi
 alias wtc='wt switch --create --no-cd'
 
+# Pi
+export PATH="/Users/awilcox/.volta/tools/image/node/25.5.0/bin:$PATH"
+
 # opencode
-export PATH=/home/austin/.opencode/bin:$PATH
+export PATH=/Users/awilcox/.opencode/bin:$PATH
