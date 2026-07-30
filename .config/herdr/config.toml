@@ -1,0 +1,81 @@
+# herdr configuration — migrated from ~/.dotfiles/.tmux.conf
+#
+# tmux -> herdr concept map
+#   session          -> workspace (space)
+#   window           -> tab
+#   pane             -> pane
+#   resurrect/continuum -> built-in server persistence + agent resume
+#
+# tmux options with no herdr equivalent (handled natively or N/A):
+#   escape-time, focus-events, base-index / pane-base-index,
+#   renumber-windows, mode-keys vi, set-clipboard, xclip copy bindings,
+#   default-terminal / terminal-overrides, tpm plugin list
+
+[theme]
+name = "catppuccin"
+
+[terminal]
+new_cwd = "follow"
+
+[keys]
+# tmux: set -g prefix C-a
+prefix = "ctrl+a"
+
+# tmux: bind d detach (default), bind s show sessions
+detach = "prefix+d"
+workspace_picker = "prefix+s"
+settings = "prefix+comma"
+
+# tmux: bind r source-file ~/.tmux.conf
+reload_config = "prefix+r"
+# tmux: bind -r H/J/K/L resize-pane
+resize_mode = "prefix+shift+r"
+
+# tmux: bind | split-window -h  /  bind - split-window -v
+split_vertical = "prefix+|"
+split_horizontal = "prefix+minus"
+
+# tmux: bind h/j/k/l select-pane -L/-D/-U/-R
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+close_pane = "prefix+x"
+zoom = "prefix+z"
+
+# tmux windows: prefix c new, prefix n next, bind b prev
+new_tab = "prefix+c"
+next_tab = "prefix+n"
+previous_tab = "prefix+b"
+switch_tab = "prefix+1..9"
+close_tab = "prefix+shift+x"
+rename_tab = "prefix+shift+t"
+
+# tmux: bind ( / ) previous/next session
+previous_workspace = "prefix+shift+h"
+next_workspace = "prefix+shift+l"
+new_workspace = "prefix+shift+n"
+rename_workspace = "prefix+shift+w"
+close_workspace = "prefix+shift+d"
+
+# tmux: copy-mode scrollback editing
+edit_scrollback = "prefix+e"
+toggle_sidebar = "prefix+shift+b"
+
+[ui]
+# tmux: status-style fg=#00a6e2 (Arbinger blue)
+accent = "#00a6e2"
+
+# tmux: set -g mouse off
+mouse_capture = false
+
+pane_borders = true
+confirm_close = true
+
+[session]
+# replaces tmux-resurrect / tmux-continuum ('@continuum-restore on')
+resume_agents_on_restore = true
+
+[advanced]
+# tmux: set -g history-limit 50000
+scrollback_limit_bytes = 50000000

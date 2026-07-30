@@ -183,3 +183,4 @@ export PATH="/Users/awilcox/.volta/tools/image/node/25.5.0/bin:$PATH"
 
 # opencode
 export PATH=/Users/awilcox/.opencode/bin:$PATH
+source <(arbinger completions bash)
