@@ -12,8 +12,9 @@
 #   default-terminal / terminal-overrides, tpm plugin list
 
 [theme]
-name = "catppuccin"
+name = "tokyo-night"
 
+auto_switch = false
 [terminal]
 new_cwd = "follow"
 
@@ -72,6 +73,7 @@ mouse_capture = false
 pane_borders = true
 confirm_close = true
 
+show_agent_labels_on_pane_borders = false
 [session]
 # replaces tmux-resurrect / tmux-continuum ('@continuum-restore on')
 resume_agents_on_restore = true
@@ -79,3 +81,6 @@ resume_agents_on_restore = true
 [advanced]
 # tmux: set -g history-limit 50000
 scrollback_limit_bytes = 50000000
+
+[ui.toast]
+delivery = "herdr"
