@@ -256,13 +256,13 @@ local globalkeys = gears.table.join(
     awful.key({ modkey, "Shift" }, "c", function() if client.focus then client.focus:kill() end end,
         { description = "kill focused", group = "client" }),
 
-    -- Focus (i3: j/h = left, k/l = right)
-    awful.key({ modkey }, "j", function() awful.client.focus.byidx(-1) end,
-        { description = "focus prev", group = "client" }),
+    -- Focus (vim: h/k = prev, j/l = next)
+    awful.key({ modkey }, "j", function() awful.client.focus.byidx(1) end,
+        { description = "focus next", group = "client" }),
     awful.key({ modkey }, "h", function() awful.client.focus.byidx(-1) end,
         { description = "focus prev", group = "client" }),
-    awful.key({ modkey }, "k", function() awful.client.focus.byidx(1) end,
-        { description = "focus next", group = "client" }),
+    awful.key({ modkey }, "k", function() awful.client.focus.byidx(-1) end,
+        { description = "focus prev", group = "client" }),
     awful.key({ modkey }, "l", function() awful.client.focus.byidx(1) end,
         { description = "focus next", group = "client" }),
     awful.key({ modkey }, "Left",  function() awful.client.focus.global_bydirection("left")  end,
@@ -274,13 +274,13 @@ local globalkeys = gears.table.join(
     awful.key({ modkey }, "Down",  function() awful.client.focus.global_bydirection("down")  end,
         { description = "focus down", group = "client" }),
 
-    -- Move (i3: Shift+j/h = left, Shift+k/l = right)
-    awful.key({ modkey, "Shift" }, "j", function() awful.client.swap.byidx(-1) end,
-        { description = "swap prev", group = "client" }),
+    -- Move (vim: Shift+h/k = prev, Shift+j/l = next)
+    awful.key({ modkey, "Shift" }, "j", function() awful.client.swap.byidx(1) end,
+        { description = "swap next", group = "client" }),
     awful.key({ modkey, "Shift" }, "h", function() awful.client.swap.byidx(-1) end,
         { description = "swap prev", group = "client" }),
-    awful.key({ modkey, "Shift" }, "k", function() awful.client.swap.byidx(1) end,
-        { description = "swap next", group = "client" }),
+    awful.key({ modkey, "Shift" }, "k", function() awful.client.swap.byidx(-1) end,
+        { description = "swap prev", group = "client" }),
     awful.key({ modkey, "Shift" }, "l", function() awful.client.swap.byidx(1) end,
         { description = "swap next", group = "client" }),
     awful.key({ modkey, "Shift" }, "Left",  function()
