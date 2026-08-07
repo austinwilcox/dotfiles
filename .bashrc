@@ -10,6 +10,16 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+# Are we interactive? Non-interactive shells (scp, rsync, ssh <cmd>) must produce
+# ZERO stdout output or the transfer protocol breaks:
+#   scp: Received message too long 538976288   <- that's 0x20202020, four spaces
+# PATH exports below stay unguarded so remote commands can still find tools.
+# Anything that PRINTS or is interactive-only must be wrapped in `if $IS_INTERACTIVE`.
+case $- in
+    *i*) IS_INTERACTIVE=true ;;
+      *) IS_INTERACTIVE=false ;;
+esac
+
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
 then
@@ -60,7 +70,7 @@ alias colemakdh='sudo kmonad ~/.dotfiles/kmonad-layouts/colemak-dh-extend-ansi.k
 alias startJellyfinFiles='podman run --detach --label "io.containers.autoupdate=registry" --name jellyfinssd --publish 8096:8096/tcp --rm --user $(id -u):$(id -g) --userns keep-id --volume jellyfin-cache:/cache:Z --volume jellyfin-config:/config:Z --mount type=bind,source=/home/austin/Files/Jellyfin,destination=/Jellyfin,ro=true docker.io/jellyfin/jellyfin:latest'
 alias startCalibreWeb='podman run -d   --name=calibre-web   -e PUID=1000   -e PGID=100999   -e TZ=Etc/UTC   -e DOCKER_MODS=linuxserver/mods:universal-calibre `#optional`   -e OAUTHLIB_RELAX_TOKEN_SCOPE=1 `#optional`   -p 8083:8083   -v /home/austin/Software/calibreweb/data:/config   -v /home/austin/Software/calibreweb/library:/books   --restart unless-stopped   lscr.io/linuxserver/calibre-web:latest'
 
-fastfetch
+if $IS_INTERACTIVE; then fastfetch; fi
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
@@ -108,7 +118,7 @@ export PATH=$PATH:/home/austin/.config/emacs/bin
 #   tmux a -t "$USER"
 # fi
 #
-set -o vi
+if $IS_INTERACTIVE; then set -o vi; fi
 
 # cdnvm() {
 #     command cd "$@" || return $?
@@ -158,7 +168,7 @@ set -o vi
 
 DOTNET_CLI_TELEMETRY_OPTOUT=1
 
-eval "$(starship init bash)"
+if $IS_INTERACTIVE; then eval "$(starship init bash)"; fi
 
 # eval "$(oh-my-posh init bash --config /home/austin/.dotfiles/omp.json)"
 
@@ -175,7 +185,7 @@ export PATH="$PATH:$HOME/.deno/bin"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init bash)"; fi
+if $IS_INTERACTIVE && command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init bash)"; fi
 alias wtc='wt switch --create --no-cd'
 
 # Pi
@@ -183,4 +193,6 @@ export PATH="/Users/awilcox/.volta/tools/image/node/25.5.0/bin:$PATH"
 
 # opencode
 export PATH=/Users/awilcox/.opencode/bin:$PATH
-source <(arbinger completions bash)
+if $IS_INTERACTIVE && command -v arbinger >/dev/null 2>&1; then
+  source <(arbinger completions bash)
+fi
