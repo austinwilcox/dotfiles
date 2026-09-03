@@ -1,0 +1,21 @@
+[Unit]
+Description=KMonad keyboard remapper (colemak-dh extend + homerow mods)
+Documentation=https://github.com/kmonad/kmonad
+Documentation=file:///home/austin/.dotfiles/kmonad/kmonad-layouts/README.md
+After=systemd-udev-settle.service
+Wants=systemd-udev-settle.service
+
+[Service]
+Type=simple
+ExecStart=/home/austin/.dotfiles/kmonad/kmonad /home/austin/.dotfiles/kmonad/kmonad-layouts/colemak-dh-extend-ansi-homerow.kbd
+# The built-in keyboard may not be enumerated yet at boot, and unplug/replug
+# of an external board kills kmonad. Keep retrying instead of giving up.
+Restart=always
+RestartSec=3
+# Never let a scheduling stall look like a stuck modifier.
+Nice=-20
+KillSignal=SIGTERM
+TimeoutStopSec=5
+
+[Install]
+WantedBy=multi-user.target

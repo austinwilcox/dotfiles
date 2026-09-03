@@ -6,12 +6,36 @@ arch user repository, yay kmonad-bin.
 3. Then run kmonad colemak-dh-extend-ansi.kbd
 4. You will need to leave a terminal open to run the instance,
 but now when you type on the keyboard you'll notice the characters map
-to Colemak Mod-dh **Alternative to that is to use the below cron script mapped to your user directory and the kmonad executable**
+to Colemak Mod-dh. **To have it start automatically, use the systemd service
+below instead of leaving a terminal open.**
 
-## Cron setup
+## Linux autostart (systemd)
+`kmonad.service` in this directory is a system unit that runs the homerow
+layout as root. Install it once:
+
+```shell
+sudo /home/austin/.dotfiles/kmonad/install-systemd.sh
 ```
-@reboot sudo /home/austin/.dotfiles/kmonad-0.4.1-linux /home/austin/.dotfiles/kmonad-layouts/colemak-dh-extend-ansi.kbd
+
+That symlinks the unit into `/etc/systemd/system/`, deletes the old
+`@reboot ... kmonad` line from `/etc/crontab` (keeping a backup), kills the
+cron-started instance, and enables + starts the service.
+
+Day-to-day:
+
+```shell
+systemctl status kmonad         # is it running
+sudo systemctl restart kmonad   # pick up .kbd edits
+sudo systemctl stop kmonad      # back to the raw QWERTY keyboard
+journalctl -u kmonad -f         # logs, e.g. wrong input device
 ```
+
+The unit is a symlink to the repo copy, so editing `kmonad.service` only needs
+`sudo systemctl daemon-reload && sudo systemctl restart kmonad`. To use a
+different layout, change `ExecStart` in `kmonad.service`.
+
+`Restart=always` is deliberate: the keyboard may not be enumerated yet at boot,
+and unplugging an external board makes kmonad exit.
 
 ## Windows setup
 To set up kmonad to run at startup in windows you will need to create a shortcut at your startup folder.

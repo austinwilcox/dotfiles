@@ -37,7 +37,22 @@ return {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
-      require("todo-comments").setup({})
+      require("todo-comments").setup({
+        -- Logseq task markers (merged with the built-in FIX/TODO/HACK/... keywords)
+        keywords = {
+          DOING = { icon = " ", color = "warning", alt = { "NOW" } },
+          LATER = { icon = " ", color = "hint" },
+          DONE = { icon = " ", color = "hint", alt = { "CANCELED", "CANCELLED" } },
+        },
+        highlight = {
+          -- Logseq markers live in prose, not comments
+          comments_only = false,
+          pattern = {
+            [[.*<(KEYWORDS)\s*:]], -- code comments: TODO:
+            [[^\s*- (KEYWORDS)>]], -- Logseq blocks: - TODO ...
+          },
+        },
+      })
     end,
   },
 

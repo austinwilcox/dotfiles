@@ -44,15 +44,28 @@
 ;; ring   = alt   (r, i)
 ;; middle = ctrl  (s, e)
 ;; index  = shift (t, n)
+;;
+;; Mirrors the QMK setup in ~/Software/keyboards/handwired
+;; (skeletyl/keymaps/miryoku, scottoergo). Keep the two in sync.
+;;
+;; Timing parity with QMK:
+;;   TAPPING_TERM 200          -> the 200 below
+;;   PERMISSIVE_HOLD disabled  -> plain `tap-hold`, NOT
+;;                                `tap-hold-next-release`
+;;   HOLD_ON_OTHER_KEY_PRESS   -> would be `tap-hold-next`
+;; QMK decides on the timeout alone: a key rolled in and out inside
+;; 200 ms still emits the letter. `tap-hold` is the matching kmonad
+;; button; the -next-release variant is the PERMISSIVE_HOLD one and
+;; fired mods on fast rolls.
 (defalias
-  hm_a (tap-hold-next-release 200 a lmet)
-  hm_r (tap-hold-next-release 200 r lalt)
-  hm_s (tap-hold-next-release 200 s lctl)
-  hm_t (tap-hold-next-release 200 t lsft)
-  hm_n (tap-hold-next-release 200 n rsft)
-  hm_e (tap-hold-next-release 200 e rctl)
-  hm_i (tap-hold-next-release 200 i ralt)
-  hm_o (tap-hold-next-release 200 o rmet)
+  hm_a (tap-hold 200 a lmet)
+  hm_r (tap-hold 200 r lalt)
+  hm_s (tap-hold 200 s lctl)
+  hm_t (tap-hold 200 t lsft)
+  hm_n (tap-hold 200 n rsft)
+  hm_e (tap-hold 200 e rctl)
+  hm_i (tap-hold 200 i ralt)
+  hm_o (tap-hold 200 o lmet)  ;; QMK uses LGUI_T(KC_O), not RGUI
 )
 
 (deflayer colemak-dh
