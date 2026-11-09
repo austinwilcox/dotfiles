@@ -175,6 +175,35 @@ end
 update_mem()
 gears.timer({ timeout = 5, autostart = true, callback = update_mem })
 
+-- Volume widget (wpctl on default sink; click = mute, scroll = +/-5%)
+local volume_widget = wibox.widget.textbox()
+local function update_volume()
+    awful.spawn.easy_async("wpctl get-volume @DEFAULT_AUDIO_SINK@", function(out)
+        local vol = tonumber(out:match("Volume:%s*([%d%.]+)"))
+        if not vol then
+            volume_widget.markup = "<span foreground='#888888'> 🔈 ? </span>"
+            return
+        end
+        local pct = math.floor(vol * 100 + 0.5)
+        if out:match("MUTED") then
+            volume_widget.markup = string.format("<span foreground='#888888'> 🔇 %d%% </span>", pct)
+        else
+            local icon = pct == 0 and "🔈" or (pct < 50 and "🔉" or "🔊")
+            volume_widget.markup = string.format("<span foreground='#ffffff'> %s %d%% </span>", icon, pct)
+        end
+    end)
+end
+local function volume_cmd(cmd)
+    awful.spawn.easy_async_with_shell(cmd, update_volume)
+end
+volume_widget:buttons(gears.table.join(
+    awful.button({}, 1, function() volume_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle") end),
+    awful.button({}, 4, function() volume_cmd("pactl set-sink-volume @DEFAULT_SINK@ +5%") end),
+    awful.button({}, 5, function() volume_cmd("pactl set-sink-volume @DEFAULT_SINK@ -5%") end)
+))
+update_volume()
+gears.timer({ timeout = 2, autostart = true, callback = update_volume })
+
 awful.screen.connect_for_each_screen(function(s)
     -- Tags 1..10 named like i3 workspaces
     local tags = awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, s, awful.layout.layouts[1])
@@ -212,6 +241,8 @@ awful.screen.connect_for_each_screen(function(s)
             cpu_widget,
             sep(),
             mem_widget,
+            sep(),
+            volume_widget,
             sep(),
             battery_widget,
             sep(),
@@ -330,11 +361,11 @@ local globalkeys = gears.table.join(
 
     -- Volume / media
     awful.key({}, "XF86AudioRaiseVolume", function()
-        awful.spawn.with_shell("pactl set-sink-volume @DEFAULT_SINK@ +10%") end),
+        volume_cmd("pactl set-sink-volume @DEFAULT_SINK@ +10%") end),
     awful.key({}, "XF86AudioLowerVolume", function()
-        awful.spawn.with_shell("pactl set-sink-volume @DEFAULT_SINK@ -10%") end),
+        volume_cmd("pactl set-sink-volume @DEFAULT_SINK@ -10%") end),
     awful.key({}, "XF86AudioMute", function()
-        awful.spawn.with_shell("pactl set-sink-mute @DEFAULT_SINK@ toggle") end),
+        volume_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle") end),
     awful.key({}, "XF86AudioMicMute", function()
         awful.spawn.with_shell("pactl set-source-mute @DEFAULT_SOURCE@ toggle") end),
     awful.key({}, "XF86AudioPlay", function() awful.spawn("playerctl play-pause") end),

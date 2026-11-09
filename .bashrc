@@ -53,8 +53,6 @@ alias vim='nvim'
 alias v='nvim'
 
 alias gs='git status'
-alias gp='git push'
-alias :G='git $1'
 alias glog='git log --oneline --graph'
 alias glo='git log --oneline'
 
@@ -196,3 +194,26 @@ export PATH=/Users/awilcox/.opencode/bin:$PATH
 if $IS_INTERACTIVE && command -v arbinger >/dev/null 2>&1; then
   source <(arbinger completions bash)
 fi
+# >>> trunkline shell integration >>>
+tl() {
+  local cd_file
+  cd_file="$(mktemp)"
+  command tl --cd-file "$cd_file" "$@"
+  local rc=$?
+  if [ -s "$cd_file" ]; then
+    cd "$(cat "$cd_file")" || true
+  fi
+  rm -f "$cd_file"
+  return $rc
+}
+# <<< trunkline shell integration <<<
+# >>> trunkline completions >>>
+_tl_complete() {
+  local words=("${COMP_WORDS[@]:1}")
+  local IFS=$'\n'
+  local candidates
+  candidates=$(command tl __complete "${words[@]}" 2>/dev/null)
+  COMPREPLY=( $(compgen -W "${candidates}" -- "${COMP_WORDS[COMP_CWORD]}") )
+}
+complete -o default -F _tl_complete tl
+# <<< trunkline completions <<<
